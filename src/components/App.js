@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <p>Hello world!!!</p>
-        <LogOut />
+        {/* <LogOut /> */}
       </div>
     );
   }
