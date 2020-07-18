@@ -106,5 +106,5 @@
 .exitButtonTitle:hover,
 .exitButtonTitle:focus {
   border-bottom: 1px solid #000;
-  outline: 0;
+  outline: none;
 }
