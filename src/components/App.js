@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //Core
 import React, { lazy, Suspense, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -9,6 +8,10 @@ import Loader from 'react-loader-spinner';
 //Styles
 import './main.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
+
+
+
 //Async components
 // const AsyncLoginPage = lazy(() =>
 //   import('../pages/Login/Login' /* webpackChunkName: "login-page" */),
@@ -29,16 +32,10 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 //     '../pages/Statistics/Statistics' /* webpackChunkName: "statistics-page" */
 //   ),
 // );
-=======
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import LogOut from "../pages/LogOut";
->>>>>>> dev
 
 class App extends Component {
   render() {
     return (
-<<<<<<< HEAD
       <div className="container">
         <div className="app">
           {/* <Header />
@@ -64,23 +61,13 @@ class App extends Component {
             </Switch>
           </Suspense> */}
         </div>
-=======
-      <div>
-        <p>Hello world!!!</p>
-        {/* <LogOut /> */}
->>>>>>> dev
       </div>
     );
   }
 }
 const mapStateToProps = state => ({});
 
-<<<<<<< HEAD
 const mapDispatchToProps = dispatch => ({});
-=======
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = (dispatch) => ({});
->>>>>>> dev
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
