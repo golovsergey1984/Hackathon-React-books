@@ -11,7 +11,6 @@ class ModalResult extends Component {
           <div className={styles.modal}>
             <img src={thumup} alt="thumup" />
             <p className={styles.message}>{message}</p>
-            <p className={styles.message}></p>
             <button type="button">Ok</button>
           </div>
         </div>
