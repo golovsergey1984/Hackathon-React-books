@@ -11,7 +11,7 @@ export default class BooksList extends Component {
   render() {
     const { isRead, isReading, willRead } = this.props;
     return (
-      <div>
+      <div className={styles.main}>
         <div className={styles.bookLibrary}>
           <h2 className={styles.readState}>Прочитано</h2>
           <div className={styles.description1}>
