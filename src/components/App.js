@@ -1,21 +1,22 @@
 //Core
-
 import React, { lazy, Suspense, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 // Components
-
-import Loader from 'react-loader-spinner';
-import LoginForm from '../components/LoginForm/LoginForm';
-
 // import Header from '../Header/Header';
-
-import Statistic from './Statistic/Statistic';
+import Loader from 'react-loader-spinner';
+import Library_addBook from '../components/library_addBooks/Library_addBooks';
+import LoginForm from '../components/LoginForm/LoginForm';
+import Statistic from '../components/Statistic/Statistic';
+import LogoutModule from '../pages/LogOut';
+import StatisticsModal from '../components/ModalResult/ModalResult';
 
 //Styles
 import './main.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
+
+
 
 //Async components
 // const AsyncLoginPage = lazy(() =>
@@ -44,6 +45,11 @@ class App extends Component {
       <div className="container">
         <div className="app">
           <LoginForm />
+          <Statistic />
+          <Library_addBook />
+          {/* <LogoutModule /> */}
+          {/* <StatisticsModal /> */}
+
           {/* <Header />
           <Suspense
             fallback={
@@ -66,7 +72,6 @@ class App extends Component {
               <Redirect to={AsyncTrainingPage} />
             </Switch>
           </Suspense> */}
-          <Statistic />
         </div>
       </div>
     );
@@ -77,3 +82,4 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+
