@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.sectionStatistic {
+  width: 1330px;
+  height: 885px;
+  display: flex;
+  justify-content: center;
+  margin-top: 165px;
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-right: 40px;
+  padding-bottom: 25px;
+  padding-left: 40px;
+  padding: 25px, 40px;
+  background: rgb(238, 238, 238);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.sectionBook {
+  width: 885px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.sectionRes {
+  text-align: left;
+  line-height: 50px;
+  background: white;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-top: 50px;
+  display: flex;
+}
+
+.sectionTimer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 2px;
+  list-style: none;
+  font-size: 20px;
+}
+
+.sectionGoal {
+  width: 310px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.goalList {
+  margin-top: 25px;
+  list-style: none;
+}
+.goals {
+  margin-bottom: 40px;
+  width: 300px;
+  height: 250px;
+  background: white;
+  border: 1px solid #a5a4a4;
+}
+
+.goalTitle {
+  background: rgb(177, 183, 195);
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  line-height: 65px;
+}
+
+.goalBlock {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 2px;
+  list-style: none;
+}
+
+.goalRes {
+  width: 85px;
+  line-height: 85px;
+  border: 1px solid rgb(209, 209, 209);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.goalTxt {
+  width: 85px;
+}
+
+.resultTitle,
+.resultTxt {
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: black;
+  line-height: 50px;
+  }
+
+.resultBlock {
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 25px;
+  padding: 10px 20px;
+  list-style: none;
+}
+
+.resultList {
+  width: 120px;
+  line-height: 40px;
+  border: 1px solid rgb(209, 209, 209);
+}
+
+.resultBtn {
+  width: 260px;
+  line-height: 40px;
+  background: rgb(255, 107, 1);
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  border: 1px solid rgb(209, 209, 209);
+}
+
+.resultTxt {
+  overflow: hidden;
+}
+.resultTxt:before,
+.resultTxt:after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  width: 100%;
+  height: 3px;
+  background: rgb(209, 209, 209);
+  border: solid #fff;
+  border-width: 0 10px;
+}
+.resultTxt:before {
+  margin-left: -100%;
+}
+.resultTxt:after {
+  margin-right: -100%;
+}
