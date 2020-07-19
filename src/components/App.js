@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <p>Hello world!!!</p>
+        {/* <p>Hello world!!!</p> */}
         <Library_all_categories />
         {/* <LogOut /> */}
       </div>

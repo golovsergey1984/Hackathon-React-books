@@ -1,0 +1,28 @@
+.readState {
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+}
+
+.bookLibrary {
+  margin-bottom: 30px;
+}
+
+.description1 {
+  width: calc(100%-30px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.description2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bookDescr {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bookDescr:not(:last-child) {
+  margin-bottom: 10px;
+}

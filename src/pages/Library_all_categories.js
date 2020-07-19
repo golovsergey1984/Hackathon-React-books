@@ -5,8 +5,8 @@ import BooksList from "../components/library/library_all_categories/BooksList";
 
 const Library = () => (
   <div>
-    <Header />
-    <AddBook />
+    {/* <Header />
+    <AddBook /> */}
     <BooksList
       isRead={[
         {
