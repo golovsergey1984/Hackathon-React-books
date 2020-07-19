@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 // Components
 // import Header from '../Header/Header';
 import Loader from 'react-loader-spinner';
-import Statistic from '../components/Statistic/Statistic';
+import Library_addBook from '../components/library_addBooks/Library_addBooks';
 import LoginForm from '../components/LoginForm/LoginForm';
+import Statistic from '../components/Statistic/Statistic';
 import LogoutModule from '../pages/LogOut';
 import StatisticsModal from '../components/ModalResult/ModalResult';
 
@@ -45,6 +46,7 @@ class App extends Component {
         <div className="app">
           <LoginForm />
           <Statistic />
+          <Library_addBook />
           {/* <LogoutModule /> */}
           {/* <StatisticsModal /> */}
 

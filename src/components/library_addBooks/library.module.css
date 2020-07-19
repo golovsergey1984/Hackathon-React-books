@@ -18,6 +18,7 @@
 }
 .wrapper {
   background-color: rgb(231, 230, 240);
+  height: 100vh;
 }
 .container {
   display: flex;
