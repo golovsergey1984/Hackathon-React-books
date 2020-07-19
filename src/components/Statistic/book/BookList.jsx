@@ -7,24 +7,27 @@ const BookList = ({items}) => (
   <table className={styles["books"]}>
     <thead>
       <tr className={styles.tHead}>
-        <th></th>
-        <th>Назва книги</th>
-        <th>Автор</th>
-        <th>Рік</th>
-        <th>Стор.</th>
+      <th colSpan="2" className={styles.tHeadItem}>
+            Назва книги
+          </th>
+          <th className={styles.tHeadItem}>Автор</th>
+          <th className={styles.tHeadItem}>Рік</th>
+          <th className={styles.tHeadItem}>Сторінки</th>
       </tr>
     </thead>
 
     <tbody>
-      {items.map(({id,readed, title, author, year, sheets}) => (
-        <tr key={id}>
-          <td className={styles.tBlock}> {readed}</td>
-          <td className={styles.tContain}>{title}</td>
-          <td className={styles.tContain}>{author}</td>
-          <td className={styles.tContain}>{year}</td>
-          <td className={styles.tContain}>{sheets}</td>
-        </tr>
-      ))}
+    {items.map(({ id, title, author, year, sheets }) => (
+          <tr key={id}>
+            <td className={styles.tContain}>
+              <span className={styles.label}></span>
+            </td>
+            <td className={styles.tContain}>{title}</td>
+            <td className={styles.tContain}>{author}</td>
+            <td className={styles.tContain}>{year}</td>
+            <td className={styles.alignCenter}>{sheets}</td>
+          </tr>
+        ))}
     </tbody>
   </table>
 </div>

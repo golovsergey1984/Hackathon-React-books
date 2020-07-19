@@ -1,11 +1,18 @@
 //Core
+
 import React, { lazy, Suspense, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 // Components
+
 import Loader from 'react-loader-spinner';
 import LoginForm from '../components/LoginForm/LoginForm';
+
 // import Header from '../Header/Header';
+
+import Statistic from './Statistic/Statistic';
+
 //Styles
 import './main.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -62,6 +69,7 @@ class App extends Component {
               <Redirect to={AsyncTrainingPage} />
             </Switch>
           </Suspense> */}
+          <Statistic />
         </div>
       </div>
     );
@@ -72,4 +80,3 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-

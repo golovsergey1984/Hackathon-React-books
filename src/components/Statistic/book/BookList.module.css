@@ -1,13 +1,17 @@
 .books {
   margin: 0 auto;
   padding: 0, 0;
-  width: 870px;
+  width: 885px;
   text-align: left;
+  border-collapse: collapse;
+}
+.tHeadItem {
+  border-bottom: 1px solid #d8d7d7;
 }
 
 .bg {
   height: 205px;
-  border: 1px solid #a5a4a4;
+  border-top: 1px solid #d8d7d7;
   box-shadow: 0px 4px 7px 1px #cfcfcf;
   overflow: auto;
   width: 885px;
@@ -23,11 +27,21 @@
   background-color: #ecf1f4;
   font-size: 18px;
   height: 25px;
-
 }
+
+.label {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #a5a4a4;
+}
+
+.alignCenter {
+  text-align: center;
+  }
 
 .tBlock {
   width: 20px;
   height: 20px;
   border: 1px solid #a5a4a4;
-  }
+}
