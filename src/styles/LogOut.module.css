@@ -1,0 +1,62 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* @import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap"); */
+
+.logOut_wrapper {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding-top: 200px;
+  /* font-family: "Mukta", sans-serif; */
+  font-size: 14px;
+  /* font-family: "Epilogue", sans-serif; */
+}
+
+.logOut_box {
+  width: 330px;
+  height: 150px;
+  background-color: white;
+  opacity: 1;
+  margin: auto;
+  padding: 0 52px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.logOut_box_dtns {
+  margin-top: 20px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.btn_cancel,
+.btn_logout {
+  width: 100px;
+  height: 30px;
+  border: none;
+  border: 1px solid black;
+  background-color: white;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.btn_logout {
+  background: #fd6a02;
+  border: 1px solid transparent;
+  transition: all ease-in-out 100ms;
+  color: white;
+}
+
+.btn_logout:hover {
+  background: #cb5c0d;
+}
