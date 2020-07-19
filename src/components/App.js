@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Components
 import Loader from 'react-loader-spinner';
+import LoginForm from '../components/LoginForm/LoginForm';
 // import Header from '../Header/Header';
 //Styles
 import './main.module.css';
@@ -38,6 +39,7 @@ class App extends Component {
     return (
       <div className="container">
         <div className="app">
+          <LoginForm />
           {/* <Header />
           <Suspense
             fallback={
