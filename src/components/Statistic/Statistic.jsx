@@ -58,7 +58,7 @@ class Statistic extends Component {
                   <input className={styles.resultList}></input>
                 </li>
                 <li>
-                  Кількість сторінок
+                  К-ть сторінок
                   <input className={styles.resultList}></input>
                 </li>
               </ul>
