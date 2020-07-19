@@ -1,8 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Library_addBooks from "./library_addBooks/Library_addBooks";
-import LibraryList from "./library_addBooks/LibraryList.jsx";
-import products from "./library_addBooks/data.json";
+import React, { lazy, Suspense, Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import './main.module.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import Library_addBooks from './library_addBooks/Library_addBooks.js';
+import LibraryList from './library_addBooks/LibraryList.jsx';
+import products from './library_addBooks/data.json';
 
 const App = () => (
   <div>
@@ -13,13 +17,3 @@ const App = () => (
 );
 
 export default App;
-
-/* const mapStateToProps = state => ({
-
-})
-
-const mapDispatchToProps = (dispatch) => ({
-
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App) */

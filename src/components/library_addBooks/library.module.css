@@ -1,22 +1,28 @@
 .box {
   display: flex;
 }
+.wrap {
+  align-items: center;
+}
 .inner {
   display: flex;
   justify-content: center;
-  padding-left: 80px;
+  padding-left: 25px;
 
   height: 20px;
 }
 .title {
-  padding-left: 140px;
+  padding-left: 50px;
   margin: 0 auto;
+  margin-bottom: 10px;
 }
 .wrapper {
   background-color: rgb(231, 230, 240);
 }
 .container {
   display: flex;
+  height: 50px;
+  align-items: center;
   background-color: #fff;
   border-radius: 3px;
   margin-top: 10px;
@@ -58,10 +64,7 @@
   justify-content: center;
   /* Параметры тени */
 }
-p {
-  padding-left: 10px;
-  padding-right: 10px;
-}
+
 .button {
   height: 35px;
   width: 200px;
@@ -73,4 +76,5 @@ p {
   border: 0;
   background-color: rgb(241, 101, 7);
   margin: 0 auto;
+  margin-top: 35px;
 }
