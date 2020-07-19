@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 import style from "../styles/LogOut.module.css"
+import { Link } from "react-router-dom";
+
 
 class LogOut extends Component {
 
@@ -34,7 +36,11 @@ class LogOut extends Component {
           <p className={style.logOut_box_descr}>Якщо Ви вийдете з програми незбережені дані будуть втрачені</p>
           <div className={style.logOut_box_dtns}>
             <button className={style.btn_cancel} id={"cancel"}>Відміна</button>
-            <button className={style.btn_logout} onClick={this.onLogout}>Вийти</button>
+
+            {/* <Link to="/login">
+              <button className={style.btn_logout} onClick={this.onLogout}>Вийти</button>
+            </Link> */}
+
           </div>
         </div>
       </div>
