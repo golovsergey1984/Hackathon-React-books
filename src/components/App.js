@@ -10,7 +10,7 @@ import LoginForm from '../components/LoginForm/LoginForm';
 import Statistic from '../components/Statistic/Statistic';
 import LogoutModule from '../pages/LogOut';
 import StatisticsModal from '../components/ModalResult/ModalResult';
-import Header from './Header/header'
+import Header from '../pages/header'
 
 //Styles
 import './main.module.css';
