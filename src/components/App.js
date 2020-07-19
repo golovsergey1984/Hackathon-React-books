@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LogOut from "../pages/LogOut";
+import StartTraining from "../components/StartTraining/StartTraining";
 
 class App extends Component {
   render() {
     return (
       <div>
-        <p>Hello world!!!</p>
-        {/* <LogOut /> */}
+        <StartTraining />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = state => ({});
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
