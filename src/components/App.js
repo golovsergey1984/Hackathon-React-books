@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LogOut from "../pages/LogOut";
+// import LogOut from "../pages/LogOut";
+import Statistic from './Statistic/Statistic'
 
 class App extends Component {
   render() {
     return (
       <div>
         <p>Hello world!!!</p>
-        <LogOut />
+        {/* <LogOut /> */}
+        <Statistic />
       </div>
     );
   }
