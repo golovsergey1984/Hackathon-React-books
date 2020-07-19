@@ -48,6 +48,7 @@ input:invalid {
 .wrapper {
   background-color: rgb(231, 230, 240);
   padding-top: 20px;
+  
 }
 .container {
   display: flex;
