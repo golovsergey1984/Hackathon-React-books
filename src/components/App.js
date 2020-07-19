@@ -17,9 +17,6 @@ import Statistic from './Statistic/Statistic';
 import './main.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
-
-
-
 //Async components
 // const AsyncLoginPage = lazy(() =>
 //   import('../pages/Login/Login' /* webpackChunkName: "login-page" */),
