@@ -26,7 +26,7 @@ export const getUserAction = createAsyncThunk(
   Type.GET_USER,
   async (args, thunkAPI) => {
     const token = getToken(thunkAPI.getState());
-    if (!token) return;
+    if (!token) throw new Error('Token not found');
     api.setAuthHeader(token);
     const response = await api.getUser();
     return response.data;
