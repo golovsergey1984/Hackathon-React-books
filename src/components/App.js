@@ -3,9 +3,13 @@ import React, { lazy, Suspense, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Components
-import Loader from 'react-loader-spinner';
-import LoginForm from '../components/LoginForm/LoginForm';
 // import Header from '../Header/Header';
+import Loader from 'react-loader-spinner';
+import Statistic from '../components/Statistic/Statistic';
+import LoginForm from '../components/LoginForm/LoginForm';
+import LogoutModule from '../pages/LogOut';
+import StatisticsModal from '../components/ModalResult/ModalResult';
+
 //Styles
 import './main.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -40,6 +44,10 @@ class App extends Component {
       <div className="container">
         <div className="app">
           <LoginForm />
+          <Statistic />
+          {/* <LogoutModule /> */}
+          {/* <StatisticsModal /> */}
+
           {/* <Header />
           <Suspense
             fallback={
