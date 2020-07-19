@@ -3,8 +3,14 @@ import React, { lazy, Suspense, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Components
-import Loader from 'react-loader-spinner';
 // import Header from '../Header/Header';
+import Loader from 'react-loader-spinner';
+import Library_addBook from '../components/library_addBooks/Library_addBooks';
+import LoginForm from '../components/LoginForm/LoginForm';
+import Statistic from '../components/Statistic/Statistic';
+import LogoutModule from '../pages/LogOut';
+import StatisticsModal from '../components/ModalResult/ModalResult';
+
 //Styles
 import './main.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
@@ -37,10 +43,44 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 class App extends Component {
   render() {
     return (
+<<<<<<< HEAD
       <div>
         <p>Hello world!!!</p>
         {/* <LogOut /> */}
 
+=======
+      <div className="container">
+        <div className="app">
+          <LoginForm />
+          <Statistic />
+          <Library_addBook />
+          {/* <LogoutModule /> */}
+          {/* <StatisticsModal /> */}
+
+          {/* <Header />
+          <Suspense
+            fallback={
+              <Loader
+                className="loader"
+                type="Oval"
+                color="#ff6b09"
+                height={100}
+                width={100}
+                timeout={3000}
+              />
+            }
+          >
+            <Switch>
+              <Route path="/login" component={AsyncLoginPage} />
+              <Route path="/registration" component={AsyncRegistrationPage} />
+              <Route path="/library" component={AsyncLibraryPage} />
+              <Route path="/training" component={AsyncTrainingPage} />
+              <Route path="/statistics" component={AsyncStatisticsPage} />
+              <Redirect to={AsyncTrainingPage} />
+            </Switch>
+          </Suspense> */}
+        </div>
+>>>>>>> de174f85014fc9ddd5e32c230019a84258b65e5a
       </div>
     );
   }
