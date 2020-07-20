@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import Training from '../../components/Training/Training';
 
 export default class TrainingPage extends Component {
   render() {
-    return <div>TRAINING PAGE</div>;
+    return (
+      <>
+        <Training />
+      </>
+    );
   }
 }
