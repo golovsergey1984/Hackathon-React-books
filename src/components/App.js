@@ -10,6 +10,7 @@ import LoginForm from '../components/LoginForm/LoginForm';
 import Statistic from '../components/Statistic/Statistic';
 import LogoutModule from '../pages/LogOut';
 import StatisticsModal from '../components/ModalResult/ModalResult';
+import Result from '../components/Result/Result';
 
 //Styles
 import './main.module.css';
@@ -43,16 +44,12 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 class App extends Component {
   render() {
     return (
-<<<<<<< HEAD
-      <div>
-        <p>Hello world!!!</p>
-        {/* <LogOut /> */}
-
-=======
       <div className="container">
         <div className="app">
           <LoginForm />
+
           <Statistic />
+          <Result />
           <Library_addBook />
           {/* <LogoutModule /> */}
           {/* <StatisticsModal /> */}
@@ -80,7 +77,6 @@ class App extends Component {
             </Switch>
           </Suspense> */}
         </div>
->>>>>>> de174f85014fc9ddd5e32c230019a84258b65e5a
       </div>
     );
   }

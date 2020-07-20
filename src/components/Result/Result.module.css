@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper {
+  background-color: #eee;
+  max-width: 400px;
+  margin: 20px;
+}
+
+.text {
+  text-align: center;
+}
+
+.form {
+  max-width: 360px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px;
+}
+
+.span {
+  display: block;
+  color: rgb(88, 87, 87);
+}
+
+.data {
+  margin: 5px;
+  margin-bottom: 20px;
+  width: 150px;
+  padding-left: 15px;
+  height: 36px;
+  font-size: 14px;
+}
+
+.btn {
+  padding: 10px 100px;
+  background-color: rgb(241, 161, 56);
+  color: #fff;
+  margin: 0 auto;
+  border: none;
+  font-weight: 700;
+}
