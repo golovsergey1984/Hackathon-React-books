@@ -2,11 +2,12 @@ import React from "react";
 import LibraryList from "../../components/library/BookList/LibraryList";
 import LibraryTitle from "../../components/library/BookList/LibraryTitle";
 import AddBookForm from "../../components/library/BookList/AddBookForm";
-import moduleName from "../../components/library/BookList/header.module.css";
+import Header from "../../components/library/BookList/Header";
 
 const Library = () => (
   <div>
     <div>
+      <Header />
       <AddBookForm />
       <LibraryTitle title={"Прочитано"} isReadBooks={true} />
       <LibraryList

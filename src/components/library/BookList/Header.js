@@ -13,18 +13,18 @@ const Header = () => (
       </p>
       <ul className={styles.navigationList}>
         <li className={styles.navigationListItem}>
-          <Link to="/library" className={styles.link}></Link>
+          <div to="/library" className={styles.link}></div>
         </li>
         <li className={styles.navigationListItem}>
-          <Link to="/statistics" className={styles.link}>
+          <div to="/statistics" className={styles.link}>
             {" "}
-          </Link>
+          </div>
         </li>
         <li className={styles.navigationListItem}>
           {/* <button type='button' className={styles.exitButton}><span className={styles.exitButtonTitle}>Вихід</span></button> */}
-          <Link to="/logout" className={styles.exitButton}>
+          <div to="/logout" className={styles.exitButton}>
             <span className={styles.exitButtonTitle}>Вихід</span>{" "}
-          </Link>
+          </div>
         </li>
       </ul>
     </nav>
