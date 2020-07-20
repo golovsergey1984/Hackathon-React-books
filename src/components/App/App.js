@@ -67,17 +67,17 @@ class App extends Component {
           <Switch>
             <Route path="/login" component={AsyncLoginPage} />
             <Route path="/registration" component={AsyncRegistrationPage} />
-            <ProtectedRoute
+            <Route
               path="/library"
               component={AsyncLibraryPage}
               redirectTo="/login"
             />
-            <ProtectedRoute
+            <Route
               path="/training"
               component={AsyncTrainingPage}
               redirectTo="/login"
             />
-            <ProtectedRoute
+            <Route
               path="/statistics"
               component={AsyncStatisticsPage}
               redirectTo="/login"
