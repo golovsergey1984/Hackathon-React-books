@@ -68,7 +68,6 @@
   background-repeat: no-repeat;
   background-position-x: 660px;
   background-position-y: 12px;
-  background-size: ;
 }
 
 .bookSelectSubmit {
@@ -101,7 +100,6 @@ td {
   text-overflow: ellipsis;
   text-align: start;
   color: #494b57;
-  line-height: ;
 }
 
 th {
