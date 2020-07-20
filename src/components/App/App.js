@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Components
 import Loader from 'react-loader-spinner';
-// import Header from '../Header/Header';
+import Header from '../Header/header';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { getUserAction } from '../../redux/session/sessionActions';
 //Styles
@@ -49,7 +49,7 @@ class App extends Component {
 
     return (
       <div className={styles.container}>
-        {/* <Header /> */}
+        <Header />
         <Suspense
           fallback={
             isLoading && (
