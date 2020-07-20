@@ -1,0 +1,115 @@
+.header {
+  box-shadow: 0px 4px 4px -1px #d9e0db;
+  font-size: 14px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 30px;
+}
+
+.siteLogo {
+  display: block;
+  font-size: 22px;
+  color: #000;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 0.2s linear;
+}
+
+.siteLogo:hover,
+.siteLogo:focus {
+  transform: scale(1.1);
+  outline: 0;
+}
+
+.navigationList {
+  display: flex;
+  flex: 0 0 130px;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  opacity: 0.5;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  color: #222222;
+  transition: color 0.2s linear;
+  min-width: 30px;
+  min-height: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 60%;
+  border-radius: 100%;
+  transition: background-color transform 0.2s linear;
+}
+
+.navigationListItem {
+  border-radius: 100%;
+  transition: background-color transform 0.2s linear;
+}
+
+.navigationListItem:nth-child(1) .link {
+  background-image: url(../../assets/icons/book.svg);
+}
+
+.navigationListItem:nth-child(2) .link {
+  background-image: url(../../assets/icons/home.svg);
+}
+
+.navigationListItem:nth-child(3) .exitButton {
+  background-color: #fff;
+  border-left: 1px solid rgb(172, 170, 170);
+  text-decoration: none;
+  color: #222222;
+}
+
+.navigationList .link:hover,
+.navigationList .link:focus {
+  background-color: rgb(243, 237, 237);
+  transform: scale(1.1);
+}
+
+.mStyle {
+  display: flex;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 100%;
+  background-color: #rgb(250, 247, 247);
+  text-align: center;
+  vertical-align: middle;
+  justify-content: center;
+  background-color: rgb(243, 237, 237);
+  font-weight: 800;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  flex: 0 0 130px;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  opacity: 0.7;
+}
+
+.exitButton {
+  border: none;
+  cursor: pointer;
+  transition: border-bottom 0.2s linear;
+  padding: 7px 7px;
+}
+
+.exitButtonTitle:hover,
+.exitButtonTitle:focus {
+  border-bottom: 1px solid rgb(168, 165, 165);
+  outline: none;
+}
