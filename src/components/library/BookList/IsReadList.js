@@ -12,7 +12,7 @@ export default class IsReadList extends Component {
   render() {
     const { isRead } = this.props;
     return (
-      <>
+      <div>
         <div>Прочитано</div>
         <div>
           <div>Назва книги</div>
@@ -33,7 +33,7 @@ export default class IsReadList extends Component {
             </div>
           </div>
         ))}
-      </>
+      </div>
     );
   }
 }
