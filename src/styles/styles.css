@@ -7,21 +7,3 @@
 html {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
-
-.container {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 300px;
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .container {
-    max-width: 1220px;
-  }
-}

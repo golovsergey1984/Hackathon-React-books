@@ -58,11 +58,11 @@
 }
 
 .navigationListItem:nth-child(1) .link{
-  background-image: url(../assets/icons/book.svg);
+  background-image: url(../../assets/icons/book.svg);
 }
 
 .navigationListItem:nth-child(2) .link{
-  background-image: url(../assets/icons/home.svg);
+  background-image: url(../../assets/icons/home.svg);
 }
 
 .navigationListItem:nth-child(3) .exitButton {
