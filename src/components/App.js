@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import LogOut from "../pages/LogOut";
-import Library from "../pages/Library/Library";
+import Library from "../pages/Library/library_all_categories.js";
 
 class App extends Component {
   render() {
