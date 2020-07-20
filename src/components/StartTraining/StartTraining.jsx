@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import styles from "./StartTraining.module.css";
+import React, { Component } from 'react';
+import styles from './StartTraining.module.css';
 
 class StartTraining extends Component {
   render() {
@@ -55,9 +55,10 @@ class StartTraining extends Component {
               </tr>
             </tbody>
           </table>
-          <button className={styles.startTrainingButton}>
+          {/* <button className={styles.startTrainingButton}>
             Почати тренування
-          </button>
+          </button> */}
+          <link title="Почати тренування" href="/statistics" />
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
