@@ -63,4 +63,22 @@
 .list {
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
+=======
+  /* Параметры тени */
+}
+
+.button {
+  height: 35px;
+  width: 200px;
+  display: block;
+  position: relative;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  background-color: rgb(241, 101, 7);
+  margin: 0 auto;
+  margin-top: 35px;
+>>>>>>> dev
 }

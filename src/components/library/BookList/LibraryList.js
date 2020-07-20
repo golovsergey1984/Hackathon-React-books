@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class LibraryList extends Component {
   state = { modal: false };
 
   handleModalChange = () => {
-    this.setState((state) => ({ modal: !state.modal }));
+    this.setState(state => ({ modal: !state.modal }));
     console.log(this.state.modal);
   };
 
@@ -12,10 +12,10 @@ export default class LibraryList extends Component {
     const { books, isReadBooks } = this.props;
     return (
       <div>
-        {books.map((book) => (
+        {books.map(book => (
           <li key={book.id}>
             <div>
-              <img src={book.img} width={24} />
+              <img src={require('./images/book.svg')} width={24} />
               <div>
                 <div>{book.title}</div>
                 <div>{book.author}</div>
