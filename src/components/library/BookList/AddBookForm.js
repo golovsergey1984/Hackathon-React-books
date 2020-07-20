@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export default class AddBookForm extends Component {
-  state = { bookName: "", author: "", pages: null, year: null };
+  state = { bookName: "", author: "", pages: "", year: "" };
 
   handleChange = (e) => {
     const { name, value } = e.target;
