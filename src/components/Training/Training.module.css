@@ -2,8 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+  background-color: #f6f7fb;
 }
 
 .startTrainingMainContainer {
@@ -11,9 +15,9 @@
   justify-content: space-between;
   margin: 0 auto;
   width: 1333px;
-  background-color: #f6f7fb;
   padding: 42px 42px 50px 42px;
 }
+
 .startTrainingContainer {
   width: 898px;
 }
@@ -64,7 +68,7 @@
   box-shadow: 0px 0px 5px 0px rgba(223, 226, 235, 0.75);
   outline: none;
   appearance: none;
-  background-image: url(./IconStartTraining/arrow.png);
+  background-image: url(../../assets/icons/IconStartTraining/arrow.png);
   background-repeat: no-repeat;
   background-position-x: 660px;
   background-position-y: 12px;
@@ -74,7 +78,7 @@
   height: 34px;
   padding: 0 60px;
   background-color: #f6f7fb;
-  border: 2px solid #000;
+  border: 1px solid #000;
 }
 
 /* TABLE STULE */
@@ -83,7 +87,6 @@
   display: block;
   color: #8d919d;
   width: 898px;
-  padding-bottom: 100px;
   margin-bottom: 40px;
   border-bottom: 1px solid #e3e8ec;
 }
@@ -94,12 +97,31 @@ thead {
   border-top: 1px solid #e3e8ec;
   border-bottom: 1px solid #e3e8ec;
 }
-td {
+
+tbody {
+  height: 300px;
+  display: block;
+  overflow: auto;
+}
+
+tbody::-webkit-scrollbar {
+  width: 6px;
+}
+tbody::-webkit-scrollbar-track {
+  background: #e6e6ee;
+}
+tbody::-webkit-scrollbar-thumb {
+  background: #b1b7c5;
+  border-radius: 4px;
+}
+
+tbody td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: start;
   color: #494b57;
+  padding-top: 10px;
 }
 
 th {
@@ -111,18 +133,15 @@ th {
   width: 448px;
   margin-right: 20px;
 }
-td {
-  padding-top: 10px;
-}
 
 td.selectedBookTableBookName::before {
-  content: "";
+  content: '';
   display: inline-block;
   vertical-align: middle;
   width: 30px;
   height: 30px;
   margin-right: 20px;
-  background-image: url(./IconStartTraining/book.png);
+  background-image: url(../../assets/icons/IconStartTraining/book.png);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -149,7 +168,7 @@ td.selectedBookTableBookName::before {
   height: 20px;
   align-self: center;
   background: none;
-  background-image: url(./IconStartTraining/Bin.png);
+  background-image: url(../../assets/icons/IconStartTraining/Bin.png);
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -159,6 +178,9 @@ td.selectedBookTableBookName::before {
 .startTrainingButton {
   display: block;
   margin: 0 auto;
+  text-align: center;
+  padding-top: 10px;
+  text-decoration: none;
   width: 188px;
   height: 40px;
   background-color: #ff6b01;

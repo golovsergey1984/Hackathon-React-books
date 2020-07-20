@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styles from './StartTraining.module.css';
+import styles from './Training.module.css';
+import { Link } from 'react-router-dom';
 
 class StartTraining extends Component {
   render() {
@@ -14,7 +15,7 @@ class StartTraining extends Component {
           <form className={styles.bookSelectForm}>
             <p>
               <select className={styles.bookSelectField} name="book">
-                <option selected="selected">Обрати книги з бібліотеки</option>
+                <option>Обрати книги з бібліотеки</option>
                 <option value="book1">BOOK-1</option>
                 <option value="book2">BOOK-2</option>
                 <option value="book3">BOOK-3</option>
@@ -53,12 +54,14 @@ class StartTraining extends Component {
                   <button className={styles.selectedBookDelete}></button>
                 </td>
               </tr>
+              <tr>
+                <td className={styles.selectedBookTableBookName}>...</td>
+              </tr>
             </tbody>
           </table>
-          {/* <button className={styles.startTrainingButton}>
+          <Link to="/statistics" className={styles.startTrainingButton}>
             Почати тренування
-          </button> */}
-          <link title="Почати тренування" href="/statistics" />
+          </Link>
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>

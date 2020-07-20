@@ -4,9 +4,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // Components
 import Loader from 'react-loader-spinner';
-// import Header from '../Header/Header';
-// eslint-disable-next-line
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Header from '../Header/header';
+// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { getUserAction } from '../../redux/session/sessionActions';
 //Styles
 import styles from './App.module.css';
@@ -50,7 +49,7 @@ class App extends Component {
 
     return (
       <div className={styles.container}>
-        {/* <Header /> */}
+        <Header />
         <Suspense
           fallback={
             isLoading && (
