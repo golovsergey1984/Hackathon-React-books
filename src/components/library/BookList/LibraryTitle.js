@@ -1,14 +1,13 @@
 import React from "react";
-import styles from "./library.module.css";
 
 const LibraryTitle = ({ isReadBooks, title }) => (
-  <div className={styles.wrap}>
-    <div className={styles.title}>{title}</div>
-    <div className={styles.inner}>
-      <div className={styles.title_name}>Назва книги</div>
-      <div className={styles.title_author}>Автор</div>
-      <div className={styles.title_year}>Рік</div>
-      <div className={styles.title_page}>Стор.</div>
+  <div>
+    <div>{title}</div>
+    <div>
+      <div>Назва книги</div>
+      <div>Автор</div>
+      <div>Рік</div>
+      <div>Стор.</div>
       {isReadBooks && <div>Рейтинг книги</div>}
     </div>
   </div>

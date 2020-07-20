@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import styles from "./library.module.css";
 
 export default class LibraryList extends Component {
   state = { modal: false };
@@ -14,14 +13,14 @@ export default class LibraryList extends Component {
     return (
       <div>
         {books.map((book) => (
-          <li key={book.id} className={styles.list}>
-            <div className={styles.container}>
-              <img className={styles.image} width={25} />
-              <div className={styles.box}>
-                <div className={styles.name}>{book.title}</div>
-                <div className={styles.author}>{book.author}</div>
-                <div className={styles.year}>{book.year}</div>
-                <div className={styles.pages}>{book.pages}</div>
+          <li key={book.id}>
+            <div>
+              <img src={book.img} width={24} />
+              <div>
+                <div>{book.title}</div>
+                <div>{book.author}</div>
+                <div>{book.year}</div>
+                <div>{book.pages}</div>
                 {isReadBooks && <div>{book.rating}</div> && (
                   <div>
                     <button onClick={this.handleModalChange}>Резюме</button>

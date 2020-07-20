@@ -1,11 +1,12 @@
 import React from "react";
 import LibraryList from "../../components/library/BookList/LibraryList";
 import LibraryTitle from "../../components/library/BookList/LibraryTitle";
-import styles from "../../components/library/BookList/library.module.css";
+import AddBookForm from "../../components/library/BookList/AddBookForm";
 
 const Library = () => (
-  <div className={styles.wrapper}>
-    <div className={styles.booksMarginBottom}>
+  <div>
+    <div>
+      <AddBookForm />
       <LibraryTitle title={"Прочитано"} isReadBooks={true} />
       <LibraryList
         isReadBooks={true}
@@ -17,11 +18,12 @@ const Library = () => (
             pages: 345,
             rating: 5,
             id: 2,
+            img: "../../components/library/BookList/images/read-book.svg",
           },
         ]}
       />
     </div>
-    <div className={styles.booksMarginBottom}>
+    <div>
       <LibraryTitle title={"Читаю"} isReadBooks={false} />
       <LibraryList
         books={[
@@ -32,11 +34,12 @@ const Library = () => (
             pages: 345,
             rating: 5,
             id: 2,
+            img: "../../components/library/BookList/images/read-book.svg",
           },
         ]}
       />
     </div>
-    <div className={styles.booksMarginBottom}>
+    <div>
       <LibraryTitle title={"Маю намір прочитати"} isReadBooks={false} />
       <LibraryList
         books={[
@@ -47,6 +50,7 @@ const Library = () => (
             pages: 345,
             rating: 5,
             id: 2,
+            img: "../../components/library/BookList/images/read-book.svg",
           },
         ]}
       />
