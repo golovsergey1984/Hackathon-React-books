@@ -10,7 +10,7 @@ import LoginForm from '../components/LoginForm/LoginForm';
 import Statistic from '../components/Statistic/Statistic';
 import LogoutModule from '../pages/LogOut';
 import StatisticsModal from '../components/ModalResult/ModalResult';
-import Result from '../components/Result/Result';
+import LineChart from '../components/LineChart/LineChart';
 
 //Styles
 import './main.module.css';
@@ -49,8 +49,9 @@ class App extends Component {
           <LoginForm />
 
           <Statistic />
-          <Result />
           <Library_addBook />
+          <LineChart />
+
           {/* <LogoutModule /> */}
           {/* <StatisticsModal /> */}
 
