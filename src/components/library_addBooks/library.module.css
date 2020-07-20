@@ -63,6 +63,8 @@
 .list {
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
+=======
   /* Параметры тени */
 }
 
@@ -78,4 +80,5 @@
   background-color: rgb(241, 101, 7);
   margin: 0 auto;
   margin-top: 35px;
+>>>>>>> dev
 }

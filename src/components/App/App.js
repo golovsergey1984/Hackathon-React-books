@@ -38,6 +38,10 @@ const AsyncStatisticsPage = lazy(() =>
   ),
 );
 
+const AsyncLibrary = lazy(() =>
+  import('../../pages/LibraryPage/library_all_categories.js'),
+);
+
 class App extends Component {
   componentDidMount() {
     const { getUserAction } = this.props;
@@ -72,6 +76,7 @@ class App extends Component {
               component={AsyncLibraryPage}
               redirectTo="/login"
             />
+            <Route path="/library_full" component={AsyncLibrary} />
             <Route
               path="/training"
               component={AsyncTrainingPage}
