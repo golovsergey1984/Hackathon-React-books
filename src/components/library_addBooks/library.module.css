@@ -1,0 +1,66 @@
+.box {
+  display: flex;
+}
+.wrap {
+  align-items: center;
+}
+.inner {
+  display: flex;
+  justify-content: center;
+  padding-left: 25px;
+
+  height: 20px;
+}
+.title {
+  padding-left: 50px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.wrapper {
+  background-color: rgb(231, 230, 240);
+  height: 100vh;
+}
+.container {
+  display: flex;
+  height: 50px;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 3px;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.title_name {
+  width: 500px;
+  color: #4948487e;
+}
+.title_avtor {
+  width: 300px;
+  color: #2b2a2a7e;
+}
+.title_year {
+  width: 100px;
+  color: #4948487e;
+}
+.title_page {
+  width: 100px;
+  color: #2c2b2b7e;
+}
+.name {
+  width: 500px;
+}
+.avtor {
+  width: 300px;
+}
+.year {
+  width: 100px;
+}
+.pages {
+  width: 100px;
+}
+.image {
+  padding-left: 10px;
+}
+.list {
+  display: flex;
+  justify-content: center;
+}

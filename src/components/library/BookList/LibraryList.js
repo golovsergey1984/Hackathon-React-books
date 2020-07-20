@@ -3,8 +3,14 @@ import styles from "./library.module.css";
 
 export default class LibraryList extends Component {
   state = { modal: false };
+
+  handleModalChange = () => {
+    this.setState((state) => ({ modal: !state.modal }));
+    console.log(this.state.modal);
+  };
+
   render() {
-    const { books } = this.props;
+    const { books, isReadBooks } = this.props;
     return (
       <div>
         {books.map((book) => (
@@ -16,10 +22,11 @@ export default class LibraryList extends Component {
                 <div className={styles.author}>{book.author}</div>
                 <div className={styles.year}>{book.year}</div>
                 <div className={styles.pages}>{book.pages}</div>
-                {/* <div>{book.rating}</div>
-                <div>
-                  <button onClick={this.handleModalChange}></button>
-                </div> */}
+                {isReadBooks && <div>{book.rating}</div> && (
+                  <div>
+                    <button onClick={this.handleModalChange}>Резюме</button>
+                  </div>
+                )}
               </div>
             </div>
           </li>
