@@ -39,7 +39,7 @@ const AsyncStatisticsPage = lazy(() =>
 );
 
 const AsyncLibrary = lazy(() =>
-  import('../../pages/LibraryPage/library_all_categories.js'),
+  import('../../pages/LibraryPage/LibraryPage'),
 );
 
 class App extends Component {
