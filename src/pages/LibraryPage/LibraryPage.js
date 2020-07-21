@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import LibraryList from '../../components/library/BookList/LibraryList';
 import LibraryTitle from '../../components/library/BookList/LibraryTitle';
 import AddBookForm from '../../components/library/BookList/AddBookForm';
+import styles from './LibraryPage.module.css';
 
 export default class LibraryPage extends Component {
   render() {
     return (
-      <div>
+      <div className={styles.wrapper}>
         <div>
           <AddBookForm />
           <LibraryTitle title={'Прочитано'} isReadBooks={true} />
