@@ -7,12 +7,23 @@ import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
 import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
 import EmptyList from '../../components/Library/EmptyList/EmptyList';
 import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
+import ToReadList from '../../components/library_addBooks/Library_addBooks';
 
 export default class LibraryPage extends Component {
+  state = {
+    modal: false,
+  };
+
+  handleModalChange = toggle => {
+    this.setState({ modal: toggle });
+  };
+
   render() {
+    const { modal } = this.state;
+
     const {
       books = true,
-      isReadBooks = false,
+      isReadBooks = true,
       isReadingBooks = false,
       toReadBooks = false,
     } = this.props;
@@ -22,11 +33,12 @@ export default class LibraryPage extends Component {
         <div>
           <div className={styles.wrapper}>
             <AddBookForm />
-            {books && <EmptyList />}
+            {!books && <EmptyList />}
             {isReadBooks && (
               <div>
                 <LibraryTitle title={'Прочитано'} isReadBooks={true} />
                 <LibraryList
+                  onModalChange={this.handleModalChange}
                   isReadBooks={true}
                   books={[
                     {
@@ -57,28 +69,10 @@ export default class LibraryPage extends Component {
                 />
               </div>
             )}
-            {toReadBooks && (
-              <div>
-                <LibraryTitle
-                  title={'Маю намір прочитати'}
-                  isReadBooks={false}
-                />
-                <LibraryList
-                  books={[
-                    {
-                      title: 'Some title ',
-                      author: 'some author',
-                      year: 2345,
-                      pages: 345,
-                      id: 2,
-                    },
-                  ]}
-                />
-              </div>
-            )}
+            {toReadBooks && <ToReadList />}
           </div>
         </div>
-        <LibraryListModal />
+        {modal && <LibraryListModal />}
       </>
     );
   }

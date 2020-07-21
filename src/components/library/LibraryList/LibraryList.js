@@ -3,11 +3,8 @@ import styles from '../BookList.module.css';
 import StarReactRating from '../../StarRating/StarRating';
 
 export default class LibraryList extends Component {
-  state = { modal: false };
-
   handleModalChange = () => {
-    this.setState(state => ({ modal: !state.modal }));
-    console.log(this.state.modal);
+    this.props.onModalChange(true);
   };
 
   render() {
