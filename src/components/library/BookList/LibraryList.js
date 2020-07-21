@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styles from './BookList.module.css';
+import StarReactRating from '../../StarRating/StarRating';
+
 
 export default class LibraryList extends Component {
   state = { modal: false };
@@ -10,7 +12,7 @@ export default class LibraryList extends Component {
   };
 
   render() {
-    const { books, isReadBooks } = this.props;
+    const { books, isReadBooks, rating = 4 } = this.props;
     return (
       <div className={styles.mainBox}>
         {books.map(book => (
@@ -22,8 +24,9 @@ export default class LibraryList extends Component {
                 <div className={styles.authorBook}>{book.author}</div>
                 <div className={styles.yearBook}>{book.year}</div>
                 <div className={styles.storBook}>{book.pages}</div>
-                {isReadBooks && <div>{book.rating}</div> && (
-                  <div>
+                {isReadBooks && (
+                  <div className={styles.rating}>
+                    <StarReactRating rating={rating} />
                     <button className={styles.button} onClick={this.handleModalChange}>Резюме</button>
                   </div>
                 )}

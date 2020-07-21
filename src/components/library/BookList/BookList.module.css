@@ -57,6 +57,7 @@ input:focus {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
   line-height: 3.2;
+  margin-left: 40px;
 }
 
 .secondBoxBooks {
@@ -66,8 +67,9 @@ input:focus {
   font-size: 16px;
   line-height: 3.2;
 }
+
 .nameBook {
-  min-width: 450px;
+  min-width: 350px;
 }
 
 .authorBook {
@@ -79,7 +81,7 @@ input:focus {
 }
 
 .storBook {
-  min-width: 200px;
+  min-width: 100px;
 }
 
 .list {
@@ -97,6 +99,7 @@ input:focus {
   border: none;
   color: #fff;
   margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .button:hover {
@@ -109,5 +112,11 @@ input:focus {
 }
 
 .image {
-  margin: 10px 20px;
+  margin: 10px;
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+  min-width: 320px;
 }
