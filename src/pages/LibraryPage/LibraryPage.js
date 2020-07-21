@@ -17,7 +17,7 @@ export default class LibraryPage extends Component {
               {
                 title: 'Some title',
                 author: 'some author',
-                year: 2345,
+                year: 2020,
                 pages: 345,
                 rating: 5,
                 id: 2,
@@ -32,7 +32,7 @@ export default class LibraryPage extends Component {
               {
                 title: 'Some title',
                 author: 'some author',
-                year: 2345,
+                year: 2020,
                 pages: 345,
                 rating: 5,
                 id: 2,
@@ -47,7 +47,7 @@ export default class LibraryPage extends Component {
               {
                 title: 'Some title',
                 author: 'some author',
-                year: 2345,
+                year: 2020,
                 pages: 345,
                 rating: 5,
                 id: 2,
