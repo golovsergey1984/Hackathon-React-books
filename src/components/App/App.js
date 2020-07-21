@@ -38,9 +38,6 @@ const AsyncStatisticsPage = lazy(() =>
   ),
 );
 
-const AsyncLibrary = lazy(() =>
-  import('../../pages/LibraryPage/LibraryPage'),
-);
 
 class App extends Component {
   componentDidMount() {
@@ -69,6 +66,7 @@ class App extends Component {
           }
         >
           <Switch>
+
             <Route path="/login" component={AsyncLoginPage} />
             <Route path="/registration" component={AsyncRegistrationPage} />
             <Route
@@ -76,7 +74,6 @@ class App extends Component {
               component={AsyncLibraryPage}
               redirectTo="/login"
             />
-            <Route path="/library_full" component={AsyncLibrary} />
             <Route
               path="/training"
               component={AsyncTrainingPage}
@@ -88,7 +85,7 @@ class App extends Component {
               redirectTo="/login"
             />
 
-            <Redirect to="/training" />
+            <Redirect to="/login" />
           </Switch>
         </Suspense>
       </div>
