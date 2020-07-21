@@ -1,9 +1,9 @@
-import React from "react";
-import ReactStars from "react-rating-stars-component";
+import React from 'react';
+import ReactStars from 'react-rating-stars-component';
 // import PropTypes from "prop-types";
-import styles from "../../../styles/library/all_categories-modal.module.css";
+import styles from './LibraryList-modal.module.css';
 
-const AllCategoriesModal = ({
+const LibraryListModal = ({
   ratingValue = 0,
   onChangeRating,
   onChangeResume,
@@ -53,4 +53,4 @@ const AllCategoriesModal = ({
   );
 };
 
-export default AllCategoriesModal;
+export default LibraryListModal;

@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import style from '../styles/LogOut.module.css'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import style from './LogOutModal.module.css';
+import { Link } from 'react-router-dom';
 
 class LogOut extends Component {
-  componentDidMount () {
-    window.addEventListener('keydown', this.onCnacelPress)
+  componentDidMount() {
+    window.addEventListener('keydown', this.onCnacelPress);
   }
 
   onCancelClick = event => {
     if (event.target.id !== 'cancel' && event.target !== event.currentTarget)
-      return
+      return;
 
-    console.log('Exit!!')
-  }
+    console.log('Exit!!');
+  };
 
-  onCnacelPress = e => {
-    if (e.key !== 'Escape') return
+  onCancelPress = e => {
+    if (e.key !== 'Escape') return;
 
-    console.log('Exit key!!!')
-  }
+    console.log('Exit key!!!');
+  };
 
   onLogout = () => {
-    console.log('Log out and go main page')
+    console.log('Log out and go main page');
+  };
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.onCnacelPress);
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('keydown', this.onCnacelPress)
-  }
-
-  render () {
+  render() {
     return (
       <div
         className={style.logOut_wrapper}
@@ -43,14 +43,16 @@ class LogOut extends Component {
               Відміна
             </button>
 
-            {/* <Link to="/login">
-              <button className={style.btn_logout} onClick={this.onLogout}>Вийти</button>
-            </Link> */}
+            <Link to="/login">
+              <button className={style.btn_logout} onClick={this.onLogout}>
+                Вийти
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default LogOut
+export default LogOut;
