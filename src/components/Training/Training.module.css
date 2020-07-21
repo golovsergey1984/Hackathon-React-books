@@ -38,19 +38,25 @@ body {
   margin-bottom: 30px;
 }
 
-.calendarIn {
+.calendarInput {
   height: 42px;
   color: #9195a1;
+  background-color: #f6f7fb;
   border: 1px solid #d4d7de;
-  padding: 10px 66px 0;
   margin-right: 34px;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  background-image: url(../../assets/icons/IconStartTraining/calendarIcon.png),
+    url(../../assets/icons/IconStartTraining/arrow.png);
+  background-repeat: no-repeat;
+  background-size: 20px, 14px;
+  background-position-x: 10px, 148px;
+  background-position-y: 10px, 14px;
 }
 
-.calendarOut {
-  height: 42px;
-  color: #9195a1;
-  border: 1px solid #d4d7de;
-  padding: 10px 66px 0;
+.calendarInput:focus {
+  outline: none;
 }
 
 .bookSelectForm {

@@ -4,30 +4,59 @@ import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+import { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
+registerLocale('uk', uk);
+
 class StartTraining extends Component {
   state = {
-    startDate: new Date(),
+    startDate: null,
+    endDate: null,
   };
 
-  handleChange = date => {
+  setStartDate = date => {
     this.setState({
       startDate: date,
     });
   };
+
+  setEndDate = date => {
+    this.setState({
+      endDate: date,
+    });
+  };
+
   render() {
-    console.log(this.state.startDate);
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
           <h2 className={styles.startTitle}>Моє тренування</h2>
           <div className={styles.calendarContainer}>
-            <div className={styles.calendarIn}>
+            <>
               <DatePicker
+                className={styles.calendarInput}
+                onChange={date => this.setStartDate(date)}
                 selected={this.state.startDate}
-                onChange={this.handleChange}
+                selectsStart
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Початок"
+                locale="uk"
               />
-            </div>
-            <div className={styles.calendarOut}>Завершення</div>
+              <DatePicker
+                className={styles.calendarInput}
+                onChange={date => this.setEndDate(date)}
+                selected={this.state.endDate}
+                selectsEnd
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                minDate={this.state.startDate}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Завершення"
+                locale="uk"
+              />
+            </>
           </div>
           <form className={styles.bookSelectForm}>
             <p>
