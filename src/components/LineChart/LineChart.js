@@ -26,12 +26,16 @@ const LineChart = () => {
     }
 
     const options = {
-        title: {
-            display: true,
-            text: 'кількість сторінок/день 34',
-        },
+        // title: {
+        //     display: true,
+        //     text: 'кількість сторінок/день 34',
+        // },
         scales: {
             yAxes: [{
+                scaleLabel: {
+                    display: true,
+                    labelString: 'КІЛЬКІСТЬ СТОРІНОК/ДЕНЬ',
+                },
                 ticks: {
                     min: 1,
                     max: 100,

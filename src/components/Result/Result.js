@@ -51,10 +51,36 @@ const Result = () => {
                         <option value="28">28</option>
                         <option value="29">29</option>
                         <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                        <option value="41">41</option>
+                        <option value="42">42</option>
+                        <option value="43">43</option>
+                        <option value="44">44</option>
+                        <option value="45">45</option>
+                        <option value="46">46</option>
+                        <option value="47">47</option>
+                        <option value="48">48</option>
+                        <option value="49">49</option>
+                        <option value="50">50</option>
                     </select>
                 </label>
                 <button className={styles.btn}>Додати результат</button>
             </form>
+            <h2 className={styles.text}>Статистика</h2>
+            <ul>
+                <li className={styles.statistics}><span className={styles.dateTime}>19.07.2020</span><span className={styles.dateTime}>07:00</span><span className={styles.dateTime}>25 стор</span></li>
+                <li className={styles.statistics}><span className={styles.dateTime}>20.07.2020</span><span className={styles.dateTime}>08:00</span><span className={styles.dateTime}>30 стор</span></li>
+                <li className={styles.statistics}><span className={styles.dateTime}>21.07.2020</span><span className={styles.dateTime}>09:00</span><span className={styles.dateTime}>40 стор</span></li>
+            </ul>
         </div >
     )
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Core
 import React, { lazy, Suspense, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
@@ -40,10 +41,17 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 //   ),
 // );
 
+=======
+import React, { lazy, Suspense, Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import LogOut from '../pages/LogOut';
+>>>>>>> d2ff0f930b366cc2847bf2825c2233c8b20f5cfa
 
 class App extends Component {
   render() {
     return (
+<<<<<<< HEAD
       <div className="container">
         <div className="app">
           <LoginForm />
@@ -78,13 +86,26 @@ class App extends Component {
             </Switch>
           </Suspense> */}
         </div>
+=======
+      <div>
+        {/* <p>Hello world!!!</p> */}
+        <Route path="/library_full" component={AsyncLibrary} />
+        {/* <LogOut /> */}
+>>>>>>> d2ff0f930b366cc2847bf2825c2233c8b20f5cfa
       </div>
     );
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d2ff0f930b366cc2847bf2825c2233c8b20f5cfa
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+<<<<<<< HEAD
 
+=======
+>>>>>>> d2ff0f930b366cc2847bf2825c2233c8b20f5cfa

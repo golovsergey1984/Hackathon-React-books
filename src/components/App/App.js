@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // Components
 import Loader from 'react-loader-spinner';
 import Header from '../Header/header';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { getUserAction } from '../../redux/session/sessionActions';
 //Styles
 import styles from './App.module.css';
@@ -36,6 +36,10 @@ const AsyncStatisticsPage = lazy(() =>
   import(
     '../../pages/StatisticsPage/StatisticsPage' /* webpackChunkName: "statistics-page" */
   ),
+);
+
+const AsyncLibrary = lazy(() =>
+  import('../../pages/LibraryPage/LibraryPage'),
 );
 
 class App extends Component {
@@ -72,6 +76,7 @@ class App extends Component {
               component={AsyncLibraryPage}
               redirectTo="/login"
             />
+            <Route path="/library_full" component={AsyncLibrary} />
             <Route
               path="/training"
               component={AsyncTrainingPage}
