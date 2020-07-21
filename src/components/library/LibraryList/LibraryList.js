@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import styles from './BookList.module.css';
+import styles from '../BookList.module.css';
 import StarReactRating from '../../StarRating/StarRating';
-import LibraryListModal from '../LibraryList-modal/LibraryList-modal';
 
 export default class LibraryList extends Component {
   state = { modal: false };
@@ -12,8 +11,8 @@ export default class LibraryList extends Component {
   };
 
   render() {
-    const { books, isReadBooks, rating = 4 } = this.props;
-    const { modal } = this.state;
+    const { books, isReadBooks } = this.props;
+
     return (
       <div className={styles.mainBox}>
         {books.map(book => (
@@ -21,7 +20,7 @@ export default class LibraryList extends Component {
             <div className={styles.wrapBooks}>
               <img
                 className={styles.image}
-                src={require('./images/book.svg')}
+                src={require('../../../assets/icons/book.svg')}
                 alt="some img"
                 width={24}
               />
@@ -32,7 +31,7 @@ export default class LibraryList extends Component {
                 <div className={styles.storBook}>{book.pages}</div>
                 {isReadBooks && (
                   <div className={styles.rating}>
-                    <StarReactRating rating={rating} />
+                    <StarReactRating rating={book.rating} />
                     <button
                       className={styles.button}
                       onClick={this.handleModalChange}
@@ -41,7 +40,6 @@ export default class LibraryList extends Component {
                     </button>
                   </div>
                 )}
-                {modal && <LibraryListModal ratingValue={rating} />}
               </div>
             </div>
           </li>

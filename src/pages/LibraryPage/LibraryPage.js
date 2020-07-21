@@ -1,23 +1,67 @@
 import React, { Component, Fragment } from 'react';
-
+import styles from './LibraryPage.module.css';
 //Components
-import Library_empty from "../../components/EmptyList/EmptyList";
-import Library_addBook from "../../components/library_addBooks/Library_addBooks"
-import Library_all_categories from "../../components/library/BookList/Library_all_categories"
-import Library_all_categories_Modal from "../../components/library/LibraryList-modal/LibraryList-modal"
 
+import LibraryList from '../../components/Library/LibraryList/LibraryList';
+import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
+import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
+import EmptyList from '../../components/Library/EmptyList/EmptyList';
+import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
 
 export default class LibraryPage extends Component {
   render() {
     return (
-      <Fragment>
-        <Library_empty />
-        <Library_addBook />
-        <Library_all_categories />
-        <Library_all_categories_Modal />
-      </Fragment>
-    )
-
-
+      <div>
+        <div className={styles.wrapper}>
+          <div>
+            <AddBookForm />
+            <EmptyList />
+            <LibraryTitle title={'Прочитано'} isReadBooks={true} />
+            <LibraryList
+              isReadBooks={true}
+              books={[
+                {
+                  title: 'Some title',
+                  author: 'some author',
+                  year: 2345,
+                  pages: 345,
+                  rating: 4,
+                  id: 2,
+                },
+              ]}
+            />
+          </div>
+          <div>
+            <LibraryTitle title={'Читаю'} isReadBooks={false} />
+            <LibraryList
+              books={[
+                {
+                  title: 'Some title',
+                  author: 'some author',
+                  year: 2345,
+                  pages: 345,
+                  id: 2,
+                },
+              ]}
+            />
+          </div>
+          <div>
+            <LibraryTitle title={'Маю намір прочитати'} isReadBooks={false} />
+            <LibraryList
+              books={[
+                {
+                  title: 'Some title ',
+                  author: 'some author',
+                  year: 2345,
+                  pages: 345,
+                  id: 2,
+                },
+              ]}
+            />
+          </div>
+        </div>
+        <LibraryListModal />
+      </div>
+    );
   }
 }
