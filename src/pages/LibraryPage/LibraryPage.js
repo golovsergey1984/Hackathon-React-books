@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import styles from './LibraryPage.module.css';
 //Components
 
@@ -10,58 +10,76 @@ import LibraryListModal from '../../components/Library/LibraryList-modal/Library
 
 export default class LibraryPage extends Component {
   render() {
+    const {
+      books = true,
+      isReadBooks = false,
+      isReadingBooks = false,
+      toReadBooks = false,
+    } = this.props;
+
     return (
-      <div>
-        <div className={styles.wrapper}>
-          <div>
+      <>
+        <div>
+          <div className={styles.wrapper}>
             <AddBookForm />
-            <EmptyList />
-            <LibraryTitle title={'Прочитано'} isReadBooks={true} />
-            <LibraryList
-              isReadBooks={true}
-              books={[
-                {
-                  title: 'Some title',
-                  author: 'some author',
-                  year: 2345,
-                  pages: 345,
-                  rating: 4,
-                  id: 2,
-                },
-              ]}
-            />
-          </div>
-          <div>
-            <LibraryTitle title={'Читаю'} isReadBooks={false} />
-            <LibraryList
-              books={[
-                {
-                  title: 'Some title',
-                  author: 'some author',
-                  year: 2345,
-                  pages: 345,
-                  id: 2,
-                },
-              ]}
-            />
-          </div>
-          <div>
-            <LibraryTitle title={'Маю намір прочитати'} isReadBooks={false} />
-            <LibraryList
-              books={[
-                {
-                  title: 'Some title ',
-                  author: 'some author',
-                  year: 2345,
-                  pages: 345,
-                  id: 2,
-                },
-              ]}
-            />
+            {books && <EmptyList />}
+            {isReadBooks && (
+              <div>
+                <LibraryTitle title={'Прочитано'} isReadBooks={true} />
+                <LibraryList
+                  isReadBooks={true}
+                  books={[
+                    {
+                      title: 'Some title',
+                      author: 'some author',
+                      year: 2345,
+                      pages: 345,
+                      rating: 4,
+                      id: 2,
+                    },
+                  ]}
+                />
+              </div>
+            )}
+            {isReadingBooks && (
+              <div>
+                <LibraryTitle title={'Читаю'} isReadBooks={false} />
+                <LibraryList
+                  books={[
+                    {
+                      title: 'Some title',
+                      author: 'some author',
+                      year: 2345,
+                      pages: 345,
+                      id: 2,
+                    },
+                  ]}
+                />
+              </div>
+            )}
+            {toReadBooks && (
+              <div>
+                <LibraryTitle
+                  title={'Маю намір прочитати'}
+                  isReadBooks={false}
+                />
+                <LibraryList
+                  books={[
+                    {
+                      title: 'Some title ',
+                      author: 'some author',
+                      year: 2345,
+                      pages: 345,
+                      id: 2,
+                    },
+                  ]}
+                />
+              </div>
+            )}
           </div>
         </div>
         <LibraryListModal />
-      </div>
+      </>
     );
   }
 }

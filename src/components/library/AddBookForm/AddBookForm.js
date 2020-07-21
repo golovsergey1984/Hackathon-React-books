@@ -23,6 +23,7 @@ export default class AddBookForm extends Component {
             value={this.state.bookName}
             onChange={this.handleChange}
             className={styles.bookName}
+            autoComplete="off"
           />
         </label>
 
@@ -35,6 +36,7 @@ export default class AddBookForm extends Component {
             value={this.state.author}
             onChange={this.handleChange}
             className={styles.author}
+            autoComplete="off"
           />
         </label>
 
@@ -47,6 +49,7 @@ export default class AddBookForm extends Component {
             value={this.state.year}
             onChange={this.handleChange}
             className={styles.number}
+            autoComplete="off"
           />
         </label>
 
@@ -59,6 +62,7 @@ export default class AddBookForm extends Component {
             value={this.state.pages}
             onChange={this.handleChange}
             className={styles.number}
+            autoComplete="off"
           />
         </label>
         <button className={styles.btn} type="submit">
