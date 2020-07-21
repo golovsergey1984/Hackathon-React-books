@@ -21,8 +21,10 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-svg-star-rating": "^1.1.5",
     "react-transition-group": "^4.4.1",
     "redux": "^4.0.5",
+    "redux-persist": "^6.0.0",
     "shortid": "^2.2.15",
     "yup": "^0.29.1"
   },
@@ -50,10 +52,7 @@
   "devDependencies": {
     "prop-types": "^15.7.2"
   },
-  
   "main": "index.js",
-  
   "author": "",
   "license": "ISC"
-  
 }
