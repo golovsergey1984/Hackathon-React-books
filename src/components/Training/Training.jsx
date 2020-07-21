@@ -1,15 +1,32 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 class StartTraining extends Component {
+  state = {
+    startDate: new Date(),
+  };
+
+  handleChange = date => {
+    this.setState({
+      startDate: date,
+    });
+  };
   render() {
+    console.log(this.state.startDate);
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
           <h2 className={styles.startTitle}>Моє тренування</h2>
           <div className={styles.calendarContainer}>
-            <div className={styles.calendarIn}>Початок</div>
+            <div className={styles.calendarIn}>
+              <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleChange}
+              />
+            </div>
             <div className={styles.calendarOut}>Завершення</div>
           </div>
           <form className={styles.bookSelectForm}>
