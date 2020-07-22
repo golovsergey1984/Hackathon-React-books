@@ -23,9 +23,9 @@ export default class LibraryPage extends Component {
 
     const {
       books = true,
-      isReadBooks = true,
-      isReadingBooks = false,
-      toReadBooks = false,
+      readBooks = true,
+      readingBooks = false,
+      plannedBooks = true,
     } = this.props;
 
     return (
@@ -33,8 +33,10 @@ export default class LibraryPage extends Component {
         <div>
           <div className={styles.wrapper}>
             <AddBookForm />
+
             {!books && <EmptyList />}
-            {isReadBooks && (
+
+            {readBooks && (
               <div>
                 <LibraryTitle title={'Прочитано'} isReadBooks={true} />
                 <LibraryList
@@ -45,7 +47,7 @@ export default class LibraryPage extends Component {
                       title: 'Some title',
                       author: 'some author',
                       year: 2345,
-                      pages: 345,
+                      pagesCount: 345,
                       rating: 4,
                       id: 2,
                     },
@@ -53,7 +55,8 @@ export default class LibraryPage extends Component {
                 />
               </div>
             )}
-            {isReadingBooks && (
+
+            {readingBooks && (
               <div>
                 <LibraryTitle title={'Читаю'} isReadBooks={false} />
                 <LibraryList
@@ -69,9 +72,11 @@ export default class LibraryPage extends Component {
                 />
               </div>
             )}
-            {toReadBooks && <ToReadList />}
+
+            {plannedBooks && <ToReadList />}
           </div>
         </div>
+
         {modal && <LibraryListModal />}
       </>
     );
