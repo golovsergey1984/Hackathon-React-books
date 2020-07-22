@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from '../BookList.module.css';
+import styles from './addBookForm.module.css';
 
 export default class AddBookForm extends Component {
   state = { bookName: '', author: '', pages: '', year: '' };

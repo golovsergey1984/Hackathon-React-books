@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import styles from '../BookList.module.css';
-import StarReactRating from '../../StarRating/StarRating';
+import styles from './libraryList.module.css';
+import StarReactRating from '../StarRating/StarRating';
 
 export default class LibraryList extends Component {
   handleModalChange = () => {

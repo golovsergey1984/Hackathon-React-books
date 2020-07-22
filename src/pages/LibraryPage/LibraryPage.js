@@ -7,7 +7,7 @@ import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
 import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
 import EmptyList from '../../components/Library/EmptyList/EmptyList';
 import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
-import ToReadList from '../../components/library_addBooks/Library_addBooks';
+import ToReadList from '../../components/Library/library_addBooks/Library_addBooks';
 
 export default class LibraryPage extends Component {
   state = {

@@ -1,0 +1,32 @@
+.nameBook {
+  min-width: 350px;
+}
+
+.authorBook {
+  min-width: 300px;
+}
+
+.yearBook {
+  min-width: 200px;
+}
+
+.storBook {
+  min-width: 100px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 3.2;
+}
+
+.boxBooks {
+  display: flex;
+  justify-content: start;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  margin-left: 44px;
+}
