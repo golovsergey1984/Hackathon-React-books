@@ -25,22 +25,27 @@ input:focus {
 
 .bookName {
   min-width: 500px;
+  padding-left: 10px;
 }
 
 .author {
   width: 250px;
+  padding-left: 10px;
 }
 
 .number {
   width: 150px;
+  padding-left: 10px;
 }
 
 .btn {
   margin-top: 16px;
-  margin-left: 25px;
+  margin-left: 43px;
   padding: 7px 50px;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
+  border: 1px solid rgb(156, 150, 140);
+  background-color: rgb(156, 150, 140);
 }
 
 .title {
@@ -57,7 +62,7 @@ input:focus {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
   line-height: 3.2;
-  margin-left: 40px;
+  margin-left: 44px;
 }
 
 .secondBoxBooks {

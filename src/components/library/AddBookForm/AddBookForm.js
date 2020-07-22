@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import styles from './BookList.module.css';
+import React, { Component } from 'react';
+import styles from '../BookList.module.css';
 
 export default class AddBookForm extends Component {
-  state = { bookName: "", author: "", pages: "", year: "" };
-  handleChange = (e) => {
+  state = { bookName: '', author: '', pages: '', year: '' };
+  handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     console.log(...this.state);
   };
@@ -23,6 +23,7 @@ export default class AddBookForm extends Component {
             value={this.state.bookName}
             onChange={this.handleChange}
             className={styles.bookName}
+            autoComplete="off"
           />
         </label>
 
@@ -35,6 +36,7 @@ export default class AddBookForm extends Component {
             value={this.state.author}
             onChange={this.handleChange}
             className={styles.author}
+            autoComplete="off"
           />
         </label>
 
@@ -47,6 +49,7 @@ export default class AddBookForm extends Component {
             value={this.state.year}
             onChange={this.handleChange}
             className={styles.number}
+            autoComplete="off"
           />
         </label>
 
@@ -59,9 +62,12 @@ export default class AddBookForm extends Component {
             value={this.state.pages}
             onChange={this.handleChange}
             className={styles.number}
+            autoComplete="off"
           />
         </label>
-        <button className={styles.btn} type="submit">Додати</button>
+        <button className={styles.btn} type="submit">
+          Додати
+        </button>
       </form>
     );
   }
