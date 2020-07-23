@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import styles from "./Statistic.module.css";
-import BookList from "./book/BookList";
-import books from "./book/books.json";
-import Timer from "./timers/Timer";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import styles from './Statistic.module.css';
+import BookList from './book/BookList';
+import books from './book/books.json';
+import Timer from './timers/Timer';
 
 class Statistic extends Component {
   render() {
@@ -12,7 +12,7 @@ class Statistic extends Component {
         <div className={styles.sectionBook}>
           <ul className={styles.sectionTimer}>
             <li>
-              До кінця року залишилось
+              <span>До кінця року залишилось</span>
               <Timer />
             </li>
             <li>
@@ -42,7 +42,7 @@ class Statistic extends Component {
                 <li className={styles.goalTxt}>
                   <div
                     className={styles.goalRes}
-                    style={{ color: "orangered" }}
+                    style={{ color: 'orangered' }}
                   >
                     3
                   </div>

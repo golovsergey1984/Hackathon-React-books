@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./Timer.module.css";
+import React from 'react';
+import styles from './Timer.module.css';
 
 const Timer = ({ items }) => (
   <div className={styles.timer}>

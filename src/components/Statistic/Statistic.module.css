@@ -103,7 +103,7 @@
   text-transform: uppercase;
   color: black;
   line-height: 50px;
-  }
+}
 
 .resultBlock {
   text-align: center;
@@ -135,7 +135,7 @@
 }
 .resultTxt:before,
 .resultTxt:after {
-  content: "";
+  content: '';
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
