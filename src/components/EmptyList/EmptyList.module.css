@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.emptyList {
+    margin: 10px auto 0;
+    width: 40vw;
+    border: 0.5px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+    padding: 40px 40px;
+    background-color: #fff;
+}
+
+.step {
+    margin-bottom: 30px;
+}
+
+.step:last-child {
+    margin-bottom: 0;
+}
+
+.stepNumber {
+    font-family: "Roboto", monospace;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.stepTitle {
+    position: relative;
+    font-family: "Roboto", monospace;
+    font-weight: 700;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+.stepDescription {
+    position: relative;
+    color: #c2c6d2;
+    font-family: "Roboto", monospace;
+    font-size: 14px;
+    padding-left: 60px;
+}
+
+.stepDescription:before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 0;
+    left: 30px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0px 0;
+    background-image: url("../../assets/icons/enter.svg");
+}
+
+.--book {
+    background-size: 40px 100%;
+    background-repeat: no-repeat;
+    background-position: -10px 0;
+    background-image: url("../../assets/icons/book.svg");
+}
+
+.--flag {
+    background-size: 40px 100%;
+    background-repeat: no-repeat;
+    background-position: -10px 0;
+    background-image: url("../../assets/icons/flag.svg");
+}
+
+
+.a {
+    color: #FF9447;
+    background: #c2c6d2;
+}
