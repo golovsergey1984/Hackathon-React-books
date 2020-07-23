@@ -12,6 +12,7 @@ class StartTraining extends Component {
   state = {
     startDate: null,
     endDate: null,
+    allDay: 0,
   };
 
   setStartDate = date => {
@@ -20,13 +21,23 @@ class StartTraining extends Component {
     });
   };
 
+  setDayToRead = date => {
+    const deltaDay = (date - this.state.startDate) / 86400000;
+
+    this.setState({
+      allDay: deltaDay,
+    });
+  };
+
   setEndDate = date => {
     this.setState({
       endDate: date,
     });
+    this.setDayToRead(date);
   };
 
   render() {
+    console.log(this.state.startDate, this.state.endDate, this.state.allDay);
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
@@ -40,7 +51,7 @@ class StartTraining extends Component {
                 selectsStart
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
-                dateFormat="dd/MM/yyyy"
+                dateFormat="dd.MM.yyyy"
                 placeholderText="Початок"
                 locale="uk"
               />
@@ -52,7 +63,7 @@ class StartTraining extends Component {
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
                 minDate={this.state.startDate}
-                dateFormat="dd/MM/yyyy"
+                dateFormat="dd.MM.yyyy"
                 placeholderText="Завершення"
                 locale="uk"
               />
@@ -113,7 +124,9 @@ class StartTraining extends Component {
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
           <div className={styles.bookStatisticCounterContainer}>
             <div className={styles.bookStatisticCounter}>0</div>
-            <div className={styles.bookStatisticCounter}>0</div>
+            <div className={styles.bookStatisticCounter}>
+              {this.state.allDay}
+            </div>
           </div>
           <div className={styles.counterLaibelConyainer}>
             <p className={styles.counterLaibel}>Кількість книжок</p>
