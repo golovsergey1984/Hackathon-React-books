@@ -9,7 +9,7 @@ class LoginPage extends Component {
     return (
       <Fragment>
         <LoginForm />
-        <LogOutModal />
+        {/* <LogOutModal /> */}
       </Fragment>
     );
   }
