@@ -14,29 +14,35 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  width: 1333px;
-  padding: 42px 42px 50px 42px;
+  /* width: 1333px; */
+  padding: 42px 50px;
 }
 
 .startTrainingContainer {
-  width: 898px;
+  width: 1028px;
 }
 
 .startTitle {
-  height: 62px;
   color: #fff;
   background-color: #b1b5c1;
   text-align: center;
-  padding-top: 18px;
-  margin-bottom: 30px;
+  padding: 18px 0px;
+  margin-bottom: 32px;
   box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
 }
 
 .calendarContainer {
+  width: 490px;
   display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-bottom: 32px;
 }
+
+.trainingInput{
+  width: 225px;
+}
+
 
 .calendarIn {
   height: 42px;
@@ -99,7 +105,7 @@ thead {
 }
 
 tbody {
-  height: 300px;
+  /* height: 300px; */
   display: block;
   overflow: auto;
 }

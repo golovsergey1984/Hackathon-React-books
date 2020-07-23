@@ -9,8 +9,11 @@ class StartTraining extends Component {
         <div className={styles.startTrainingContainer}>
           <h2 className={styles.startTitle}>Моє тренування</h2>
           <div className={styles.calendarContainer}>
-            <div className={styles.calendarIn}>Початок</div>
-            <div className={styles.calendarOut}>Завершення</div>
+            {/* <div className={styles.calendarIn}>Початок</div>
+            <div className={styles.calendarOut}>Завершення</div> */}
+            <input className={styles.trainingInput} placeholder="Початок" type="date"  name="date" />
+            <input className={styles.trainingInput} placeholder="Завершення" type="date" name="date" />
+            
           </div>
           <form className={styles.bookSelectForm}>
             <p>
