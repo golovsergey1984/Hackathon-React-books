@@ -151,3 +151,11 @@
 .resultTxt:after {
   margin-right: -100%;
 }
+
+.span {
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 7px;
+}

@@ -7,17 +7,20 @@ import Timer from './timers/Timer';
 
 class Statistic extends Component {
   render() {
+    //вводим дату к которой отчисляем оставшееся время, потом передаем в таймер как пропсы
+    const targetDateFirstTimer = new Date('Jan 01, 2021');
+    const targetDateSecondTimer = new Date('2020-07-31');
     return (
       <section className={styles.sectionStatistic}>
         <div className={styles.sectionBook}>
           <ul className={styles.sectionTimer}>
             <li>
-              <span>До кінця року залишилось</span>
-              <Timer />
+              <span className={styles.span}>До закінчення року залишилось</span>
+              <Timer targetDate={targetDateFirstTimer} />
             </li>
             <li>
-              До досягнення мети залишилось
-              <Timer />
+              <span className={styles.span}>До досягнення мети залишилось</span>
+              <Timer targetDate={targetDateSecondTimer} />
             </li>
           </ul>
           <BookList items={books} />
