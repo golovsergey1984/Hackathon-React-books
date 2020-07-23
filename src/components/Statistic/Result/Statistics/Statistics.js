@@ -18,7 +18,7 @@ const Statistics = ({ sortedData }) => {
                   {moment(row.date).format('HH:mm:ss')}
                 </td>
                 <td className={css.pages}>
-                  {row.pages}
+                  {row.count}
                   <span>стор.</span>
                 </td>
               </tr>

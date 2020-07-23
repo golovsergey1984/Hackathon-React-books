@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  max-width: 280px;
+  background-color: #fff;
+  box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
+  color: #00153a;
+  padding: 20px;
+}
