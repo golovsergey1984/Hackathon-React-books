@@ -1,0 +1,60 @@
+.mainBox {
+  background-color: #fff;
+  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.2);
+}
+
+.list {
+  list-style: none;
+}
+
+.wrapBooks {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  margin: 10px;
+}
+
+.secondBoxBooks {
+  display: flex;
+  justify-content: start;
+  color: rgb(10, 9, 9);
+  font-size: 16px;
+  line-height: 3.2;
+}
+
+.nameBook {
+  min-width: 350px;
+}
+
+.authorBook {
+  min-width: 300px;
+}
+
+.yearBook {
+  min-width: 200px;
+}
+
+.storBook {
+  min-width: 100px;
+}
+
+.button {
+  padding: 8px 40px;
+  background-color: rgb(100, 96, 134);
+  border: none;
+  color: #fff;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.button:hover {
+  background-color: blue;
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+  min-width: 320px;
+}
