@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import styles from './library.module.css'
-/* import products from "./data.json";
-import LibraryList from "./LibraryList";
-import Library_addBooks from "./Library_addBooks_wrapper" */
+import products from './data.json';
+import LibraryList from './LibraryList';
+import Library_addBooks from './Library_addBooks_wrapper';
 
-const library_addBooks = ({ children }) => (
+class Library_addBook extends Component {
+  render() {
+    return (
+      <Library_addBooks>
+        <LibraryList items={products} />
+      </Library_addBooks>
+    );
+  }
+}
+export default Library_addBook;
+/* const library_addBooks = ({ children }) => (
   <div className={styles.wrapper}>
     <div className={styles.wrap}>
       <h3 className={styles.title}>Маю намір прочитати</h3>
@@ -22,3 +31,4 @@ const library_addBooks = ({ children }) => (
   </div>
 );
 export default library_addBooks;
+ */

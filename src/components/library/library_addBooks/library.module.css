@@ -5,9 +5,10 @@
   align-items: center;
 }
 .inner {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  padding-left: 25px;
+  align-items: center;
+  padding-left: 4px;
 
   height: 20px;
 }
@@ -41,56 +42,79 @@ input:invalid {
   margin-bottom: 10px;
 }
 .title {
-  padding-left: 60px;
   margin: 0 auto;
   margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 3.2;
 }
 .wrapper {
-  background-color: rgb(231, 230, 240);
+  background-color: #eee;
   padding-top: 20px;
-  
 }
 .container {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   height: 50px;
   align-items: center;
   background-color: #fff;
   border-radius: 3px;
-  margin-top: 10px;
+  margin-top: 18px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .title_name {
-  width: 500px;
-  color: #4948487e;
+  min-width: 540px;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
 }
 .title_avtor {
-  padding-left: 25px;
-  width: 300px;
-  color: #2b2a2a7e;
+  min-width: 465px;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 272px;
 }
 .title_year {
-  width: 100px;
-  color: #4948487e;
+  min-width: 490px;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 270px;
 }
 .title_page {
-  width: 100px;
-  color: #2c2b2b7e;
+  /* width: 700px; */
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 270px;
 }
 .name {
   padding-left: 8px;
   width: 500px;
 }
 .avtor {
-  width: 300px;
+  width: 500px;
+  padding-left: 240px;
 }
 .year {
-  width: 100px;
+  width: 500px;
+  padding-left: 240px;
 }
 .pages {
-  width: 100px;
+  width: 500px;
+  padding-left: 240px;
 }
 .image {
   padding-left: 10px;
+  width: 34px;
+  height: 22px;
 }
 .list {
   display: flex;
@@ -99,6 +123,7 @@ input:invalid {
 }
 
 .button {
+  margin-top: 20px;
   height: 35px;
   width: 200px;
   display: block;
@@ -112,7 +137,8 @@ input:invalid {
   background-color: rgb(241, 101, 7);
   margin: 0 auto;
   margin-top: 35px;
-  padding-top: 12px;
+  font-size: 100%;
+  line-height: 1.15;
 }
 /* .button {
   background-color: #1c87c9;
