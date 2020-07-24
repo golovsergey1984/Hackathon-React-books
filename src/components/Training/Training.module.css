@@ -14,8 +14,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  /* width: 1333px; */
-  padding: 42px 50px;
+  padding: 42px 70px;
 }
 
 .startTrainingContainer {
@@ -70,8 +69,8 @@ body {
 }
 
 .bookSelectField {
-  width: 700px;
-  height: 34px;
+  width: 787px;
+  height: 44px;
   padding: 0 20px;
   color: #a4a6b2;
   border: none;
@@ -80,30 +79,30 @@ body {
   appearance: none;
   background-image: url(../../assets/icons/IconStartTraining/arrow.png);
   background-repeat: no-repeat;
-  background-position-x: 660px;
-  background-position-y: 12px;
+  background-size: 1.5%;
+  background-position-x: 97%;
+  background-position-y: 50%;
 }
 
 .bookSelectSubmit {
-  height: 34px;
-  padding: 0 60px;
+  padding: 11px 75px;
   background-color: #f6f7fb;
   border: 1px solid #000;
 }
 
-/* TABLE STULE */
+/* TABLE STYLE */
 
 .selectedBookTable {
   display: block;
   color: #8d919d;
-  width: 898px;
   margin-bottom: 40px;
   border-bottom: 1px solid #e3e8ec;
+  border-collapse: collapse;
 }
 thead {
   display: block;
   padding: 6px 0;
-  width: 898px;
+  /* width: 898px; */
   border-top: 1px solid #e3e8ec;
   border-bottom: 1px solid #e3e8ec;
 }
@@ -131,7 +130,7 @@ tbody td {
   text-overflow: ellipsis;
   text-align: start;
   color: #494b57;
-  padding-top: 10px;
+  padding: 3px 0;
 }
 
 th {
@@ -140,8 +139,8 @@ th {
 
 .selectedBookTableBookName {
   display: inline-block;
-  width: 448px;
-  margin-right: 20px;
+  width: 550px;
+  /* margin-right: 20px; */
 }
 
 td.selectedBookTableBookName::before {
@@ -158,18 +157,18 @@ td.selectedBookTableBookName::before {
 
 .selectedBookTableAuthor {
   display: inline-block;
-  width: 210px;
-  margin-right: 10px;
+  width: 250px;
+  /* margin-right: 10px; */
 }
 .selectedBookTableYear {
   display: inline-block;
-  width: 80px;
-  margin-right: 6px;
+  width: 120px;
+  /* margin-right: 6px; */
 }
 .selectedBookTablePages {
   display: inline-block;
-  width: 50px;
-  margin-right: 16px;
+  width: 70px;
+  /* margin-right: 16px; */
 }
 
 .selectedBookDelete {
