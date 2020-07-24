@@ -29,7 +29,7 @@ const AsyncLibraryPage = lazy(() =>
 );
 const AsyncTrainingPage = lazy(() =>
   import(
-    '../../pages/TrainingPage/TrainingPage' /* webpackChunkName: "training-иpage" */
+    '../../pages/TrainingPage/TrainingPage' /* webpackChunkName: "training-page" */
   ),
 );
 const AsyncStatisticsPage = lazy(() =>
