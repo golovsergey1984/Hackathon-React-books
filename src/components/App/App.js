@@ -29,7 +29,7 @@ const AsyncLibraryPage = lazy(() =>
 );
 const AsyncTrainingPage = lazy(() =>
   import(
-    '../../pages/TrainingPage/TrainingPage' /* webpackChunkName: "training-page" */
+    '../../pages/TrainingPage/TrainingPage' /* webpackChunkName: "training-иpage" */
   ),
 );
 const AsyncStatisticsPage = lazy(() =>
@@ -37,7 +37,6 @@ const AsyncStatisticsPage = lazy(() =>
     '../../pages/StatisticsPage/StatisticsPage' /* webpackChunkName: "statistics-page" */
   ),
 );
-
 
 class App extends Component {
   componentDidMount() {
@@ -66,7 +65,6 @@ class App extends Component {
           }
         >
           <Switch>
-
             <Route path="/login" component={AsyncLoginPage} />
             <Route path="/registration" component={AsyncRegistrationPage} />
             <Route
@@ -92,6 +90,7 @@ class App extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
 });
