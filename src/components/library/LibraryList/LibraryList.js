@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import styles from '../BookList.module.css';
-import StarReactRating from '../../StarRating/StarRating';
+import styles from './libraryList.module.css';
+import StarReactRating from '../StarRating/StarRating';
 
 export default class LibraryList extends Component {
   handleModalChange = () => {
@@ -25,7 +25,7 @@ export default class LibraryList extends Component {
                 <div className={styles.nameBook}>{book.title}</div>
                 <div className={styles.authorBook}>{book.author}</div>
                 <div className={styles.yearBook}>{book.year}</div>
-                <div className={styles.storBook}>{book.pages}</div>
+                <div className={styles.storBook}>{book.pagesCount}</div>
                 {isReadBooks && (
                   <div className={styles.rating}>
                     <StarReactRating rating={book.rating} />

@@ -1,29 +1,32 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import style from './LineChart.module.css';
-import Result from '../Result/Result';
 
-const LineChart = () => {
+const LineChart = ({ factData = [], pagesPerDay = 0 }) => {
+  const labels = factData.map(rec => rec.dates);
+  const pagesFact = factData.map(rec => rec.pages);
+
+  const maxValue = Math.max(...pagesFact, pagesPerDay);
+
+  //Пока что План отображается прямой линией как количество страниц в день
+  //Думаю над тем как реализовать логику расчета плана в зависимости от успевания или отставания от графика.
+  const pagesPlan = [];
+  pagesPlan.length = factData.length;
+  pagesPlan.fill(pagesPerDay);
+
   const data = {
-    labels: [
-      '12.07.2020',
-      '13.07.2020',
-      '14.07.2020',
-      '15.07.2020',
-      '16.07.2020',
-      '17.07.2020',
-    ],
+    labels: labels,
     datasets: [
       {
         label: 'План',
-        data: [33, 24, 42, 35, 45, 44],
+        data: pagesPlan,
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         borderColor: 'rgb(7, 36, 100)',
         pointBackgroundColor: 'rgb(7, 36, 100)',
       },
       {
         label: 'Факт',
-        data: [22, 45, 32, 42, 32, 35],
+        data: pagesFact,
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         borderColor: 'rgb(255, 75, 97)',
         pointBackgroundColor: 'rgb(255, 75, 97)',
@@ -44,10 +47,8 @@ const LineChart = () => {
             labelString: 'КІЛЬКІСТЬ СТОРІНОК/ДЕНЬ',
           },
           ticks: {
-            min: 0,
-            // Максимальное число из массива данных округленяем верх к ближайшему кратному 40.
-            // Пример - 25 -> 40, 39 -> 40, 41 -> 80, 65 -> 80, 95 -> 120
-            max: Math.ceil(max / 40) * 40,
+            min: 1,
+            max: Math.ceil(maxValue / 40) * 40,
           },
         },
       ],
@@ -72,7 +73,6 @@ const LineChart = () => {
       <div className={style.line}>
         <Line data={data} options={options} />
       </div>
-      <Result />
     </div>
   );
 };

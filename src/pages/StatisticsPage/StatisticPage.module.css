@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+.startStatisticsMainContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 1333px;
+  padding: 42px 42px 50px 42px;
+}
+
+.startStatisticsContainer {
+  width: 898px;
+}
+
+.startTitle {
+  height: 62px;
+  color: #fff;
+  background-color: #b1b5c1;
+  text-align: center;
+  padding-top: 18px;
+  margin-bottom: 30px;
+  box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
+}
+
+.calendarContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.calendarIn {
+  height: 42px;
+  color: #9195a1;
+  border: 1px solid #d4d7de;
+  padding: 10px 66px 0;
+  margin-right: 34px;
+}
+
+.calendarOut {
+  height: 42px;
+  color: #9195a1;
+  border: 1px solid #d4d7de;
+  padding: 10px 66px 0;
+}
+
+.bookSelectForm {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+
+.bookSelectField {
+  width: 700px;
+  height: 34px;
+  padding: 0 20px;
+  color: #a4a6b2;
+  border: none;
+  box-shadow: 0px 0px 5px 0px rgba(223, 226, 235, 0.75);
+  outline: none;
+  appearance: none;
+  /* background-image: url(../../assets/icons/IconStartStatistics/arrow.png); */
+  background-repeat: no-repeat;
+  background-position-x: 660px;
+  background-position-y: 12px;
+}
+
+.bookSelectSubmit {
+  height: 34px;
+  padding: 0 60px;
+  background-color: #f6f7fb;
+  border: 1px solid #000;
+}
+
+.rightContainer {
+  width: 312px;
+}

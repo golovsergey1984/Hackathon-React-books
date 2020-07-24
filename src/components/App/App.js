@@ -34,10 +34,9 @@ const AsyncTrainingPage = lazy(() =>
 );
 const AsyncStatisticsPage = lazy(() =>
   import(
-    '../../pages/StatisticsPage/StatisticsPage' /* webpackChunkName: "statistics-page" */
+    '../../pages/StatisticsPage/StatisticsPageContainer' /* webpackChunkName: "statistics-page" */
   ),
 );
-
 
 class App extends Component {
   componentDidMount() {
@@ -66,7 +65,6 @@ class App extends Component {
           }
         >
           <Switch>
-
             <Route path="/login" component={AsyncLoginPage} />
             <Route path="/registration" component={AsyncRegistrationPage} />
             <Route
