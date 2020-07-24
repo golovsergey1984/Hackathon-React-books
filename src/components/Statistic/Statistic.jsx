@@ -1,23 +1,26 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import styles from "./Statistic.module.css";
-import BookList from "./book/BookList";
-import books from "./book/books.json";
-import Timer from "./timers/Timer";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import styles from './Statistic.module.css';
+import BookList from './book/BookList';
+import books from './book/books.json';
+import Timer from './timers/Timer';
 
 class Statistic extends Component {
   render() {
+    //вводим дату к которой отчисляем оставшееся время, потом передаем в таймер как пропсы
+    const targetDateFirstTimer = new Date('Jan 01, 2021');
+    const targetDateSecondTimer = new Date('2020-07-31');
     return (
       <section className={styles.sectionStatistic}>
         <div className={styles.sectionBook}>
           <ul className={styles.sectionTimer}>
             <li>
-              До кінця року залишилось
-              <Timer />
+              <span className={styles.span}>До закінчення року залишилось</span>
+              <Timer targetDate={targetDateFirstTimer} />
             </li>
             <li>
-              До досягнення мети залишилось
-              <Timer />
+              <span className={styles.span}>До досягнення мети залишилось</span>
+              <Timer targetDate={targetDateSecondTimer} />
             </li>
           </ul>
           <BookList items={books} />
@@ -42,7 +45,7 @@ class Statistic extends Component {
                 <li className={styles.goalTxt}>
                   <div
                     className={styles.goalRes}
-                    style={{ color: "orangered" }}
+                    style={{ color: 'orangered' }}
                   >
                     3
                   </div>
