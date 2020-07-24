@@ -5,7 +5,7 @@
 
 .sectionStatistic {
   width: 1330px;
-  height: 885px;
+  /* height: 885px; */
   display: flex;
   justify-content: center;
   margin-top: 165px;

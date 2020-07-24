@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import styles from './BookList.module.css';
-import StarReactRating from '../../StarRating/StarRating';
-import LibraryListModal from '../LibraryList-modal/LibraryList-modal';
+import styles from './libraryList.module.css';
+import StarReactRating from '../StarRating/StarRating';
 
 export default class LibraryList extends Component {
-  state = { modal: false };
-
   handleModalChange = () => {
-    this.setState(state => ({ modal: !state.modal }));
-    console.log(this.state.modal);
+    this.props.onModalChange(true);
   };
 
   render() {
-    const { books, isReadBooks, rating = 4 } = this.props;
-    const { modal } = this.state;
+    const { books, isReadBooks } = this.props;
+
     return (
       <div className={styles.mainBox}>
         {books.map(book => (
@@ -21,7 +17,7 @@ export default class LibraryList extends Component {
             <div className={styles.wrapBooks}>
               <img
                 className={styles.image}
-                src={require('./images/book.svg')}
+                src={require('../../../assets/icons/book.svg')}
                 alt="some img"
                 width={24}
               />
@@ -29,10 +25,10 @@ export default class LibraryList extends Component {
                 <div className={styles.nameBook}>{book.title}</div>
                 <div className={styles.authorBook}>{book.author}</div>
                 <div className={styles.yearBook}>{book.year}</div>
-                <div className={styles.storBook}>{book.pages}</div>
+                <div className={styles.storBook}>{book.pagesCount}</div>
                 {isReadBooks && (
                   <div className={styles.rating}>
-                    <StarReactRating rating={rating} />
+                    <StarReactRating rating={book.rating} />
                     <button
                       className={styles.button}
                       onClick={this.handleModalChange}
@@ -41,7 +37,6 @@ export default class LibraryList extends Component {
                     </button>
                   </div>
                 )}
-                {modal && <LibraryListModal ratingValue={rating} />}
               </div>
             </div>
           </li>

@@ -1,0 +1,49 @@
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.span {
+  display: block;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+input {
+  line-height: 1.8;
+  font-size: 16px;
+  margin: 10px;
+  border: solid 1px rgb(167, 162, 162);
+  background-color: #eee;
+}
+
+input:focus {
+  background-color: #fff;
+}
+
+.bookName {
+  min-width: 500px;
+  padding-left: 10px;
+}
+
+.author {
+  width: 250px;
+  padding-left: 10px;
+}
+
+.number {
+  width: 150px;
+  padding-left: 10px;
+}
+
+.btn {
+  margin-top: 16px;
+  margin-left: 43px;
+  padding: 7px 50px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  border: 1px solid rgb(156, 150, 140);
+  background-color: rgb(156, 150, 140);
+}
