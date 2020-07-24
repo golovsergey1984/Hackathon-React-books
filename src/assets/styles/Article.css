@@ -1,7 +1,7 @@
 .article-wrapper {
   display: flex;
   flex-direction: column;
-  width: 697px;
+  width: 50%;
   background-color: rgb(255, 255, 255);
 }
 

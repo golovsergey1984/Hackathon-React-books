@@ -1,31 +1,48 @@
 import React, { Component } from 'react';
 import style from './LogOutModal.module.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toggleShowLogOutModalAction } from '../../redux/modal/modalActions';
+import { logOutAction } from '../../redux/session/sessionActions';
+import {
+  disableBodyScroll,
+  enableBodyScroll,
+  clearAllBodyScrollLocks,
+} from 'body-scroll-lock';
 
 class LogOut extends Component {
+  targetRef = React.createRef();
+  targetElement = null;
+
   componentDidMount() {
-    window.addEventListener('keydown', this.onCnacelPress);
+    window.addEventListener('keydown', this.onCancelPress);
+    this.targetElement = this.targetRef.current;
+    disableBodyScroll(this.targetElement);
   }
 
   onCancelClick = event => {
     if (event.target.id !== 'cancel' && event.target !== event.currentTarget)
       return;
 
-    console.log('Exit!!');
+    this.props.closeLogOutModal();
   };
 
   onCancelPress = e => {
+    console.log(e.key);
     if (e.key !== 'Escape') return;
 
-    console.log('Exit key!!!');
+    this.props.closeLogOutModal();
   };
 
   onLogout = () => {
-    console.log('Log out and go main page');
+    this.props.closeLogOutModal();
+    this.props.cleanSession();
   };
 
   componentWillUnmount() {
-    window.removeEventListener('keydown', this.onCnacelPress);
+    window.removeEventListener('keydown', this.onCancelPress);
+    enableBodyScroll(this.targetElement);
+    clearAllBodyScrollLocks();
   }
 
   render() {
@@ -33,6 +50,7 @@ class LogOut extends Component {
       <div
         className={style.logOut_wrapper}
         onClick={event => this.onCancelClick(event)}
+        ref={this.targetRef}
       >
         <div className={style.logOut_box}>
           <p className={style.logOut_box_descr}>
@@ -55,4 +73,9 @@ class LogOut extends Component {
   }
 }
 
-export default LogOut;
+const mDTP = dispatch => ({
+  closeLogOutModal: () => dispatch(toggleShowLogOutModalAction()),
+  cleanSession: () => dispatch(logOutAction()),
+});
+
+export default connect(null, mDTP)(LogOut);
