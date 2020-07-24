@@ -30,7 +30,6 @@ const sessionSlice = createSlice({
           action.type === getUserAction.fulfilled.type,
         (state, action) => {
           const { userData, token } = action.payload.user;
-          console.log(action);
           state.user = userData;
           state.token = token;
           state.isAuthenticated = true;

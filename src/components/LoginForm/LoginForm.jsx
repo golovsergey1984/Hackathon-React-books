@@ -4,8 +4,9 @@ import { loginAction } from "../../redux/session/sessionActions"
 import { connect } from "react-redux"
 import { withRouter } from "react-router";
 
-// import PNotify from 'pnotify/dist/es/PNotify';
-// import PNotifyButtons from 'pnotify/dist/es/PNotifyButtons';
+import PNotify from 'pnotify/dist/es/PNotify';
+import PNotifyStyleMaterial from 'pnotify/dist/es/PNotifyStyleMaterial.js';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
   state = { email: '', password: '' };
@@ -19,9 +20,15 @@ class LoginForm extends Component {
       this.props.history.push("/library")
       this.setState({ email: '', password: '' });
     } catch (error) {
-      // PNotify.alert('Notice me, senpai!');
-      // Залишилось доробити пнотіфай
-      alert("Неправильний пароль або логін")
+      PNotify.defaults.delay = '1500';
+      PNotify.defaults.styling = 'material';
+      PNotify.error({
+        text: "Неправильний пароль або логін. Спробуйте ще раз",
+        stack: {
+          dir1: 'down', dir2: 'left', // Position from the top left corner.
+          firstpos1: 90, firstpos2: 90 // 90px from the top, 90px from the left.
+        }
+      });
       console.log(error)
     }
   };
@@ -67,9 +74,9 @@ class LoginForm extends Component {
               <button className={s.logInButton} label="Log In" type="submit">
                 Увійти
                </button>
-              <button className={s.regButton} label="Registration" type="submit">
+              <Link to="/registration" className={s.regButton} label="Registration" type="submit">
                 Реєстрація
-              </button>
+              </Link>
             </form>
           </div>
         </div>
