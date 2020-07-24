@@ -3,6 +3,7 @@ import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
 
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
@@ -37,7 +38,6 @@ class StartTraining extends Component {
   };
 
   render() {
-    console.log(this.state.startDate, this.state.endDate, this.state.allDay);
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
@@ -122,16 +122,11 @@ class StartTraining extends Component {
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
-          <div className={styles.bookStatisticCounterContainer}>
-            <div className={styles.bookStatisticCounter}>0</div>
-            <div className={styles.bookStatisticCounter}>
-              {this.state.allDay}
-            </div>
-          </div>
-          <div className={styles.counterLaibelConyainer}>
-            <p className={styles.counterLaibel}>Кількість книжок</p>
-            <p className={styles.counterLaibel}>Кількість днів</p>
-          </div>
+          <StatisticsBlock countNumber="0" title="Кількість книжок" />
+          <StatisticsBlock
+            countNumber={this.state.allDay}
+            title="Кількість днів"
+          />
         </div>
       </div>
     );
