@@ -37,7 +37,7 @@ export default class LibraryPage extends Component {
             {!books && <EmptyList />}
 
             {readBooks && (
-              <div>
+              <div className={styles.marginBottom}>
                 <LibraryTitle title={'Прочитано'} isReadBooks={true} />
                 <LibraryList
                   onModalChange={this.handleModalChange}
@@ -57,7 +57,7 @@ export default class LibraryPage extends Component {
             )}
 
             {readingBooks && (
-              <div>
+              <div className={styles.marginBottom}>
                 <LibraryTitle title={'Читаю'} isReadBooks={false} />
                 <LibraryList
                   books={[

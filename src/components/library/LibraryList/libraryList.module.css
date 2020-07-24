@@ -1,3 +1,7 @@
+.listBottomMargin {
+  margin-bottom: 30px;
+}
+
 .mainBox {
   background-color: #fff;
   box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.2);
@@ -19,28 +23,26 @@
 
 .secondBoxBooks {
   display: flex;
- /*  justify-content: space-between; */
+  /*  justify-content: space-between; */
   color: rgb(10, 9, 9);
   font-size: 16px;
   line-height: 3.2;
 }
 
 .nameBook {
-  min-width: 350px;
-  
-  
+  min-width: 250px;
 }
 
 .authorBook {
-  min-width: 300px;
+  min-width: 200px;
 }
 
 .yearBook {
-  min-width: 300px;
+  min-width: 200px;
 }
 
 .storBook {
-  min-width: 300px;
+  min-width: 200px;
 }
 
 .button {
@@ -59,5 +61,5 @@
 .rating {
   display: flex;
   justify-content: space-between;
-  min-width: 520px;
+  min-width: 420px;
 }

@@ -1,28 +1,28 @@
 .nameBook {
-  min-width: 300px;
+  min-width: 200px;
   padding-top: 30px;
 }
 
 .authorBook {
-  min-width: 300px;
+  min-width: 200px;
   padding-top: 30px;
   padding-left: 115px;
 }
 
 .yearBook {
-  min-width: 300px;
+  min-width: 200px;
   padding-left: 272px;
   padding-top: 30px;
   padding-left: 94px;
 }
 
 .storBook {
-  min-width: 300px;
+  min-width: 200px;
   padding-left: 90px;
   padding-top: 30px;
 }
 .rating {
-  min-width: 300px;
+  min-width: 200px;
   padding-left: 104px;
   padding-top: 30px;
 }
