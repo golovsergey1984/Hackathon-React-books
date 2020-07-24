@@ -1,127 +1,157 @@
 .mainContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
 }
 
 .loginFormContrainer {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    align-items: center;
-    width: 450px;
-    background-color: rgb(29, 57, 94)
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(29, 57, 94, 0.8);
 }
-
+/* 
 .imgStyle {
-    width: 450px;
-    height: 100vh;
-    background-size: cover;
-    position: absolute;
-    opacity: 0.3;
-}
+  width: 582px;
+  height: 100vh;
+  background-size: cover;
+  position: absolute;
+  opacity: 0.3;
+} */
 
 .label {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    padding-bottom: 10px;
-    font-weight: bold;
+  padding-bottom: 10px;
+  margin: 0;
+  font-size: 18px;
+  color: rgb(140, 143, 162);
+  display: flex;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.red {
+  color: rgb(248, 79, 53);
+  margin-left: 5px;
 }
 
 .input {
-    width: 244px;
-    height: 32px;
-    margin: 0 auto;
+  width: 320px;
+  height: 40px;
+  margin-bottom: 24px;
+  padding: 0;
+  text-indent: 10px;
+  border: none;
+  color: rgb(167, 171, 183);
+  background-color: rgb(246, 247, 251);
+  box-shadow: 0 -3px 3px 0px rgb(232, 232, 232);
+  font-size: 14px;
+  outline: 0;
 }
 
 .input:focus,
 .input:active {
-    outline: none;
+  outline: none;
+}
+
+.imgBack {
+  width: 50%;
+  height: 100%;
+  background-image: url(./img/img-1.jpg);
 }
 
 .loginForm {
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 310px;
-    height: 321px;
-    position: relative;
-    z-index: 1;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 96px 40px 0;
+  z-index: 1;
+  width: 404px;
 }
 
 .logInButton {
-    width: 252px;
-    height: 45px;
-    margin: 0 auto;
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: rgb(255, 107, 0);
-    border: 0;
-    font-size: 16px;
-    font-weight: bold;
+  width: 252px;
+  height: 45px;
+  margin: 0 auto;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(255, 107, 0);
+  border: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
 }
 
 .regButton {
-    margin: 0 auto;
-    padding: 3px;
-    border: 2px solid transparent;
-    font-size: 12px;
-    background-color: rgb(255, 255, 255);
-    font-weight: bold;
+  margin: 0 auto;
+  padding: 3px;
+  border: 2px solid transparent;
+  font-size: 12px;
+  background-color: rgb(255, 255, 255);
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: rgb(255, 107, 0);
+  cursor: pointer;
 }
 
-.regButton:hover {
-    outline: none;
-    border-color: rgb(255, 107, 0);
-}
+/* .regButton:hover {
+  outline: none;
+  border-color: rgb(255, 107, 0);
+} */
 
 .quoteContainer {
-    width: 750px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .comma {
-    color: rgb(255, 107, 0);
-    font-size: 36px;
-    transform: rotate(180deg);
-    text-align: center;
-    margin: 0px;
+  color: rgb(255, 107, 0);
+  font-size: 36px;
+  transform: rotate(180deg);
+  text-align: center;
+  margin: 0px;
 }
 
 .quote {
-    font-size: 18px;
-    text-align: center;
-    margin: 0px;
+  font-size: 20px;
+  text-align: center;
+  margin: 0px;
+  line-height: 1.5;
+  font-weight: bold;
 }
 
 .author::before {
-    content: '';
-    display: block;
-    width: 100px;
-    height: 1px;
-    background-color: rgb(128, 128, 128);
-    margin: 0 auto;
-    margin-top: 15px;
+  content: '';
+  display: block;
+  width: 100px;
+  height: 1px;
+  background-color: rgb(167, 171, 183);
+  margin-bottom: 10px;
 }
 
 .author {
-    font-size: 16px;
-    text-align: center;
-    margin: 0px;
+  font-size: 16px;
+  text-align: center;
+  margin: 28px auto 0;
+  color: rgb(167, 171, 183);
+  height: 30px;
 }
 
 .qouteCommaWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 310px;
-    height: 321px;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 310px;
+  height: 321px;
+  margin: 0 auto;
 }

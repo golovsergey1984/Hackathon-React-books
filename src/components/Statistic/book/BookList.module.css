@@ -31,9 +31,10 @@
 
 .label {
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
   border: 2px solid #a5a4a4;
+  margin-right: 5px;
 }
 
 .alignCenter {

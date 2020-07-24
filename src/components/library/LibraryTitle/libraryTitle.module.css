@@ -1,0 +1,45 @@
+.nameBook {
+  min-width: 300px;
+  padding-top: 30px;
+}
+
+.authorBook {
+  min-width: 300px;
+  padding-top: 30px;
+  padding-left: 115px;
+}
+
+.yearBook {
+  min-width: 300px;
+  padding-left: 272px;
+  padding-top: 30px;
+  padding-left: 94px;
+}
+
+.storBook {
+  min-width: 300px;
+  padding-left: 90px;
+  padding-top: 30px;
+}
+.rating {
+  min-width: 300px;
+  padding-left: 104px;
+  padding-top: 30px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.2;
+}
+
+.boxBooks {
+  display: flex;
+  justify-content: start;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  margin-left: 4px;
+}

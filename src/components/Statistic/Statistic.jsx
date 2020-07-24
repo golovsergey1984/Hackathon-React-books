@@ -13,17 +13,22 @@ class Statistic extends Component {
       currentDate.getMonth() === 11 && currentDate.getDate() > 23
         ? currentDate.getFullYear() + 1
         : currentDate.getFullYear();
+
+    //вводим дату к которой отчисляем оставшееся время, потом передаем в таймер как пропсы
+    
+    const targetDateSecondTimer = new Date('2020-07-31');
+
     return (
       <section className={styles.sectionStatistic}>
         <div className={styles.sectionBook}>
           <ul className={styles.sectionTimer}>
             <li>
-              До кінця року залишилось
+              <span className={styles.span}>До закінчення року залишилось</span>
               <TimeToYear date={`${year}-12-31T00:00:00`} />
             </li>
             <li>
-              До досягнення мети залишилось
-              <TimeToDate />
+              <span className={styles.span}>До досягнення мети залишилось</span>
+              <TimeToDate targetDate={targetDateSecondTimer} />
             </li>
           </ul>
           <BookList items={books} />
