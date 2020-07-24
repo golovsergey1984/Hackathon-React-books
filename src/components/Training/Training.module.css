@@ -39,24 +39,28 @@ body {
   margin-bottom: 32px;
 }
 
-.trainingInput{
+.calendarInput {
+  display: block;
+  height: 40px;
   width: 225px;
+  color: #9195a1;
+  background-color: #f6f7fb;
+  border: 1px solid #d4d7de;
+  padding-left: 50px;
+  cursor: pointer;
+
+  background-image: url(../../assets/icons/IconStartTraining/calendarIcon.png),
+    url(../../assets/icons/IconStartTraining/arrow.png);
+  background-repeat: no-repeat;
+  background-size: 6%, 5%;
+  background-position-x: 8%, 96%;
+  background-position-y: 50%, 50%;
+  border: #9195a1 2px solid;
+  border-radius: 2px;
 }
 
-
-.calendarIn {
-  height: 42px;
-  color: #9195a1;
-  border: 1px solid #d4d7de;
-  padding: 10px 66px 0;
-  margin-right: 34px;
-}
-
-.calendarOut {
-  height: 42px;
-  color: #9195a1;
-  border: 1px solid #d4d7de;
-  padding: 10px 66px 0;
+.calendarInput:focus {
+  outline: none;
 }
 
 .bookSelectForm {

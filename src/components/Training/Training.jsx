@@ -2,17 +2,74 @@ import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
+registerLocale('uk', uk);
+
 class StartTraining extends Component {
+  state = {
+    startDate: null,
+    endDate: null,
+    allDay: 0,
+    libraryBooks: [],
+    trainingBooks:[] 
+  };
+
+  setStartDate = date => {
+    this.setState({
+      startDate: date,
+    });
+  };
+
+  setDayToRead = date => {
+    const deltaDay = (date - this.state.startDate) / 86400000;
+
+    this.setState({
+      allDay: deltaDay,
+    });
+  };
+
+  setEndDate = date => {
+    this.setState({
+      endDate: date,
+    });
+    this.setDayToRead(date);
+  };
   render() {
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
           <h2 className={styles.startTitle}>Моє тренування</h2>
           <div className={styles.calendarContainer}>
-            {/* <div className={styles.calendarIn}>Початок</div>
-            <div className={styles.calendarOut}>Завершення</div> */}
-            <input className={styles.trainingInput} placeholder="Початок" type="date"  name="date" />
-            <input className={styles.trainingInput} placeholder="Завершення" type="date" name="date" />
+           
+            <DatePicker
+              className={styles.calendarInput}
+              style={{marginRight: 40}}
+              onChange={date => this.setStartDate(date)}
+              selected={this.state.startDate}
+              // selectsStart
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              dateFormat="dd.MM.yyyy"
+              placeholderText="Початок"
+              locale="uk"
+            />
+            <div style={{width: 40}}></div>
+            <DatePicker
+              className={styles.calendarInput}
+              onChange={date => this.setEndDate(date)}
+              selected={this.state.endDate}
+              // selectsEnd
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              minDate={this.state.startDate}
+              dateFormat="dd.MM.yyyy"
+              placeholderText="Завершення"
+              locale="uk"
+            />
+            
             
           </div>
           <form className={styles.bookSelectForm}>
