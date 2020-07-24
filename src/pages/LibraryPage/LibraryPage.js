@@ -2,11 +2,18 @@ import React, { Component } from 'react';
 import styles from './LibraryPage.module.css';
 //Components
 
+/* import LibraryList from '../../components/Library/LibraryList/LibraryList'; */
 import LibraryList from '../../components/Library/LibraryList/LibraryList';
+/* import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle'; */
 import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
+/* import AddBookForm from '../../components/Library/AddBookForm/AddBookForm' */
+
 import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
-import EmptyList from '../../components/Library/EmptyList/EmptyList';
-import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
+/* import EmptyList from '../../components/Library/EmptyList/EmptyList'; */
+import EmptyList from '../../components/Library/EmptyList/EmptyList.jsx';
+/* import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal'; */
+import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal.jsx';
+/* import ToReadList from '../../components/Library/library_addBooks/Library_addBooks'; */
 import ToReadList from '../../components/Library/library_addBooks/Library_addBooks';
 
 export default class LibraryPage extends Component {

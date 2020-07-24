@@ -1,11 +1,15 @@
 import React from 'react';
-import imgBook from './images/3043907.svg';
+/* import imgBook from './images/3043907.svg'; */
 import PropTypes from 'prop-types';
 import styles from './library.module.css';
 
 const library = ({ author, title, year, pagesCount }) => (
   <div className={styles.container}>
-    <img className={styles.image} src={imgBook} width={25} />
+    <img
+      className={styles.image}
+      src={require('../../../assets/icons/book.svg')}
+      alt="some img"
+    />
     <div className={styles.box}>
       <p className={styles.name}>{title}</p>
       <p className={styles.avtor}>{author}</p>
