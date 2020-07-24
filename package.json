@@ -50,10 +50,7 @@
   "devDependencies": {
     "prop-types": "^15.7.2"
   },
-  
   "main": "index.js",
-  
   "author": "",
   "license": "ISC"
-  
 }
