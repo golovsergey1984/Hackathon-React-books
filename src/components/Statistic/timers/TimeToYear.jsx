@@ -89,21 +89,21 @@ class TimerToYear extends Component {
             <div className={styles.label}>{countDown.days === 1 ? "Day" : "дн"}</div>
           </div>
         </div>
-
+        <div style={{ fontSize: 22 }}>:</div>
         <div className={styles.field}>
           <div className={styles.value}>
             <div>{this.addLeadingZeros(countDown.hours)}</div>
             <div className={styles.label}>год</div>
           </div>
         </div>
-
+        <div style={{ fontSize: 22 }}>:</div>
         <div className={styles.field}>
           <div className={styles.value}>
             <div>{this.addLeadingZeros(countDown.min)}</div>
             <div className={styles.label}>хв</div>
           </div>
         </div>
-
+        <div style={{ fontSize: 22 }}>:</div>
         <div className={styles.field}>
           <div className={styles.value}>
             <div>{this.addLeadingZeros(countDown.sec)}</div>
