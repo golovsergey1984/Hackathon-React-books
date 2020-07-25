@@ -60,7 +60,7 @@ class LibraryPage extends Component {
               </div>
             )}
 
-            {plannedBooks.length > 0 && <ToReadList />}
+            {plannedBooks.length === 0 && <ToReadList />}
           </div>
         </div>
 
