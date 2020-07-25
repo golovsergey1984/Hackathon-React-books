@@ -10,8 +10,6 @@ export const getTrainingTimeEnd = state => state.training.timeEnd;
 
 export const getTrainingAvgReadPages = state => state.training.avgReadPages;
 
-export const getTrainingReadPagesCount = state => state.training.readPagesCount;
-
 export const getTrainingBooksCount = state => state.training.booksCount;
 
 export const getTrainingUnreadBooksCount = state => state.training.unreadCount;
@@ -21,6 +19,23 @@ export const getTrainingBooks = state => state.training.books;
 export const getTrainingAllPagesCount = state => state.training.allPagesCount;
 
 export const getTrainingResults = state => state.training.pagesReadResult;
+
+export const getTrainingResultsPagesCount = state => {
+  const results = getTrainingResults(state);
+  const total = results.reduce((acc, res) => acc + res.count, 0);
+  return total;
+};
+
+export const getTrainingReadPagesCount = state => {
+  const books = getTrainingBooks(state);
+  const total = books.reduce((acc, { book, isRead }) => {
+    if (isRead) {
+      return acc + book.pagesCount;
+    }
+    return acc;
+  }, 0);
+  return total;
+};
 
 export const getTrainingDaysGoal = state => {
   const timeStart = getTrainingTimeStart(state);

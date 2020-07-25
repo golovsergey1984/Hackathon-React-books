@@ -42,8 +42,8 @@
   margin-right: 0;
 }
 
-input,
-.data {
+.pages,
+.date input {
   padding: 10px;
   height: 36px;
   font-size: 14px;

@@ -54,6 +54,7 @@ export default class ResultForm extends Component {
             <label className={styles.label}>
               <span className={styles.span}>Дата</span>
               <Datetime
+                className={styles.date}
                 name="date"
                 value={date}
                 locale="uk"
@@ -67,7 +68,7 @@ export default class ResultForm extends Component {
             <label className={styles.label}>
               <span className={styles.span}>Кількість сторінок</span>
               <input
-                className={styles.data}
+                className={styles.pages}
                 name="count"
                 type="number"
                 min={1}

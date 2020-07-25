@@ -23,7 +23,7 @@ export const store = configureStore({
     training: trainingReducer,
     isLoading: loaderReducer,
     error: errorReducer,
-    //modals: modalReducer,
+    modals: modalReducer,
   },
   middleware: [thunk],
 });

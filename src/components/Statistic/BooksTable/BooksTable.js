@@ -1,42 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './BooksTable.module.css';
+import PNotify from 'pnotify/dist/es/PNotify';
+import 'pnotify/dist/PNotifyBrightTheme.css';
 
-export default function BooksTable({ books }) {
-  return (
-    <table className={styles.selectedBookTable}>
-      <thead>
-        <tr>
-          <th className={styles.selectedBookTableBookName}>Назва книги</th>
-          <th className={styles.selectedBookTableAuthor}>Автор</th>
-          <th className={styles.selectedBookTableYear}>Рік</th>
-          <th className={styles.selectedBookTablePages}>Стор.</th>
-        </tr>
-      </thead>
+export default class BooksTable extends Component {
+  handleChange = e => {
+    const { name, checked, value } = e.target;
+    const { resultPagesCount, checkedPagesCount, trainingId } = this.props;
+    if (value <= resultPagesCount - checkedPagesCount || !checked) {
+      const checkBookInfo = {
+        trainingBookId: name,
+        trainingId: trainingId,
+        data: { isRead: checked },
+      };
+      this.props.toggleIsBookReadAction(checkBookInfo);
+    } else {
+      PNotify.error({
+        text: 'Недостатня кількість прочитаних сторінок.',
+        delay: 1000,
+      });
+    }
+  };
 
-      <tbody>
-        {books.map(bookObj => (
-          <tr key={bookObj.book.bookId}>
-            {bookObj.book.isRead ? (
-              <td className={styles.selectedBookTableBookNameChecked}>
-                {bookObj.book.title}
-              </td>
-            ) : (
-              <td className={styles.selectedBookTableBookNameEmpty}>
-                {bookObj.book.title}
-              </td>
-            )}
-            <td className={styles.selectedBookTableAuthor}>
-              {bookObj.book.author}
-            </td>
-            <td className={styles.selectedBookTableYear}>
-              {bookObj.book.year}
-            </td>
-            <td className={styles.selectedBookTablePages}>
-              {bookObj.book.pagesCount}
-            </td>
+  render() {
+    const { books } = this.props;
+
+    return (
+      <table className={styles.selectedBookTable}>
+        <thead className={styles.head}>
+          <tr className={styles.row}>
+            <th className={styles.selectedBookTableBookName}>Назва книги</th>
+            <th className={styles.selectedBookTableAuthor}>Автор</th>
+            <th className={styles.selectedBookTableYear}>Рік</th>
+            <th className={styles.selectedBookTablePages}>Стор.</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+        </thead>
+
+        <tbody className={styles.body}>
+          {books.map(({ book, isRead, trainingBookId }) => (
+            <tr key={book.bookId} className={styles.row}>
+              <td className={styles.checkboxContainer}>
+                <label>
+                  <input
+                    className={styles.checkbox}
+                    type="checkbox"
+                    name={trainingBookId}
+                    checked={isRead}
+                    value={book.pagesCount}
+                    onChange={this.handleChange}
+                  />
+                  <p className={styles.fakeCheckbox} />
+                </label>
+              </td>
+
+              <td className={styles.selectedBookTableBookName}>{book.title}</td>
+              <td className={styles.selectedBookTableAuthor}>{book.author}</td>
+              <td className={styles.selectedBookTableYear}>{book.year}</td>
+              <td className={styles.selectedBookTablePages}>
+                {book.pagesCount}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
 }

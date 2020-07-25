@@ -1,13 +1,22 @@
 import StatisticsPage from './StatisticsPage';
 import { connect } from 'react-redux';
 import { getTrainingAction } from '../../redux/training/trainingActions';
-import { loginAction } from '../../redux/session/sessionActions';
+import {
+  getTrainingAllPagesCount,
+  getTrainingResultsPagesCount,
+} from '../../redux/training/trainingSelectors';
+import { toggleShowResultModalAction } from '../../redux/modal/modalActions';
+import { getIsShowResultModal } from '../../redux/modal/modalSelectors';
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  totalResultsCount: getTrainingResultsPagesCount(state),
+  totalBooksPages: getTrainingAllPagesCount(state),
+  isShowResultModal: getIsShowResultModal(state),
+});
 
 const mapDispatchToProps = {
   getTrainingAction,
-  loginAction,
+  toggleShowResultModalAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatisticsPage);
