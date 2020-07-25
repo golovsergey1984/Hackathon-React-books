@@ -12,10 +12,7 @@ class Library_addBook extends Component {
     );
   }
 }
-<<<<<<< HEAD
 
-export default Library_addBook;
-=======
 export default Library_addBook;
 /* const library_addBooks = ({ children }) => (
   <div className={styles.wrapper}>
@@ -36,4 +33,3 @@ export default Library_addBook;
 );
 export default library_addBooks;
  */
->>>>>>> dev
