@@ -14,11 +14,16 @@ class AddBookForm extends Component {
 
   handleSubmit = async e => {
     e.preventDefault();
+    const { pagesCount, year } = this.state;
 
     try {
-      await this.props.handleBookSubmit({ ...this.state });
+      await this.props.handleBookSubmit({
+        ...this.state,
+        pagesCount: +[pagesCount],
+        year: +[year],
+      });
 
-      this.setState({ title: '', author: '', pagesCount: null, year: null });
+      this.setState({ title: '', author: '', pagesCount: '', year: '' });
     } catch (error) {
       console.log(error);
     }
@@ -32,6 +37,7 @@ class AddBookForm extends Component {
         <label htmlFor="Назва книги">
           <span className={styles.span}>Назва книги</span>
           <input
+            required
             placeholder="..."
             type="text"
             name="title"
@@ -45,6 +51,7 @@ class AddBookForm extends Component {
         <label htmlFor="Автор книги">
           <span className={styles.span}>Автор книги</span>
           <input
+            required
             placeholder="..."
             type="text"
             name="author"
@@ -58,6 +65,7 @@ class AddBookForm extends Component {
         <label htmlFor="Рік випуску">
           <span className={styles.span}>Рік випуску</span>
           <input
+            required
             placeholder="..."
             type="number"
             name="year"
@@ -71,6 +79,7 @@ class AddBookForm extends Component {
         <label htmlFor="Кількість сторінок">
           <span className={styles.span}>Кількість сторінок</span>
           <input
+            required
             placeholder="..."
             type="number"
             name="pagesCount"
@@ -80,6 +89,7 @@ class AddBookForm extends Component {
             autoComplete="off"
           />
         </label>
+
         <button className={styles.btn}>Додати</button>
       </form>
     );
