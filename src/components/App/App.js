@@ -34,7 +34,7 @@ const AsyncTrainingPage = lazy(() =>
 );
 const AsyncStatisticsPage = lazy(() =>
   import(
-    '../../pages/StatisticsPage/StatisticsPage' /* webpackChunkName: "statistics-page" */
+    '../../pages/StatisticsPage/StatisticsPageContainer' /* webpackChunkName: "statistics-page" */
   ),
 );
 

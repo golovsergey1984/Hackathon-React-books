@@ -1,16 +1,36 @@
 import React, { Component } from 'react';
 import s from './LoginForm.module.css'
-// import '../../assets/styles/SignUpForm.css';
+import { loginAction } from "../../redux/session/sessionActions"
+import { connect } from "react-redux"
+import { withRouter } from "react-router";
 
+import PNotify from 'pnotify/dist/es/PNotify';
+import PNotifyStyleMaterial from 'pnotify/dist/es/PNotifyStyleMaterial.js';
+import { Link } from 'react-router-dom';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = { email: '', password: '' };
 
-  submitHandler = e => {
+  submitHandler = async e => {
     e.preventDefault();
 
-    this.props.onLogin({ ...this.state });
-    this.setState({ email: '', password: '' });
+    try {
+      await this.props.loginAction(this.state)
+
+      this.props.history.push("/library")
+      this.setState({ email: '', password: '' });
+    } catch (error) {
+      PNotify.defaults.delay = '1500';
+      PNotify.defaults.styling = 'material';
+      PNotify.error({
+        text: "Неправильний пароль або логін. Спробуйте ще раз",
+        stack: {
+          dir1: 'down', dir2: 'left', // Position from the top left corner.
+          firstpos1: 90, firstpos2: 90 // 90px from the top, 90px from the left.
+        }
+      });
+      console.log(error)
+    }
   };
 
   changeHandler = e => {
@@ -37,6 +57,7 @@ export default class LoginForm extends Component {
                 name="email"
                 value={email}
                 onChange={this.changeHandler}
+                required
               />
               <label className={s.label}>
                 Пароль <span className={s.red}>*</span>
@@ -48,13 +69,14 @@ export default class LoginForm extends Component {
                 name="password"
                 value={password}
                 onChange={this.changeHandler}
+                required
               />
               <button className={s.logInButton} label="Log In" type="submit">
                 Увійти
                </button>
-              <button className={s.regButton} label="Registration" type="submit">
+              <Link to="/registration" className={s.regButton} label="Registration" type="submit">
                 Реєстрація
-              </button>
+              </Link>
             </form>
           </div>
         </div>
@@ -73,3 +95,9 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+const mDTP = dispatch => ({
+  loginAction: (credentials) => dispatch(loginAction(credentials))
+})
+
+export default connect(null, mDTP)(withRouter(LoginForm))

@@ -1,0 +1,61 @@
+/* BOOK STATISTIC */
+.bookStatisticContainer {
+  background-color: #fff;
+  box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+.bookStatisticTitle {
+  height: 62px;
+  color: #fff;
+  background-color: #b1b5c1;
+  text-align: center;
+  padding-top: 18px;
+  box-shadow: 0px 2px 5px 0px rgba(223, 226, 235, 0.75);
+}
+
+.bookStatisticCounterContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 42px 10px 0 10px;
+  margin-bottom: 15px;
+}
+
+.bookStatisticCounter {
+  width: 124px;
+  height: 100%;
+  line-height: 100%;
+  background-color: #f7f8fc;
+  box-shadow: 5px 5px 5px 0px rgba(222, 225, 232, 0.7);
+  color: #00153a;
+  font-weight: 900;
+  font-size: 50px;
+  text-align: center;
+  padding: 17px 0;
+  margin: 0 5px;
+}
+
+.bookStatisticCounterColored {
+  composes: bookStatisticCounter;
+  color: #ff6a00;
+}
+
+.pagesCounter {
+  width: 124px;
+  height: 102px;
+  background-color: #f7f8fc;
+  box-shadow: 5px 5px 5px 0px rgba(222, 225, 232, 0.7);
+}
+
+.counterLabelConyainer {
+  padding: 0 10px;
+  color: #979ea8;
+  display: flex;
+  justify-content: space-around;
+}
+
+.counterLabel {
+  width: 100px;
+  text-align: center;
+}
