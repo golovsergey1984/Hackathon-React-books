@@ -24,7 +24,7 @@ export default class LibraryPage extends Component {
     const {
       books = true,
       readBooks = true,
-      readingBooks = false,
+      readingBooks = true,
       plannedBooks = true,
     } = this.props;
 

@@ -6,6 +6,7 @@ import {
 } from './sessionActions';
 import { createSlice } from '@reduxjs/toolkit';
 import * as api from '../../services/api';
+import { act } from 'react-dom/test-utils';
 
 const initialState = {
   user: {},
