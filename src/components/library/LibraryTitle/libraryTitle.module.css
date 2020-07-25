@@ -1,37 +1,24 @@
 .nameBook {
-  min-width: 200px;
-  padding-top: 30px;
+  min-width: 350px;
 }
 
 .authorBook {
-  min-width: 200px;
-  padding-top: 30px;
-  padding-left: 115px;
+  min-width: 300px;
 }
 
 .yearBook {
   min-width: 200px;
-  padding-left: 272px;
-  padding-top: 30px;
-  padding-left: 94px;
 }
 
 .storBook {
-  min-width: 200px;
-  padding-left: 90px;
-  padding-top: 30px;
-}
-.rating {
-  min-width: 200px;
-  padding-left: 104px;
-  padding-top: 30px;
+  min-width: 100px;
 }
 
 .title {
   font-size: 22px;
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  line-height: 1.2;
+  line-height: 3.2;
 }
 
 .boxBooks {
@@ -41,5 +28,5 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
   line-height: 3.2;
-  margin-left: 4px;
+  margin-left: 44px;
 }

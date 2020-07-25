@@ -1,0 +1,105 @@
+/* TITLE*/
+.nameBook {
+  min-width: 350px;
+}
+
+.authorBook {
+  min-width: 300px;
+}
+
+.yearBook {
+  min-width: 200px;
+}
+
+.storBook {
+  min-width: 100px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 3.2;
+}
+
+.boxBooks {
+  display: flex;
+  justify-content: start;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  margin-left: 44px;
+}
+
+/* LIST */
+.mainBox {
+  background-color: #fff;
+  box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.2);
+}
+
+.list {
+  list-style: none;
+}
+
+.wrapBooks {
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  margin: 10px;
+}
+
+.secondBoxBooks {
+  display: flex;
+  justify-content: start;
+  color: rgb(10, 9, 9);
+  font-size: 16px;
+  line-height: 3.2;
+}
+
+.nameBook {
+  min-width: 350px;
+}
+
+.authorBook {
+  min-width: 300px;
+}
+
+.yearBook {
+  min-width: 200px;
+}
+
+.storBook {
+  min-width: 100px;
+}
+
+.button {
+  margin-top: 20px;
+  height: 35px;
+  width: 200px;
+  display: block;
+  position: relative;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  background-color: rgb(241, 101, 7);
+  margin: 0 auto;
+  margin-top: 35px;
+  font-size: 100%;
+  line-height: 1.15;
+}
+
+.button:hover {
+  background-color: blue;
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+  min-width: 320px;
+}

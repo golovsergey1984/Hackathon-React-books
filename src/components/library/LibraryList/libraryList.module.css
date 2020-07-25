@@ -1,7 +1,3 @@
-.listBottomMargin {
-  margin-bottom: 30px;
-}
-
 .mainBox {
   background-color: #fff;
   box-shadow: 0 6px 4px -4px rgba(0, 0, 0, 0.2);
@@ -13,7 +9,6 @@
 
 .wrapBooks {
   display: flex;
-  justify-content: start;
   align-items: center;
 }
 
@@ -23,18 +18,18 @@
 
 .secondBoxBooks {
   display: flex;
-  /*  justify-content: space-between; */
+  justify-content: start;
   color: rgb(10, 9, 9);
   font-size: 16px;
   line-height: 3.2;
 }
 
 .nameBook {
-  min-width: 250px;
+  min-width: 350px;
 }
 
 .authorBook {
-  min-width: 200px;
+  min-width: 300px;
 }
 
 .yearBook {
@@ -42,7 +37,7 @@
 }
 
 .storBook {
-  min-width: 200px;
+  min-width: 100px;
 }
 
 .button {
@@ -61,5 +56,5 @@
 .rating {
   display: flex;
   justify-content: space-between;
-  min-width: 420px;
+  min-width: 320px;
 }
