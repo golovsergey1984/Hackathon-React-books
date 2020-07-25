@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import s from './LoginForm.module.css'
+import s from './LoginForm.module.css';
 // import '../../assets/styles/SignUpForm.css';
-
 
 export default class LoginForm extends Component {
   state = { email: '', password: '' };
@@ -15,7 +14,7 @@ export default class LoginForm extends Component {
 
   changeHandler = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -51,8 +50,12 @@ export default class LoginForm extends Component {
               />
               <button className={s.logInButton} label="Log In" type="submit">
                 Увійти
-               </button>
-              <button className={s.regButton} label="Registration" type="submit">
+              </button>
+              <button
+                className={s.regButton}
+                label="Registration"
+                type="submit"
+              >
                 Реєстрація
               </button>
             </form>
@@ -62,10 +65,9 @@ export default class LoginForm extends Component {
           <div className={s.qouteCommaWrapper}>
             <p className={s.comma}>"</p>
             <p className={s.quote}>
-              Книги - это корабли мысли, странствующие по волнам
-              времени и бережно несущие свой драгоценный груз от поколения
-              к поколению.
-             </p>
+              Книги - это корабли мысли, странствующие по волнам времени и
+              бережно несущие свой драгоценный груз от поколения к поколению.
+            </p>
             <p className={s.author}>Бэкон Ф.</p>
           </div>
         </div>
