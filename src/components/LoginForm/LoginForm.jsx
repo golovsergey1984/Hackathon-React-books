@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import s from './LoginForm.module.css';
-// import '../../assets/styles/SignUpForm.css';
 
 export default class LoginForm extends Component {
   state = { email: '', password: '' };
