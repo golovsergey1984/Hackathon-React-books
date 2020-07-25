@@ -24,7 +24,6 @@ library.defaultProps = {
 };
 
 library.propTypes = {
-  imgUrl: PropTypes.string.isRequired,
   alt: PropTypes.string,
   title: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
