@@ -1,0 +1,131 @@
+.selectedBookTable {
+  display: block;
+  color: #8d919d;
+  width: 898px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #e3e8ec;
+}
+.head {
+  display: block;
+  padding: 6px 0;
+  width: 898px;
+  border-top: 1px solid #e3e8ec;
+  border-bottom: 1px solid #e3e8ec;
+  margin-bottom: 10px;
+}
+
+.body {
+  display: block;
+  overflow: auto;
+  height: 170px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+tbody::-webkit-scrollbar {
+  width: 6px;
+}
+tbody::-webkit-scrollbar-track {
+  background: #e6e6ee;
+}
+tbody::-webkit-scrollbar-thumb {
+  background: #b1b7c5;
+  border-radius: 4px;
+}
+
+.row th {
+  text-align: start;
+}
+
+.selectedBookTableBookName {
+  display: inline-block;
+  width: 45%;
+}
+
+thead .selectedBookTableBookName {
+  width: 47%;
+}
+
+.row {
+  display: block;
+  padding: 10px 0;
+}
+
+.checkbox {
+  display: none;
+}
+
+.checkboxContainer {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.fakeCheckbox {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 0;
+  background-image: url('../../../assets/icons/checkbox/checkbox_empty.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.checkbox:checked + .fakeCheckbox {
+  background-image: url('../../../assets/icons/checkbox/checkbox.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.row .selectedBookTableBookNameChecked::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-image: url(../../../assets/icons/checkbox/checkbox.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.row .selectedBookTableBookNameEmpty::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-image: url(../../../assets/icons/checkbox/checkbox_empty.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.selectedBookTableAuthor {
+  display: inline-block;
+  width: 30%;
+}
+.selectedBookTableYear {
+  display: inline-block;
+  width: 15%;
+}
+.selectedBookTablePages {
+  display: inline-block;
+  width: 5%;
+}
+
+.startStatisticsButton {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 10px;
+  text-decoration: none;
+  width: 188px;
+  height: 40px;
+  background-color: #ff6b01;
+  color: #fff;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
