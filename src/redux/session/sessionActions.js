@@ -10,8 +10,14 @@ export const Type = {
 };
 
 export const loginAction = createAsyncThunk(Type.LOG_IN, async credentials => {
-  const response = await api.logIn(credentials);
-  return response.data;
+  try {
+    // console.log(credentials);
+    const res = await api.logIn(credentials);
+    return res.data;
+  } catch (error) {
+    // console.log(credentials);
+    console.log(error);
+  }
 });
 
 export const registrationAction = createAsyncThunk(
