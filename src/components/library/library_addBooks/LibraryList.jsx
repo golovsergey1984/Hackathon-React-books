@@ -1,18 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Library from './Library';
-// import styles from './library.module.css';
 import styles from './librarylist.module.css';
-
-// const LibraryList = ({ items = [] }) => (
-//   <ul>
-//     {items.map((item) => (
-//       <li key={item.id} className={styles.list}>
-//         <Library {...item} />
-//       </li>
-//     ))}
-//   </ul>
-// );
 
 const LibraryList = ({ items = [] }) => (
   <ul className={styles.mainBox}>

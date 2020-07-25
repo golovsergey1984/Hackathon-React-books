@@ -60,7 +60,10 @@
 }
 
 .nameBook {
-  min-width: 350px;
+  width: 350px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .authorBook {
