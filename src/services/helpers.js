@@ -2,6 +2,8 @@ import * as api from './api';
 import * as session from '../redux/session/sessionActions';
 import * as books from '../redux/books/booksActions';
 import * as training from '../redux/training/trainingActions';
+import PNotify from 'pnotify/dist/es/PNotify';
+import PNotifyStyleMaterial from 'pnotify/dist/es/PNotifyStyleMaterial.js';
 
 export function getErrorMessageByRejectedAction(action) {
   const actionType = action.type.replace('/rejected', '');
@@ -86,4 +88,18 @@ export function getErrorMessageByRejectedAction(action) {
   error.pnotifyMessage = message;
 
   return error;
+}
+
+export function pnotifyAbout(errMsg) {
+  PNotify.defaults.delay = '2000';
+  PNotify.defaults.styling = 'material';
+  return PNotify.error({
+    text: errMsg,
+    stack: {
+      dir1: 'down',
+      dir2: 'left', // Position from the top left corner.
+      firstpos1: 90,
+      firstpos2: 90, // 90px from the top, 90px from the left.
+    },
+  });
 }
