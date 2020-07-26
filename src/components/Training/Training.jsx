@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
+import books from '../Statistic/book/books.json';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
@@ -9,36 +10,19 @@ import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 registerLocale('uk', uk);
 
+const findBookByTitle = (title, books) => {
+  return books.find(book => book.title === title);
+};
+
 class StartTraining extends Component {
   state = {
     value: '',
     startDate: null,
     endDate: null,
     allDay: 0,
-    books: [
-      {
-        id: '1',
-        bookName: 'Scrum. Революционный метод управления проектами',
-        bookAuthor: 'Джефф Сазерленд',
-        bookYear: '2014',
-        bookPages: 25,
-      },
-      {
-        id: '2',
-        bookName: 'Dedline. Роман об управлении проектами',
-        bookAuthor: 'Том ДеМарко',
-        bookYear: '2006',
-        bookPages: 188,
-      },
-      {
-        id: '3',
-        bookName: '5 Попроков команды. Притчи о лидерстве.',
-        bookAuthor: 'Патрик Ленсиони',
-        bookYear: '2011',
-        bookPages: 125,
-      },
-    ],
-    selektedBooks: [],
+    libraryBooks: [],
+    trainingBooks: [],
+    bookTitleToAdd: '',
   };
 
   setStartDate = date => {
@@ -48,8 +32,12 @@ class StartTraining extends Component {
   };
 
   setDayToRead = date => {
-    const deltaDay = (date - this.state.startDate) / 86400000;
-
+    let deltaDay;
+    if (this.state.startDate) {
+      deltaDay = (date - this.state.startDate) / 86400000;
+    } else {
+      deltaDay = Math.ceil((date - Date.now()) / 86400000);
+    }
     this.setState({
       allDay: deltaDay,
     });
@@ -62,88 +50,89 @@ class StartTraining extends Component {
     this.setDayToRead(date);
   };
 
-  handleChange = event => {
+  handleChange = e => {
     this.setState({
-      value: event.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
-  filterBook = (books, filter) => {
-    return books.filter(book => book.bookName.includes(filter));
-  };
+  addToTrainingBooks = e => {
+    e.preventDefault();
+    const { bookTitleToAdd, trainingBooks, libraryBooks } = this.state;
 
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const includeBook = this.state.selektedBooks.find(
-      book => book.bookName === this.state.value,
+    const includeBook = libraryBooks.find(
+      book => book.title === bookTitleToAdd,
     );
 
-    if (includeBook) {
-      console.log('this book is add');
-    } else {
-      this.setState(state => ({
-        selektedBooks: [
-          ...state.selektedBooks,
-          ...this.filterBook(this.state.books, this.state.value),
-        ],
-      }));
-    }
-  };
-
-  deletBook = id => {
+    const stateTitles = trainingBooks.map(({ title }) => title);
+    if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
+    if (!includeBook) return;
+    const bookToAdd = findBookByTitle(bookTitleToAdd, libraryBooks);
     this.setState(state => ({
-      selektedBooks: state.selektedBooks.filter(book => book.id !== id),
+      trainingBooks: [bookToAdd, ...state.trainingBooks],
     }));
   };
+
+  removeFromTrainingBooks = id => {
+    this.setState(state => ({
+      trainingBooks: state.trainingBooks.filter(book => book.id !== id),
+    }));
+  };
+
+  componentDidMount() {
+    this.setState({ libraryBooks: books });
+  }
+
   render() {
+    const { endDate, libraryBooks, bookTitleToAdd, trainingBooks } = this.state;
+
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
           <h2 className={styles.startTitle}>Моє тренування</h2>
           <div className={styles.calendarContainer}>
-            <>
-              <DatePicker
-                className={styles.calendarInput}
-                onChange={date => this.setStartDate(date)}
-                selected={this.state.startDate}
-                selectsStart
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-                dateFormat="dd.MM.yyyy"
-                placeholderText="Початок"
-                locale="uk"
-              />
-              <DatePicker
-                className={styles.calendarInput}
-                onChange={date => this.setEndDate(date)}
-                selected={this.state.endDate}
-                selectsEnd
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-                minDate={this.state.startDate}
-                dateFormat="dd.MM.yyyy"
-                placeholderText="Завершення"
-                locale="uk"
-              />
-            </>
+            <DatePicker
+              className={styles.calendarInput}
+              onChange={date => this.setStartDate(date)}
+              selected={this.state.startDate}
+              minDate={Date.now()}
+              dateFormat="dd.MM.yyyy"
+              placeholderText="Початок"
+              locale="uk"
+            />
+            <div style={{ width: 40 }}></div>
+            <DatePicker
+              className={styles.calendarInput}
+              onChange={date => this.setEndDate(date)}
+              selected={endDate}
+              minDate={Date.now()}
+              dateFormat="dd.MM.yyyy"
+              placeholderText="Завершення"
+              locale="uk"
+            />
           </div>
-          <form className={styles.bookSelectForm} onSubmit={this.handleSubmit}>
+
+          <form
+            className={styles.bookSelectForm}
+            onSubmit={this.addToTrainingBooks}
+          >
             <select
               className={styles.bookSelectField}
-              value={this.state.value}
+              name="bookTitleToAdd"
+              value={bookTitleToAdd}
               onChange={this.handleChange}
             >
               <option>Обрати книги з бібліотеки</option>
-              {this.state.books.map(book => {
-                return <option key={book.id}>{book.bookName}</option>;
-              })}
+              {libraryBooks.map(({ title, id }) => (
+                <option key={id} value={title}>
+                  {title}
+                </option>
+              ))}
             </select>
-            <input
-              className={styles.bookSelectSubmit}
-              type="submit"
-              value="Додати"
-            />
+
+            <button className={styles.bookSelectSubmit} type="submit">
+              Додати
+            </button>
           </form>
 
           <table className={styles.selectedBookTable}>
@@ -159,38 +148,29 @@ class StartTraining extends Component {
             </thead>
 
             <tbody>
-              {this.state.selektedBooks.map(book => {
-                return (
-                  <tr key={book.id}>
+              {trainingBooks.length > 0 &&
+                trainingBooks.map(({ id, title, author, year, sheets }) => (
+                  <tr key={id}>
                     <td className={styles.selectedBookTableBookName}>
-                      {book.bookName}
+                      {title}
                     </td>
-                    <td className={styles.selectedBookTableAuthor}>
-                      {book.bookAuthor}
-                    </td>
-                    <td className={styles.selectedBookTableYear}>
-                      {book.bookYear}
-                    </td>
-                    <td className={styles.selectedBookTablePages}>
-                      {book.bookPages}
-                    </td>
+                    <td className={styles.selectedBookTableAuthor}>{author}</td>
+                    <td className={styles.selectedBookTableYear}>{year}</td>
+                    <td className={styles.selectedBookTablePages}>{sheets}</td>
                     <td>
                       <button
                         className={styles.selectedBookDelete}
-                        onClick={() => this.deletBook(book.id)}
+                        onClick={() => this.removeFromTrainingBooks(id)}
                       ></button>
                     </td>
                   </tr>
-                );
-              })}
-
+                ))}
               <tr>
                 <td className={styles.selectedBookTableBookName}>...</td>
               </tr>
             </tbody>
           </table>
-
-          {this.state.selektedBooks.length > 0 && (
+          {trainingBooks.length > 0 && (
             <Link to="/statistics" className={styles.startTrainingButton}>
               Почати тренування
             </Link>
@@ -198,14 +178,16 @@ class StartTraining extends Component {
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
-          <StatisticsBlock
-            countNumber={this.state.selektedBooks.length}
-            title="Кількість книжок"
-          />
-          <StatisticsBlock
-            countNumber={this.state.allDay}
-            title="Кількість днів"
-          />
+          <div className={styles.bookStatisticBlockContainer}>
+            <StatisticsBlock
+              countNumber={trainingBooks.length}
+              title="Кількість книжок"
+            />
+            <StatisticsBlock
+              countNumber={this.state.allDay}
+              title="Кількість днів"
+            />
+          </div>
         </div>
       </div>
     );
