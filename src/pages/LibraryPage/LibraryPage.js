@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import styles from './LibraryPage.module.css';
+import {
+  getReadedBooks,
+  getReadingBooks,
+  getAllBooksInLibrary,
+  getPlannedBooks,
+} from '../../redux/books/booksSelectors';
+import { getBooksAction } from '../../redux/books/booksActions';
 //Components
+import LibraryList from '../../components/Library/LibraryList/LibraryList';
+import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
+import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
+import EmptyList from '../../components/Library/EmptyList/EmptyList';
+import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
+import ToReadList from '../../components/Library/library_addBooks/Library_addBooks';
+import { connect } from 'react-redux';
 
-import LibraryList from '../../components/library/LibraryList/LibraryList';
-import LibraryTitle from '../../components/library/LibraryTitle/LibraryTitle';
-import AddBookForm from '../../components/library/AddBookForm/AddBookForm';
-import EmptyList from '../../components/library/EmptyList/EmptyList';
-import LibraryListModal from '../../components/library/LibraryList-modal/LibraryList-modal';
-import ToReadList from '../../components/library/library_addBooks/Library_addBooks';
-
-export default class LibraryPage extends Component {
+class LibraryPage extends Component {
   state = {
     modal: false,
   };
+
+  componentDidMount() {
+    this.props.getAllBooks();
+  }
 
   handleModalChange = toggle => {
     this.setState({ modal: toggle });
@@ -21,12 +32,7 @@ export default class LibraryPage extends Component {
   render() {
     const { modal } = this.state;
 
-    const {
-      books = true,
-      readBooks = true,
-      readingBooks = true,
-      plannedBooks = true,
-    } = this.props;
+    const { books, readBooks, readingBooks, plannedBooks } = this.props;
 
     return (
       <>
@@ -34,46 +40,27 @@ export default class LibraryPage extends Component {
           <div className={styles.wrapper}>
             <AddBookForm />
 
-            {!books && <EmptyList />}
+            {books.length === 0 && <EmptyList />}
 
-            {readBooks && (
-              <div>
+            {readBooks.length > 0 && (
+              <div className={styles.marginBottom}>
                 <LibraryTitle title={'Прочитано'} isReadBooks={true} />
                 <LibraryList
                   onModalChange={this.handleModalChange}
                   isReadBooks={true}
-                  books={[
-                    {
-                      title: 'Some title',
-                      author: 'some author',
-                      year: 2345,
-                      pagesCount: 345,
-                      rating: 4,
-                      id: 2,
-                    },
-                  ]}
+                  books={readBooks}
                 />
               </div>
             )}
 
-            {readingBooks && (
-              <div>
+            {readingBooks.length > 0 && (
+              <div className={styles.marginBottom}>
                 <LibraryTitle title={'Читаю'} isReadBooks={false} />
-                <LibraryList
-                  books={[
-                    {
-                      title: 'Some title',
-                      author: 'some author',
-                      year: 2345,
-                      pages: 345,
-                      id: 2,
-                    },
-                  ]}
-                />
+                <LibraryList books={readingBooks} />
               </div>
             )}
 
-            {plannedBooks && <ToReadList />}
+            {plannedBooks.length === 0 && <ToReadList />}
           </div>
         </div>
 
@@ -82,3 +69,16 @@ export default class LibraryPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  books: getAllBooksInLibrary(state),
+  readBooks: getReadedBooks(state),
+  readingBooks: getReadingBooks(state),
+  plannedBooks: getPlannedBooks(state),
+});
+
+const mapDispathToProps = dispatch => ({
+  getAllBooks: () => dispatch(getBooksAction()),
+});
+
+export default connect(mapStateToProps, mapDispathToProps)(LibraryPage);
