@@ -29,8 +29,14 @@ class StartTraining extends Component {
   };
 
   setDayToRead = date => {
-    const deltaDay = (date - this.state.startDate) / 86400000;
-
+    let deltaDay;
+    // // const deltaDay = this.state.startDate ? (date - this.state.startDate)/86400000 : (date - Date.now())/86400000 ;
+    if (this.state.startDate) {
+      deltaDay = (date - this.state.startDate) / 86400000;
+      
+    } else {
+      deltaDay = Math.ceil((date - Date.now()) / 86400000);
+    }
     this.setState({
       allDay: deltaDay,
     });
@@ -44,7 +50,7 @@ class StartTraining extends Component {
   };
 
   handleChange = e => {
-    console.log(e.target.value)
+    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -53,7 +59,7 @@ class StartTraining extends Component {
   addToTrainingBooks = e => {
     e.preventDefault();
     const { bookTitleToAdd, trainingBooks, libraryBooks } = this.state;
-    // console.log('bookToAdd: ', bookTitleToAdd);
+
     const stateTitles = trainingBooks.map(({ title }) => title);
     if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
     const bookToAdd = findBookByTitle(bookTitleToAdd, libraryBooks);
@@ -62,14 +68,25 @@ class StartTraining extends Component {
     }));
   };
 
+  removeFromTrainingBooks = id => {
+    this.setState(state => ({
+      trainingBooks: state.trainingBooks.filter(book => book.id !== id),
+    }));
+  };
+
   componentDidMount() {
     this.setState({ libraryBooks: books });
   }
 
   render() {
-    // console.log(this.state.startDate, this.state.endDate, this.state.allDay);
-    console.log(this.state.trainingBooks);
-    const { libraryBooks, bookTitleToAdd, trainingBooks } = this.state;
+    const {
+      endDate,
+      startDate,
+      libraryBooks,
+      bookTitleToAdd,
+      trainingBooks,
+    } = this.state;
+
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
@@ -77,12 +94,12 @@ class StartTraining extends Component {
           <div className={styles.calendarContainer}>
             <DatePicker
               className={styles.calendarInput}
-              style={{ marginRight: 40 }}
               onChange={date => this.setStartDate(date)}
               selected={this.state.startDate}
               // selectsStart
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
+              // startDate={this.state.startDate}
+              minDate={Date.now()}
+              // endDate={this.state.endDate}
               dateFormat="dd.MM.yyyy"
               placeholderText="Початок"
               locale="uk"
@@ -91,11 +108,11 @@ class StartTraining extends Component {
             <DatePicker
               className={styles.calendarInput}
               onChange={date => this.setEndDate(date)}
-              selected={this.state.endDate}
+              selected={endDate}
               // selectsEnd
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              minDate={this.state.startDate}
+              // startDate={this.state.startDate}
+              // endDate={this.state.endDate}
+              minDate={startDate}
               dateFormat="dd.MM.yyyy"
               placeholderText="Завершення"
               locale="uk"
@@ -147,7 +164,10 @@ class StartTraining extends Component {
                     <td className={styles.selectedBookTableYear}>{year}</td>
                     <td className={styles.selectedBookTablePages}>{sheets}</td>
                     <td>
-                      <button className={styles.selectedBookDelete}></button>
+                      <button
+                        className={styles.selectedBookDelete}
+                        onClick={() => this.removeFromTrainingBooks(id)}
+                      ></button>
                     </td>
                   </tr>
                 ))}
@@ -156,14 +176,18 @@ class StartTraining extends Component {
               </tr>
             </tbody>
           </table>
-          {trainingBooks.length > 0 && <Link to="/statistics" className={styles.startTrainingButton}>
-            Почати тренування
-          </Link>}
+          {trainingBooks.length > 0 && (
+            <Link to="/statistics" className={styles.startTrainingButton}>
+              Почати тренування
+            </Link>
+          )}
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
           <div className={styles.bookStatisticCounterContainer}>
-            <div className={styles.bookStatisticCounter}>{trainingBooks.length}</div>
+            <div className={styles.bookStatisticCounter}>
+              {trainingBooks.length}
+            </div>
             <div className={styles.bookStatisticCounter}>
               {this.state.allDay}
             </div>

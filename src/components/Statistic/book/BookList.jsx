@@ -1,23 +1,23 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styles from "./BookList.module.css"
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './BookList.module.css';
 
-const BookList = ({items}) => (
+const BookList = ({ items }) => (
   <div className={styles.bg}>
-  <table className={styles["books"]}>
-    <thead>
-      <tr className={styles.tHead}>
-      <th colSpan="2" className={styles.tHeadItem}>
+    <table className={styles['books']}>
+      <thead>
+        <tr className={styles.tHead}>
+          <th colSpan="2" className={styles.tHeadItem}>
             Назва книги
           </th>
           <th className={styles.tHeadItem}>Автор</th>
           <th className={styles.tHeadItem}>Рік</th>
           <th className={styles.tHeadItem}>Сторінки</th>
-      </tr>
-    </thead>
+        </tr>
+      </thead>
 
-    <tbody>
-    {items.map(({ id, title, author, year, sheets }) => (
+      <tbody>
+        {items.map(({ id, title, author, year, sheets }) => (
           <tr key={id}>
             <td className={styles.tContain}>
               <span className={styles.label}></span>
@@ -28,10 +28,10 @@ const BookList = ({items}) => (
             <td className={styles.alignCenter}>{sheets}</td>
           </tr>
         ))}
-    </tbody>
-  </table>
-</div>
-)
+      </tbody>
+    </table>
+  </div>
+);
 
 BookList.propTypes = {
   items: PropTypes.arrayOf(
@@ -40,9 +40,9 @@ BookList.propTypes = {
       title: PropTypes.string,
       author: PropTypes.string,
       year: PropTypes.string,
-      sheets: PropTypes.string
-    })
-  )
+      sheets: PropTypes.string,
+    }),
+  ),
 };
 
 export default BookList;

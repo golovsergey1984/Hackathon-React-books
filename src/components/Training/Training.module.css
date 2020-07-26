@@ -108,7 +108,7 @@ thead {
 }
 
 tbody {
-  /* height: 300px; */
+  height: 235px;
   display: block;
   overflow: auto;
 }
@@ -202,37 +202,38 @@ td.selectedBookTableBookName::before {
 
 /* BOOK STATISTIC */
 .bookStatisticContainer {
-  width: 312px;
-  height: 296px;
+  width: 360px;
+  height: 340px;
   background-color: #fff;
   box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
 }
 
 .bookStatisticTitle {
-  height: 62px;
   color: #fff;
   background-color: #b1b5c1;
   text-align: center;
-  padding-top: 18px;
-  box-shadow: 0px 2px 5px 0px rgba(223, 226, 235, 0.75);
+  padding: 18px 0px;
+  box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
 }
 
 .bookStatisticCounterContainer {
   display: flex;
   justify-content: space-between;
-  padding: 42px 20px 14px;
+  padding: 50px 20px 14px;
 }
 
 .bookStatisticCounter {
-  width: 124px;
-  height: 102px;
+  width: 145px;
+  height: 115px;
   background-color: #f7f8fc;
   box-shadow: 5px 5px 5px 0px rgba(222, 225, 232, 0.7);
   color: #00153a;
   font-weight: 900;
-  font-size: 50px;
-  text-align: center;
-  padding-top: 24px;
+  font-size: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 24px; */
 }
 
 .pagesCounter {
