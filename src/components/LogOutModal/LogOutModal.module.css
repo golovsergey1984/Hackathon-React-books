@@ -7,15 +7,16 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap"); */
 
 .logOut_wrapper {
-  /* position: absolute; */
+  position: absolute;
   top: 0;
   width: 100vw;
-  height: 100vh;
+  height: 110vh;
   background: rgba(0, 0, 0, 0.7);
   text-align: center;
   padding-top: 200px;
   /* font-family: "Mukta", sans-serif; */
   font-size: 14px;
+  z-index: 9999;
   /* font-family: "Epilogue", sans-serif; */
 }
 

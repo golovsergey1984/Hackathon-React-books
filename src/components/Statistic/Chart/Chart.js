@@ -12,11 +12,10 @@
 import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
-export default class Chart extends Component {
+class Chart extends Component {
   render() {
     const { factData, pagesPerDay } = this.props;
-
-    const labels = factData.map(rec => rec.date);
+    const labels = factData.map(rec => rec.dates);
     const pagesFact = factData.map(rec => rec.pages);
 
     //Пока что План отображается прямой линией как количество страниц в день
@@ -87,3 +86,17 @@ export default class Chart extends Component {
     );
   }
 }
+
+Chart.defaultProps = {
+  factData: [
+    { date: '01.07.2020', pages: '15' },
+    { date: '02.07.2020', pages: '18' },
+    { date: '03.07.2020', pages: '20' },
+    { date: '04.07.2020', pages: '30' },
+    { date: '05.07.2020', pages: '19' },
+    { date: '06.07.2020', pages: '14' },
+  ],
+  pegesPerDay: 20,
+};
+
+export default Chart;

@@ -1,23 +1,34 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import styles from "./Statistic.module.css";
-import BookList from "./book/BookList";
-import books from "./book/books.json";
-import Timer from "./timers/Timer";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import styles from './Statistic.module.css';
+import BookList from './book/BookList';
+import books from './book/books.json';
+import TimeToDate from './timers/TimeToDate';
+import TimeToYear from './timers/TimeToYear';
 
 class Statistic extends Component {
   render() {
+    const currentDate = new Date();
+    const year =
+      currentDate.getMonth() === 11 && currentDate.getDate() > 23
+        ? currentDate.getFullYear() + 1
+        : currentDate.getFullYear();
+
+    //вводим дату к которой отчисляем оставшееся время, потом передаем в таймер как пропсы
+    
+    const targetDateSecondTimer = new Date('2020-07-31');
+
     return (
       <section className={styles.sectionStatistic}>
         <div className={styles.sectionBook}>
           <ul className={styles.sectionTimer}>
             <li>
-              До кінця року залишилось
-              <Timer />
+              <span className={styles.span}>До закінчення року залишилось</span>
+              <TimeToYear date={`${year}-12-31T00:00:00`} />
             </li>
             <li>
-              До досягнення мети залишилось
-              <Timer />
+              <span className={styles.span}>До досягнення мети залишилось</span>
+              <TimeToDate targetDate={targetDateSecondTimer} />
             </li>
           </ul>
           <BookList items={books} />
@@ -42,7 +53,7 @@ class Statistic extends Component {
                 <li className={styles.goalTxt}>
                   <div
                     className={styles.goalRes}
-                    style={{ color: "orangered" }}
+                    style={{ color: 'orangered' }}
                   >
                     3
                   </div>

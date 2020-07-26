@@ -9,7 +9,7 @@ const LibraryTitle = ({ isReadBooks, title }) => (
       <div className={styles.authorBook}>Автор</div>
       <div className={styles.yearBook}>Рік</div>
       <div className={styles.storBook}>Стор.</div>
-      {isReadBooks && <div>Рейтинг книги</div>}
+      {isReadBooks && <div className={styles.rating}>Рейтинг книги</div>}
     </div>
   </div>
 );
