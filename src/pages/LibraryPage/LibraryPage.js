@@ -21,12 +21,21 @@ class LibraryPage extends Component {
     modal: false,
   };
 
-  componentDidMount() {
-    this.props.getAllBooks();
+  async componentDidMount() {
+    await this.props.getAllBooks();
   }
 
   handleModalChange = toggle => {
     this.setState({ modal: toggle });
+  };
+
+  getBookId = id => {
+    console.log(id);
+    this.setIdToModal(id);
+  };
+
+  setIdToModal = id => {
+    console.log(id);
   };
 
   render() {
@@ -60,7 +69,7 @@ class LibraryPage extends Component {
               </div>
             )}
 
-            {plannedBooks.length === 0 && <ToReadList />}
+            {plannedBooks.length > 0 && <ToReadList />}
           </div>
         </div>
 
