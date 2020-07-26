@@ -1,6 +1,6 @@
-export const getIsShowLogOutModal = state => state.modal.IsShowLogOutModal;
+export const getIsShowLogOutModal = state => state.modals.IsShowLogOutModal;
 
 export const getIsShowBookReviewModal = state =>
-  state.modal.IsShowBookReviewModal;
+  state.modals.IsShowBookReviewModal;
 
-export const getIsShowResultModal = state => state.modal.IsShowResultModal;
+export const getIsShowResultModal = state => state.modals.IsShowResultModal;

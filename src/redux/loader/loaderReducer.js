@@ -9,6 +9,6 @@ export const loaderReducer = createReducer(true, builder =>
     .addMatcher(
       action =>
         action.type.endsWith('fulfilled') || action.type.endsWith('rejected'),
-      () => true,
+      () => false,
     ),
 );

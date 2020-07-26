@@ -1,0 +1,154 @@
+.box {
+  display: flex;
+}
+.wrap {
+  align-items: center;
+}
+.inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
+
+  height: 20px;
+}
+.input {
+  height: 25px;
+}
+.select {
+  height: 25px;
+  background-color: rgb(231, 230, 240);
+}
+input:invalid {
+  background-color: rgb(231, 230, 240);
+}
+.form {
+  color: rgb(144, 150, 150);
+  display: flex;
+  flex-direction: column;
+}
+.btn_form {
+  height: 25px;
+  width: 150px;
+  margin-top: 27px;
+  background-color: rgb(231, 230, 240);
+}
+.form2 {
+  display: flex;
+  justify-content: space-around;
+}
+.text {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.title {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 3.2;
+}
+.wrapper {
+  background-color: #eee;
+  padding-top: 20px;
+}
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 3px;
+  margin-top: 18px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.title_name {
+  min-width: 540px;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+}
+.title_avtor {
+  min-width: 465px;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 272px;
+}
+.title_year {
+  min-width: 490px;
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 270px;
+}
+.title_page {
+  /* width: 700px; */
+  color: rgb(141, 137, 137);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 270px;
+}
+.name {
+  padding-left: 8px;
+  width: 500px;
+}
+.avtor {
+  width: 500px;
+  padding-left: 240px;
+}
+.year {
+  width: 500px;
+  padding-left: 240px;
+}
+.pages {
+  width: 500px;
+  padding-left: 240px;
+}
+.image {
+  padding-left: 10px;
+  width: 34px;
+  height: 22px;
+}
+.list {
+  display: flex;
+  justify-content: center;
+  /* Параметры тени */
+}
+
+.button {
+  margin-top: 20px;
+  height: 35px;
+  width: 200px;
+  display: block;
+  position: relative;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 0;
+  background-color: rgb(241, 101, 7);
+  margin: 0 auto;
+  margin-top: 35px;
+  font-size: 100%;
+  line-height: 1.15;
+}
+/* .button {
+  background-color: #1c87c9;
+  border: none;
+  color: white;
+  padding: 20px 34px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+} */
