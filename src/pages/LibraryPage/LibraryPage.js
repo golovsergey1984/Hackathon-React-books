@@ -8,12 +8,12 @@ import {
 } from '../../redux/books/booksSelectors';
 import { getBooksAction } from '../../redux/books/booksActions';
 //Components
-import LibraryList from '../../components/library/LibraryList/LibraryList';
-import LibraryTitle from '../../components/library/LibraryTitle/LibraryTitle';
-import AddBookForm from '../../components/library/AddBookForm/AddBookForm';
-import EmptyList from '../../components/library/EmptyList/EmptyList';
-import LibraryListModal from '../../components/library/LibraryList-modal/LibraryList-modal';
-import ToReadList from '../../components/library/library_addBooks/Library_addBooks';
+import LibraryList from '../../components/Library/LibraryList/LibraryList';
+import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
+import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
+import EmptyList from '../../components/Library/EmptyList/EmptyList';
+import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
+import ToReadList from '../../components/Library/library_addBooks/Library_addBooks';
 import { connect } from 'react-redux';
 
 class LibraryPage extends Component {
