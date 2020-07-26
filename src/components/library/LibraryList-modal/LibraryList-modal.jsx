@@ -36,7 +36,10 @@ const LibraryListModal = ({
             ></textarea>
           </div>
           <div className={styles.Modal_section_buttons}>
-            <button className={styles.Modal_section__button_reset} type="reset">
+            <button
+              className={styles.Modal_section__button_reset}
+              type="button"
+            >
               Назад
             </button>
             <button
