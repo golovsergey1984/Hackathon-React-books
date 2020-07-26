@@ -13,46 +13,49 @@ body {
 .startTrainingMainContainer {
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
-  width: 1333px;
-  padding: 42px 42px 50px 42px;
+  margin: 0 50px;
+  padding: 42px 70px;
 }
 
 .startTrainingContainer {
-  width: 898px;
+  width: 1028px;
 }
 
 .startTitle {
-  height: 62px;
   color: #fff;
   background-color: #b1b5c1;
   text-align: center;
-  padding-top: 18px;
-  margin-bottom: 30px;
+  padding: 18px 0px;
+  margin-bottom: 32px;
   box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
 }
 
 .calendarContainer {
+  width: 490px;
   display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-bottom: 32px;
 }
 
 .calendarInput {
-  height: 42px;
+  display: block;
+  height: 40px;
+  width: 225px;
   color: #9195a1;
   background-color: #f6f7fb;
   border: 1px solid #d4d7de;
-  margin-right: 34px;
-  text-align: center;
+  padding-left: 50px;
   cursor: pointer;
-  display: block;
+
   background-image: url(../../assets/icons/IconStartTraining/calendarIcon.png),
     url(../../assets/icons/IconStartTraining/arrow.png);
   background-repeat: no-repeat;
-  background-size: 20px, 14px;
-  background-position-x: 10px, 148px;
-  background-position-y: 10px, 14px;
+  background-size: 6%, 5%;
+  background-position-x: 8%, 96%;
+  background-position-y: 50%, 50%;
+  border: #9195a1 2px solid;
+  border-radius: 2px;
 }
 
 .calendarInput:focus {
@@ -66,8 +69,8 @@ body {
 }
 
 .bookSelectField {
-  width: 700px;
-  height: 34px;
+  width: 787px;
+  height: 44px;
   padding: 0 20px;
   color: #a4a6b2;
   border: none;
@@ -76,37 +79,37 @@ body {
   appearance: none;
   background-image: url(../../assets/icons/IconStartTraining/arrow.png);
   background-repeat: no-repeat;
-  background-position-x: 660px;
-  background-position-y: 12px;
+  background-size: 1.5%;
+  background-position-x: 97%;
+  background-position-y: 50%;
 }
 
 .bookSelectSubmit {
-  height: 34px;
-  padding: 0 60px;
+  padding: 11px 75px;
   background-color: #f6f7fb;
   border: 1px solid #000;
   cursor: pointer;
 }
 
-/* TABLE STULE */
+/* TABLE STYLE */
 
 .selectedBookTable {
   display: block;
   color: #8d919d;
-  width: 898px;
   margin-bottom: 40px;
   border-bottom: 1px solid #e3e8ec;
+  border-collapse: collapse;
 }
 thead {
   display: block;
   padding: 6px 0;
-  width: 898px;
+  /* width: 898px; */
   border-top: 1px solid #e3e8ec;
   border-bottom: 1px solid #e3e8ec;
 }
 
 tbody {
-  height: 300px;
+  height: 235px;
   display: block;
   overflow: auto;
 }
@@ -128,7 +131,7 @@ tbody td {
   text-overflow: ellipsis;
   text-align: start;
   color: #494b57;
-  padding-top: 10px;
+  padding: 3px 0;
 }
 
 th {
@@ -137,8 +140,8 @@ th {
 
 .selectedBookTableBookName {
   display: inline-block;
-  width: 448px;
-  margin-right: 20px;
+  width: 550px;
+  /* margin-right: 20px; */
 }
 
 td.selectedBookTableBookName::before {
@@ -155,18 +158,18 @@ td.selectedBookTableBookName::before {
 
 .selectedBookTableAuthor {
   display: inline-block;
-  width: 210px;
-  margin-right: 10px;
+  width: 250px;
+  /* margin-right: 10px; */
 }
 .selectedBookTableYear {
   display: inline-block;
-  width: 80px;
-  margin-right: 6px;
+  width: 120px;
+  /* margin-right: 6px; */
 }
 .selectedBookTablePages {
   display: inline-block;
-  width: 50px;
-  margin-right: 16px;
+  width: 70px;
+  /* margin-right: 16px; */
 }
 
 .selectedBookDelete {
@@ -200,37 +203,38 @@ td.selectedBookTableBookName::before {
 
 /* BOOK STATISTIC */
 .bookStatisticContainer {
-  width: 312px;
-  height: 296px;
+  width: 360px;
+  height: 340px;
   background-color: #fff;
   box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
 }
 
 .bookStatisticTitle {
-  height: 62px;
   color: #fff;
   background-color: #b1b5c1;
   text-align: center;
-  padding-top: 18px;
-  box-shadow: 0px 2px 5px 0px rgba(223, 226, 235, 0.75);
+  padding: 18px 0px;
+  box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
 }
 
 .bookStatisticCounterContainer {
   display: flex;
   justify-content: space-between;
-  padding: 42px 20px 14px;
+  padding: 50px 20px 14px;
 }
 
 .bookStatisticCounter {
-  width: 124px;
-  height: 102px;
+  width: 145px;
+  height: 115px;
   background-color: #f7f8fc;
   box-shadow: 5px 5px 5px 0px rgba(222, 225, 232, 0.7);
   color: #00153a;
   font-weight: 900;
-  font-size: 50px;
-  text-align: center;
-  padding-top: 24px;
+  font-size: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-top: 24px; */
 }
 
 .pagesCounter {

@@ -20,9 +20,13 @@ const LineChart = ({ factData = [], pagesPerDay = 0 }) => {
       {
         label: 'План',
         data: pagesPlan,
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        backgroundColor: 'rgba(255, 0, 255, 0.1)',
         borderColor: 'rgb(7, 36, 100)',
         pointBackgroundColor: 'rgb(7, 36, 100)',
+        fill: 'origin',
+        borderWidth: 1,
+        borderDash: [10, 15],
+        pointBorderWidth: 1,
       },
       {
         label: 'Факт',
