@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
 import books from '../Statistic/book/books.json';
+import { pnotifyAbout } from '../../services/helpers';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale } from 'react-datepicker';
@@ -14,39 +15,38 @@ const findBookByTitle = (title, books) => {
 
 class StartTraining extends Component {
   state = {
-    startDate: null,
-    endDate: null,
-    allDay: 0,
+    timeStart: null,
+    timeEnd: null,
+    totalDays: 0,
     libraryBooks: [],
     trainingBooks: [],
     bookTitleToAdd: '',
+    avgReadPages: 0,
   };
 
   setStartDate = date => {
+    if (this.state.timeEnd && date - this.state.timeEnd > 0)
+      return pnotifyAbout(
+        'Початок тренування не може слідувати за завершенням',
+      );
     this.setState({
-      startDate: date,
+      timeStart: date,
     });
   };
 
-  setDayToRead = date => {
-    let deltaDay;
-    // // const deltaDay = this.state.startDate ? (date - this.state.startDate)/86400000 : (date - Date.now())/86400000 ;
-    if (this.state.startDate) {
-      deltaDay = (date - this.state.startDate) / 86400000;
-      
-    } else {
-      deltaDay = Math.ceil((date - Date.now()) / 86400000);
-    }
+  setDayToRead = () => {
+    const { timeStart, timeEnd } = this.state;
+    const deltaDay = (timeEnd - timeStart) / 86400000;
     this.setState({
-      allDay: deltaDay,
+      totalDays: deltaDay,
     });
   };
 
   setEndDate = date => {
     this.setState({
-      endDate: date,
+      timeEnd: date,
     });
-    this.setDayToRead(date);
+    // this.setDayToRead(date);
   };
 
   handleChange = e => {
@@ -58,7 +58,15 @@ class StartTraining extends Component {
 
   addToTrainingBooks = e => {
     e.preventDefault();
-    const { bookTitleToAdd, trainingBooks, libraryBooks } = this.state;
+    const {
+      timeStart,
+      timeEnd,
+      bookTitleToAdd,
+      trainingBooks,
+      libraryBooks,
+    } = this.state;
+    if (!timeStart) return pnotifyAbout('Введіть дату початку тренування');
+    if (!timeEnd) return pnotifyAbout('Введіть дату завершення тренування');
 
     const stateTitles = trainingBooks.map(({ title }) => title);
     if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
@@ -78,10 +86,20 @@ class StartTraining extends Component {
     this.setState({ libraryBooks: books });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      (prevState.timeStart !== this.state.timeStart && this.state.timeEnd) ||
+      (prevState.timeEnd !== this.state.timeEnd && this.state.timeStart)
+    ) {
+      this.setDayToRead();
+    }
+  }
+
   render() {
     const {
-      endDate,
-      startDate,
+      timeEnd,
+      timeStart,
+      totalDays,
       libraryBooks,
       bookTitleToAdd,
       trainingBooks,
@@ -94,8 +112,8 @@ class StartTraining extends Component {
           <div className={styles.calendarContainer}>
             <DatePicker
               className={styles.calendarInput}
-              onChange={date => this.setStartDate(date)}
-              selected={this.state.startDate}
+              onChange={this.setStartDate}
+              selected={timeStart}
               // selectsStart
               // startDate={this.state.startDate}
               minDate={Date.now()}
@@ -107,12 +125,12 @@ class StartTraining extends Component {
             <div style={{ width: 40 }}></div>
             <DatePicker
               className={styles.calendarInput}
-              onChange={date => this.setEndDate(date)}
-              selected={endDate}
+              onChange={this.setEndDate}
+              selected={timeEnd}
               // selectsEnd
               // startDate={this.state.startDate}
               // endDate={this.state.endDate}
-              minDate={startDate}
+              minDate={!timeStart ? Date.now() : timeStart}
               dateFormat="dd.MM.yyyy"
               placeholderText="Завершення"
               locale="uk"
@@ -128,6 +146,7 @@ class StartTraining extends Component {
               name="bookTitleToAdd"
               value={bookTitleToAdd}
               onChange={this.handleChange}
+              required
             >
               {libraryBooks.map(({ title, id }) => (
                 <option key={id} value={title}>
@@ -188,9 +207,7 @@ class StartTraining extends Component {
             <div className={styles.bookStatisticCounter}>
               {trainingBooks.length}
             </div>
-            <div className={styles.bookStatisticCounter}>
-              {this.state.allDay}
-            </div>
+            <div className={styles.bookStatisticCounter}>{totalDays}</div>
           </div>
           <div className={styles.counterLaibelConyainer}>
             <p className={styles.counterLaibel}>Кількість книжок</p>
