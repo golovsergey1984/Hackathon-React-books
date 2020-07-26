@@ -21,8 +21,14 @@ class LibraryPage extends Component {
     modal: false,
   };
 
-  async componentDidMount() {
-    await this.props.getAllBooks();
+  componentDidMount() {
+    this.props.getAllBooks();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.books.length !== this.props.books.length) {
+      this.props.getAllBooks();
+    }
   }
 
   handleModalChange = toggle => {
