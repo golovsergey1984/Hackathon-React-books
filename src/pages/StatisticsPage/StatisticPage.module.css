@@ -6,6 +6,15 @@
     'Lucida Sans', Arial, sans-serif;
 }
 
+.loader {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
 .startStatisticsMainContainer {
   display: flex;
   justify-content: space-between;
@@ -30,7 +39,7 @@
 
 .calendarContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   margin-bottom: 30px;
 }
 
