@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 // Components
 import Loader from 'react-loader-spinner';
 import Header from '../Header/header';
-// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+/* import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; */
 import { getUserAction } from '../../redux/session/sessionActions';
 //Styles
 import styles from './App.module.css';

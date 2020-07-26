@@ -3,13 +3,23 @@ import s from './LoginForm.module.css'
 import { loginAction } from "../../redux/session/sessionActions"
 import { connect } from "react-redux"
 import { withRouter } from "react-router";
-
-import PNotify from 'pnotify/dist/es/PNotify';
-import PNotifyStyleMaterial from 'pnotify/dist/es/PNotifyStyleMaterial.js';
+import { pnotifyAbout } from "../../services/helpers"
 import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
   state = { email: '', password: '' };
+
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/library")
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/library")
+    }
+  }
 
   submitHandler = async e => {
     e.preventDefault();
@@ -20,15 +30,7 @@ class LoginForm extends Component {
       this.props.history.push("/library")
       this.setState({ email: '', password: '' });
     } catch (error) {
-      PNotify.defaults.delay = '1500';
-      PNotify.defaults.styling = 'material';
-      PNotify.error({
-        text: "Неправильний пароль або логін. Спробуйте ще раз",
-        stack: {
-          dir1: 'down', dir2: 'left', // Position from the top left corner.
-          firstpos1: 90, firstpos2: 90 // 90px from the top, 90px from the left.
-        }
-      });
+      pnotifyAbout("Неправильний пароль або логін. Спробуйте ще раз")
       console.log(error)
     }
   };
@@ -96,8 +98,12 @@ class LoginForm extends Component {
   }
 }
 
+const mSTP = state => ({
+  isAuthenticated: state.session.isAuthenticated
+})
+
 const mDTP = dispatch => ({
   loginAction: (credentials) => dispatch(loginAction(credentials))
 })
 
-export default connect(null, mDTP)(withRouter(LoginForm))
+export default connect(mSTP, mDTP)(withRouter(LoginForm))

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import Article from './Article.jsx';
 import '../../assets/styles/SignUpForm.css';
+import { connect } from "react-redux"
+import { withRouter } from "react-router";
+import { registrationAction, logOutAction } from "../../redux/session/sessionActions"
+import { pnotifyAbout } from "../../services/helpers"
+import { Link } from 'react-router-dom';
 
-export default class SignUpForm extends Component {
+
+class SignUpForm extends Component {
   state = {
     name: '',
     email: '',
@@ -10,63 +16,101 @@ export default class SignUpForm extends Component {
     applyPassword: '',
   };
 
-  //   submitHandler = (e) => {
-  //     e.preventDefault();
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/library")
+    }
+  }
 
-  //     this.props.onSignUp({ ...this.state });
-  //     this.setState({ name: "", email: "", password: "" });
-  //   };
+  componentDidUpdate() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/library")
+    }
+  }
 
-  //   changeHandler = (e) => {
-  //     this.setState({
-  //       [e.target.name]: e.target.value,
-  //     });
-  //   };
+  submitHandler = async e => {
+    e.preventDefault();
+
+    const { email, name, password, applyPassword } = this.state
+
+    if (password !== applyPassword) {
+      return pnotifyAbout("Неправильне підтвердження паролю")
+    }
+
+    const userToReg = {
+      email,
+      password,
+      "name": {
+        "fullName": name
+      }
+    }
+
+    try {
+      await this.props.registrationAction(userToReg)
+
+      this.props.history.push("/library")
+      this.setState({ name: "", email: "", password: "", applyPassword: "" });
+    } catch (error) {
+      console.log(error)
+      pnotifyAbout("Схоже емейл вже був зареєстрований")
+      this.props.logOutAction()
+    }
+  };
+
+  changeHandler = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
 
   render() {
-    // const { name, email, password, applyPassword } = this.state;
+    const { name, email, password, applyPassword } = this.state;
     return (
       <div className="main-wrapper">
         <div className="sign-up-wrapper">
-          <div className="form-container">
-            <form className="sign-up-form">
-              <label>
-                Ім'я <span className="red">*</span>
-              </label>
-              <input type="name" name="name" placeholder="..." />
+          <div className="imgBack">
+            <div className="form-container">
+              <form className="sign-up-form" onSubmit={this.submitHandler}>
+                <label>
+                  Ім'я <span className="red">*</span>
+                </label>
+                <input type="name" name="name" placeholder="..." value={name} onChange={this.changeHandler} required />
 
-              <label>
-                Електронна адреса <span className="red">*</span>
-              </label>
-              <input type="email" name="email" placeholder="..." />
+                <label>
+                  Електронна адреса <span className="red">*</span>
+                </label>
+                <input type="email" name="email" placeholder="..." value={email} onChange={this.changeHandler} required />
 
-              <label>
-                Пароль <span className="red">*</span>
-              </label>
-              <input name="password" placeholder="..." />
+                <label>
+                  Пароль <span className="red">*</span>
+                </label>
+                <input name="password" type="password" minLength="5" placeholder="..." value={password} onChange={this.changeHandler} required />
 
-              <label>
-                Підтвердити пароль <span className="red">*</span>
-              </label>
-              <input
-                type="applyPassword"
-                name="applyPassword"
-                placeholder="..."
-                className="last-input"
-              />
+                <label>
+                  Підтвердити пароль <span className="red">*</span>
+                </label>
+                <input
+                  type="password"
+                  name="applyPassword"
+                  placeholder="..."
+                  className="last-input"
+                  value={applyPassword} onChange={this.changeHandler}
+                  required
+                />
 
-              <button
-                label="Зареєструватися"
-                type="submit"
-                className="sign-up-button"
-              >
-                Зареєструватися
+                <button
+                  label="Зареєструватися"
+                  type="submit"
+                  className="sign-up-button"
+                >
+                  Зареєструватися
               </button>
 
-              <span className="span">
-                Вже з нами? <a className="logout-link">Увійти</a>
-              </span>
-            </form>
+                <span className="login">
+                  Вже з нами? <Link to="/login" className="login-link">Увійти</Link>
+                </span>
+              </form>
+            </div>
           </div>
         </div>
         <Article />
@@ -74,3 +118,14 @@ export default class SignUpForm extends Component {
     );
   }
 }
+
+const mSTP = state => ({
+  isAuthenticated: state.session.isAuthenticated
+})
+
+const mDTP = dispatch => ({
+  registrationAction: (credentials) => dispatch(registrationAction(credentials)),
+  logOutAction: () => dispatch(logOutAction())
+})
+
+export default connect(mSTP, mDTP)(withRouter(SignUpForm))
