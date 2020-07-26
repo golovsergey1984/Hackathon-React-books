@@ -11,9 +11,34 @@ registerLocale('uk', uk);
 
 class StartTraining extends Component {
   state = {
+    value: '',
     startDate: null,
     endDate: null,
     allDay: 0,
+    books: [
+      {
+        id: '1',
+        bookName: 'Scrum. Революционный метод управления проектами',
+        bookAuthor: 'Джефф Сазерленд',
+        bookYear: '2014',
+        bookPages: 25,
+      },
+      {
+        id: '2',
+        bookName: 'Dedline. Роман об управлении проектами',
+        bookAuthor: 'Том ДеМарко',
+        bookYear: '2006',
+        bookPages: 188,
+      },
+      {
+        id: '3',
+        bookName: '5 Попроков команды. Притчи о лидерстве.',
+        bookAuthor: 'Патрик Ленсиони',
+        bookYear: '2011',
+        bookPages: 125,
+      },
+    ],
+    selektedBooks: [],
   };
 
   setStartDate = date => {
@@ -37,6 +62,40 @@ class StartTraining extends Component {
     this.setDayToRead(date);
   };
 
+  handleChange = event => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
+
+  filterBook = (books, filter) => {
+    return books.filter(book => book.bookName.includes(filter));
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const includeBook = this.state.selektedBooks.find(
+      book => book.bookName === this.state.value,
+    );
+
+    if (includeBook) {
+      console.log('this book is add');
+    } else {
+      this.setState(state => ({
+        selektedBooks: [
+          ...state.selektedBooks,
+          ...this.filterBook(this.state.books, this.state.value),
+        ],
+      }));
+    }
+  };
+
+  deletBook = id => {
+    this.setState(state => ({
+      selektedBooks: state.selektedBooks.filter(book => book.id !== id),
+    }));
+  };
   render() {
     return (
       <div className={styles.startTrainingMainContainer}>
@@ -69,22 +128,22 @@ class StartTraining extends Component {
               />
             </>
           </div>
-          <form className={styles.bookSelectForm}>
-            <p>
-              <select className={styles.bookSelectField} name="book">
-                <option>Обрати книги з бібліотеки</option>
-                <option value="book1">BOOK-1</option>
-                <option value="book2">BOOK-2</option>
-                <option value="book3">BOOK-3</option>
-              </select>
-            </p>
-            <p>
-              <input
-                className={styles.bookSelectSubmit}
-                type="submit"
-                value="Додати"
-              />
-            </p>
+          <form className={styles.bookSelectForm} onSubmit={this.handleSubmit}>
+            <select
+              className={styles.bookSelectField}
+              value={this.state.value}
+              onChange={this.handleChange}
+            >
+              <option>Обрати книги з бібліотеки</option>
+              {this.state.books.map(book => {
+                return <option key={book.id}>{book.bookName}</option>;
+              })}
+            </select>
+            <input
+              className={styles.bookSelectSubmit}
+              type="submit"
+              value="Додати"
+            />
           </form>
 
           <table className={styles.selectedBookTable}>
@@ -100,29 +159,49 @@ class StartTraining extends Component {
             </thead>
 
             <tbody>
-              <tr>
-                <td className={styles.selectedBookTableBookName}>
-                  "Війна та мир"
-                </td>
-                <td className={styles.selectedBookTableAuthor}>Лев Толстий</td>
-                <td className={styles.selectedBookTableYear}>1869</td>
-                <td className={styles.selectedBookTablePages}>1472</td>
-                <td>
-                  <button className={styles.selectedBookDelete}></button>
-                </td>
-              </tr>
+              {this.state.selektedBooks.map(book => {
+                return (
+                  <tr key={book.id}>
+                    <td className={styles.selectedBookTableBookName}>
+                      {book.bookName}
+                    </td>
+                    <td className={styles.selectedBookTableAuthor}>
+                      {book.bookAuthor}
+                    </td>
+                    <td className={styles.selectedBookTableYear}>
+                      {book.bookYear}
+                    </td>
+                    <td className={styles.selectedBookTablePages}>
+                      {book.bookPages}
+                    </td>
+                    <td>
+                      <button
+                        className={styles.selectedBookDelete}
+                        onClick={() => this.deletBook(book.id)}
+                      ></button>
+                    </td>
+                  </tr>
+                );
+              })}
+
               <tr>
                 <td className={styles.selectedBookTableBookName}>...</td>
               </tr>
             </tbody>
           </table>
-          <Link to="/statistics" className={styles.startTrainingButton}>
-            Почати тренування
-          </Link>
+
+          {this.state.selektedBooks.length > 0 && (
+            <Link to="/statistics" className={styles.startTrainingButton}>
+              Почати тренування
+            </Link>
+          )}
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
-          <StatisticsBlock countNumber="0" title="Кількість книжок" />
+          <StatisticsBlock
+            countNumber={this.state.selektedBooks.length}
+            title="Кількість книжок"
+          />
           <StatisticsBlock
             countNumber={this.state.allDay}
             title="Кількість днів"
