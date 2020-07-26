@@ -6,44 +6,57 @@ import styles from './StatisticPage.module.css';
 import Timer from '../../components/Statistic/timers/Timer';
 import Goal from '../../components/Share/Goal/Goal';
 import BooksTable from '../../components/Statistic/BooksTable/BooksTableContainer';
-import ModalResult from '../../components/ModalResult/ModalResultContainer';
+import ModalResult from '../../components/Statistic/ModalResult/ModalResultContainer';
+import { Redirect } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import moment from 'moment';
 
 export default class StatisticsPage extends Component {
-  componentDidUpdate() {
-    const {
-      totalResultsCount,
-      totalBooksPages,
-      toggleShowResultModalAction,
-    } = this.props;
-
-    if (totalResultsCount >= totalBooksPages) {
-      toggleShowResultModalAction();
-    }
-  }
   componentDidMount() {
     const { getTrainingAction } = this.props;
     getTrainingAction();
   }
+
   render() {
-    const { isShowResultModal } = this.props;
+    const { haveTraining, isLoading, endOfTraining } = this.props;
     return (
       <>
-        <div className={styles.startStatisticsMainContainer}>
-          <div className={styles.startStatisticsContainer}>
-            <div className={styles.calendarContainer}>
-              <Timer />
-              <Timer />
-            </div>
+        {isLoading ? (
+          <Loader
+            className={styles.loader}
+            type="Oval"
+            color="#ff6b09"
+            height={100}
+            width={100}
+            timeout={3000}
+          />
+        ) : (
+          <>
+            {!haveTraining && <Redirect to="/library" />}
+            <div className={styles.startStatisticsMainContainer}>
+              <div className={styles.startStatisticsContainer}>
+                <div className={styles.calendarContainer}>
+                  <Timer
+                    title="До закінчення року залишилось"
+                    targetDate={moment().endOf('year')}
+                  />
+                  <Timer
+                    title="До досягнення мети залишилось"
+                    targetDate={moment(endOfTraining)}
+                  />
+                </div>
 
-            <BooksTable />
-            <LineChart />
-          </div>
-          <div className={styles.rightContainer}>
-            <Goal showBooksLeft={true} />
-            <Result />
-          </div>
-        </div>
-        {/* <ModalResult /> */}
+                <BooksTable />
+                <LineChart />
+              </div>
+              <div className={styles.rightContainer}>
+                <Goal showBooksLeft={true} />
+                <Result />
+              </div>
+            </div>
+            <ModalResult />
+          </>
+        )}
       </>
     );
   }
