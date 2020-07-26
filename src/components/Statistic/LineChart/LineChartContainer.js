@@ -1,10 +1,16 @@
 import { connect } from 'react-redux';
 import LineChart from './LineChart';
-import { getDataForChart } from '../../../redux/training/trainingSelectors';
+import {
+  getDataForChart,
+  getTrainingDaysGoal,
+  getTrainingAllPagesCount,
+} from '../../../redux/training/trainingSelectors';
 
 const mapStateToProps = state => ({
   factData: getDataForChart(state),
-  pagesPerDay: 25,
+  pagesPerDay: Math.round(
+    getTrainingAllPagesCount(state) / getTrainingDaysGoal(state),
+  ),
 });
 
 export default connect(mapStateToProps)(LineChart);

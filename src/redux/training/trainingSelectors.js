@@ -1,40 +1,44 @@
 import moment from 'moment';
 
-export const getTrainingId = state => state.training.trainingId;
+export const getTrainingId = state => state.training?.trainingId;
 
-export const isTrainingDone = state => state.training.isDone;
+export const isTrainingDone = state => state.training?.isDone;
 
-export const getTrainingTimeStart = state => state.training.timeStart;
+export const getTrainingTimeStart = state => state.training?.timeStart;
 
-export const getTrainingTimeEnd = state => state.training.timeEnd;
+export const getTrainingTimeEnd = state => state.training?.timeEnd;
 
-export const getTrainingAvgReadPages = state => state.training.avgReadPages;
+export const getTrainingAvgReadPages = state => state.training?.avgReadPages;
 
-export const getTrainingBooksCount = state => state.training.booksCount;
+export const getTrainingBooksCount = state => state.training?.booksCount;
 
-export const getTrainingUnreadBooksCount = state => state.training.unreadCount;
+export const getTrainingUnreadBooksCount = state => state.training?.unreadCount;
 
-export const getTrainingBooks = state => state.training.books;
+export const getTrainingBooks = state => state.training?.books;
 
-export const getTrainingAllPagesCount = state => state.training.allPagesCount;
+export const getTrainingAllPagesCount = state => state.training?.allPagesCount;
 
-export const getTrainingResults = state => state.training.pagesReadResult;
+export const getTrainingResults = state => state.training?.pagesReadResult;
 
 export const getTrainingResultsPagesCount = state => {
   const results = getTrainingResults(state);
-  const total = results.reduce((acc, res) => acc + res.count, 0);
-  return total;
+  if (results) {
+    const total = results.reduce((acc, res) => acc + res.count, 0);
+    return total;
+  }
 };
 
 export const getTrainingReadPagesCount = state => {
   const books = getTrainingBooks(state);
-  const total = books.reduce((acc, { book, isRead }) => {
-    if (isRead) {
-      return acc + book.pagesCount;
-    }
-    return acc;
-  }, 0);
-  return total;
+  if (books) {
+    const total = books.reduce((acc, { book, isRead }) => {
+      if (isRead) {
+        return acc + book.pagesCount;
+      }
+      return acc;
+    }, 0);
+    return total;
+  }
 };
 
 export const getTrainingDaysGoal = state => {
@@ -45,23 +49,27 @@ export const getTrainingDaysGoal = state => {
 };
 
 export const getTrainingDaysLeft = state => {
-  const timeEnd = moment(getTrainingTimeEnd(state), 'DD.MM.YYYY');
-  const days = moment(timeEnd).diff(Date.now(), 'days');
+  const timeEnd = getTrainingTimeEnd(state);
+  const days = moment(timeEnd).diff(Date.now(), 'days') + 1;
   return days;
 };
 
 export const getSortedResults = state => {
   const results = getTrainingResults(state);
-  return [...results].sort((a, b) => {
-    return moment(a.date).format('x') - moment(b.date).format('x');
-  });
+  if (results) {
+    return [...results].sort((a, b) => {
+      return moment(a.date).format('x') - moment(b.date).format('x');
+    });
+  }
 };
 
 export const getDataForChart = state => {
   const results = getSortedResults(state);
-  const data = results.map(res => ({
-    dates: moment(res.date).format('DD.MM'),
-    pages: res.count,
-  }));
-  return data;
+  if (results) {
+    const data = results.map(res => ({
+      dates: moment(res.date).format('DD.MM'),
+      pages: res.count,
+    }));
+    return data;
+  }
 };
