@@ -3,7 +3,7 @@ import StarRating from 'react-svg-star-rating';
 import styles from './StarRating.module.css';
 
 const StarReactRating = ({ rating }) => {
-  console.log('www', rating);
+  // console.log('www', rating);
   return (
     <>
       <StarRating

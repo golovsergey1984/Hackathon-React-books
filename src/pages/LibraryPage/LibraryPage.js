@@ -7,6 +7,7 @@ import {
   getPlannedBooks,
 } from '../../redux/books/booksSelectors';
 import { getBooksAction } from '../../redux/books/booksActions';
+import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
 //Components
 import LibraryList from '../../components/Library/LibraryList/LibraryList';
 import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
@@ -18,22 +19,50 @@ import { connect } from 'react-redux';
 
 class LibraryPage extends Component {
   state = {
-    modal: false,
+    choosenBookId: null,
   };
 
   componentDidMount() {
     this.props.getAllBooks();
   }
 
-  handleModalChange = toggle => {
-    this.setState({ modal: toggle });
+  handleClickResume = event => {
+    // console.dir(event.target.dataset.bookid);
+    // this.setState({
+    //   choosenBookId: event.target.dataset.bookid,
+    // });
+    this.props.toggleBookReviewModal();
   };
 
   render() {
-    const { modal } = this.state;
+    const {
+      books,
+      readBooks,
+      readingBooks,
+      plannedBooks,
+      isBookReviewModalOpen,
+    } = this.props;
+    // const readBooks = [
+    //   {
+    //     id: 1,
+    //     title: 'test',
+    //     author: 'test',
+    //     year: 2000,
+    //     pagesCount: 200,
+    //     raiting: 4,
+    //   },
+    //   {
+    //     id: 2,
+    //     title: 'test1',
+    //     author: 'test1',
+    //     year: 2000,
+    //     pagesCount: 200,
+    //     raiting: 4,
+    //   },
+    // ];
 
-    const { books, readBooks, readingBooks, plannedBooks } = this.props;
-
+    const { choosenBookId } = this.state;
+    // console.log(choosenBookId);
     return (
       <>
         <div>
@@ -46,9 +75,9 @@ class LibraryPage extends Component {
               <div className={styles.marginBottom}>
                 <LibraryTitle title={'Прочитано'} isReadBooks={true} />
                 <LibraryList
-                  onModalChange={this.handleModalChange}
                   isReadBooks={true}
                   books={readBooks}
+                  onClickResume={this.handleClickResume}
                 />
               </div>
             )}
@@ -64,7 +93,7 @@ class LibraryPage extends Component {
           </div>
         </div>
 
-        {modal && <LibraryListModal />}
+        {isBookReviewModalOpen && <LibraryListModal bookId={choosenBookId} />}
       </>
     );
   }
@@ -75,10 +104,12 @@ const mapStateToProps = state => ({
   readBooks: getReadedBooks(state),
   readingBooks: getReadingBooks(state),
   plannedBooks: getPlannedBooks(state),
+  isBookReviewModalOpen: state.modals.isShowBookReviewModal,
 });
 
 const mapDispathToProps = dispatch => ({
   getAllBooks: () => dispatch(getBooksAction()),
+  toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
 });
 
 export default connect(mapStateToProps, mapDispathToProps)(LibraryPage);
