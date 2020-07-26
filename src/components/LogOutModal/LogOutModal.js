@@ -16,7 +16,7 @@ class LogOut extends Component {
 
   componentDidMount() {
     window.addEventListener('keydown', this.onCancelPress);
-    this.targetElement = this.targetRef.current;
+    this.targetElement = document.querySelector('#logOutModal');
     disableBodyScroll(this.targetElement);
   }
 
@@ -51,6 +51,7 @@ class LogOut extends Component {
         className={style.logOut_wrapper}
         onClick={event => this.onCancelClick(event)}
         ref={this.targetRef}
+        id="logOutModal"
       >
         <div className={style.logOut_box}>
           <p className={style.logOut_box_descr}>

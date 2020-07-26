@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
 import s from './LoginForm.module.css'
-// import '../../assets/styles/SignUpForm.css';
+import { loginAction } from "../../redux/session/sessionActions"
+import { connect } from "react-redux"
+import { withRouter } from "react-router";
+import { pnotifyAbout } from "../../services/helpers"
+import { Link } from 'react-router-dom';
 
-
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = { email: '', password: '' };
 
-  submitHandler = e => {
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/library")
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/library")
+    }
+  }
+
+  submitHandler = async e => {
     e.preventDefault();
 
-    this.props.onLogin({ ...this.state });
-    this.setState({ email: '', password: '' });
+    try {
+      await this.props.loginAction(this.state)
+
+      this.props.history.push("/library")
+      this.setState({ email: '', password: '' });
+    } catch (error) {
+      pnotifyAbout("Неправильний пароль або логін. Спробуйте ще раз")
+      console.log(error)
+    }
   };
 
   changeHandler = e => {
@@ -37,6 +59,7 @@ export default class LoginForm extends Component {
                 name="email"
                 value={email}
                 onChange={this.changeHandler}
+                required
               />
               <label className={s.label}>
                 Пароль <span className={s.red}>*</span>
@@ -48,13 +71,14 @@ export default class LoginForm extends Component {
                 name="password"
                 value={password}
                 onChange={this.changeHandler}
+                required
               />
               <button className={s.logInButton} label="Log In" type="submit">
                 Увійти
                </button>
-              <button className={s.regButton} label="Registration" type="submit">
+              <Link to="/registration" className={s.regButton} label="Registration" type="submit">
                 Реєстрація
-              </button>
+              </Link>
             </form>
           </div>
         </div>
@@ -73,3 +97,13 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+const mSTP = state => ({
+  isAuthenticated: state.session.isAuthenticated
+})
+
+const mDTP = dispatch => ({
+  loginAction: (credentials) => dispatch(loginAction(credentials))
+})
+
+export default connect(mSTP, mDTP)(withRouter(LoginForm))

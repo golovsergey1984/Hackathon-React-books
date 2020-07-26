@@ -1,28 +1,43 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as booksActions from '../../../redux/books/booksActions';
 import styles from './addBookForm.module.css';
 
-export default class AddBookForm extends Component {
+class AddBookForm extends Component {
   state = { title: '', author: '', pagesCount: '', year: '' }; //pagesCount && year must be a numbers
 
   handleChange = e => {
     const { name, value } = e.target;
+
     this.setState({ [name]: value });
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
+    const { pagesCount, year } = this.state;
 
-    console.log(...this.state);
+    try {
+      await this.props.handleBookSubmit({
+        ...this.state,
+        pagesCount: +[pagesCount],
+        year: +[year],
+      });
+
+      this.setState({ title: '', author: '', pagesCount: '', year: '' });
+    } catch (error) {
+      console.log(error);
+    }
   }; //push data to server
 
   render() {
     const { title, pagesCount, author, year } = this.state;
 
     return (
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={this.handleSubmit}>
         <label htmlFor="Назва книги">
           <span className={styles.span}>Назва книги</span>
           <input
+            required
             placeholder="..."
             type="text"
             name="title"
@@ -36,6 +51,7 @@ export default class AddBookForm extends Component {
         <label htmlFor="Автор книги">
           <span className={styles.span}>Автор книги</span>
           <input
+            required
             placeholder="..."
             type="text"
             name="author"
@@ -49,6 +65,7 @@ export default class AddBookForm extends Component {
         <label htmlFor="Рік випуску">
           <span className={styles.span}>Рік випуску</span>
           <input
+            required
             placeholder="..."
             type="number"
             name="year"
@@ -62,6 +79,7 @@ export default class AddBookForm extends Component {
         <label htmlFor="Кількість сторінок">
           <span className={styles.span}>Кількість сторінок</span>
           <input
+            required
             placeholder="..."
             type="number"
             name="pagesCount"
@@ -71,10 +89,15 @@ export default class AddBookForm extends Component {
             autoComplete="off"
           />
         </label>
-        <button className={styles.btn} type="submit">
-          Додати
-        </button>
+
+        <button className={styles.btn}>Додати</button>
       </form>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  handleBookSubmit: book => dispatch(booksActions.createBookAction(book)),
+});
+
+export default connect(null, mapDispatchToProps)(AddBookForm);

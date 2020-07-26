@@ -30,7 +30,7 @@ export const addTrainingAction = createAsyncThunk(
 
 export const toggleIsBookReadAction = createAsyncThunk(
   Type.TOGGLE_IS_BOOK_READ,
-  async (trainingId, trainingBookId, data) => {
+  async ({ trainingId, trainingBookId, data }) => {
     const response = await api.toggleIsBookRead(
       trainingId,
       trainingBookId,
@@ -42,7 +42,7 @@ export const toggleIsBookReadAction = createAsyncThunk(
 
 export const updateTrainingAction = createAsyncThunk(
   Type.UPDATE_TRAINING,
-  async (id, trainingData) => {
+  async ({ id, trainingData }) => {
     const response = await api.updateTraining(id, trainingData);
     return response.data;
   },
@@ -58,7 +58,7 @@ export const deleteTrainingAction = createAsyncThunk(
 
 export const addResultAction = createAsyncThunk(
   Type.ADD_RESULT,
-  async (trainingId, data) => {
+  async ({ trainingId, data }) => {
     const response = await api.addResult(trainingId, data);
     return response.data;
   },
@@ -66,7 +66,7 @@ export const addResultAction = createAsyncThunk(
 
 export const deleteResultAction = createAsyncThunk(
   Type.DELETE_RESULT,
-  async (trainingId, data) => {
+  async ({ trainingId, data }) => {
     const response = await api.deleteResult(trainingId, data);
     return response.data;
   },

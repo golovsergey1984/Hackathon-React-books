@@ -3,24 +3,32 @@ import { connect } from 'react-redux';
 import styles from './Statistic.module.css';
 import BookList from './book/BookList';
 import books from './book/books.json';
-import Timer from './timers/Timer';
+import TimeToDate from './timers/TimeToDate';
+import TimeToYear from './timers/TimeToYear';
 
 class Statistic extends Component {
   render() {
+    const currentDate = new Date();
+    const year =
+      currentDate.getMonth() === 11 && currentDate.getDate() > 23
+        ? currentDate.getFullYear() + 1
+        : currentDate.getFullYear();
+
     //вводим дату к которой отчисляем оставшееся время, потом передаем в таймер как пропсы
-    const targetDateFirstTimer = new Date('Jan 01, 2021');
+    
     const targetDateSecondTimer = new Date('2020-07-31');
+
     return (
       <section className={styles.sectionStatistic}>
         <div className={styles.sectionBook}>
           <ul className={styles.sectionTimer}>
             <li>
               <span className={styles.span}>До закінчення року залишилось</span>
-              <Timer targetDate={targetDateFirstTimer} />
+              <TimeToYear date={`${year}-12-31T00:00:00`} />
             </li>
             <li>
               <span className={styles.span}>До досягнення мети залишилось</span>
-              <Timer targetDate={targetDateSecondTimer} />
+              <TimeToDate targetDate={targetDateSecondTimer} />
             </li>
           </ul>
           <BookList items={books} />
