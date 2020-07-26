@@ -1,26 +1,27 @@
 .timer {
-  margin: 0 auto;
-  padding: 5px;
   display: flex;
   justify-content: center;
-  width: 320px;
-  background: white;
-  border: 1px solid #643a3a;
-  vertical-align: middle;
+  min-width: 290px;
+  padding: 5px;
+  box-shadow: 5px 5px 10px -3px rgba(88, 87, 87, 0.5);
+  background-color: rgb(243, 243, 243);
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  width: 60px;
+.colon {
+  margin: 7px;
 }
-.value {
-  min-width: 40px;
-  font-size: 30px;
-  padding: 0 5px;
+
+.number {
+  font-weight: bolder;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 22px;
+  text-align: initial;
 }
-.label {
-  min-width: 20px;
-  font-size: 20px;
+
+.span {
+  display: block;
+  color: rgb(167, 161, 161);
+  font-size: 14px;
+  padding-left: 6px;
+  font-weight: 400;
 }
