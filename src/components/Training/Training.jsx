@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { addTrainingAction } from '../../redux/training/trainingActions';
 import { pnotifyAbout } from '../../services/helpers';
-=======
-import books from '../Training/books.json';
->>>>>>> dev
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
