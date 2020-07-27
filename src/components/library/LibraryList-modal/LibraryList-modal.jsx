@@ -9,13 +9,8 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from 'body-scroll-lock';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './LibraryList-modal.module.css';
-
-// const initialState = {
-//   rating: 0,
-//   comment: '',
-// };
 
 class LibraryListModal extends Component {
   state = {
@@ -25,7 +20,7 @@ class LibraryListModal extends Component {
 
   targetElement = null;
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener('keydown', this.onEscapePress);
     this.targetElement = document.querySelector('#BookReviewModal');
     disableBodyScroll(this.targetElement);

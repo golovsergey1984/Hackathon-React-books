@@ -6,7 +6,10 @@ import {
   getAllBooksInLibrary,
   getPlannedBooks,
 } from '../../redux/books/booksSelectors';
-import { getBooksAction } from '../../redux/books/booksActions';
+import {
+  getBooksAction,
+  deleteBookAction,
+} from '../../redux/books/booksActions';
 import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
 //Components
 import LibraryList from '../../components/Library/LibraryList/LibraryList';
@@ -57,28 +60,8 @@ class LibraryPage extends Component {
       readingBooks,
       plannedBooks,
       isBookReviewModalOpen,
+      deleteBookAction,
     } = this.props;
-
-    // const readBooks = [
-    //   {
-    //     id: 1,
-    //     title: 'test',
-    //     author: 'test',
-    //     year: 2000,
-    //     pagesCount: 200,
-    //     rating: 4,
-    //     comment: '',
-    //   },
-    //   {
-    //     id: 2,
-    //     title: 'test1',
-    //     author: 'test1',
-    //     year: 2000,
-    //     pagesCount: 200,
-    //     rating: 3,
-    //     comment: 'bad',
-    //   },
-    // ];
 
     const { choosenBookId } = this.state;
     const { isLoading } = this.props;
@@ -94,54 +77,59 @@ class LibraryPage extends Component {
             timeout={3000}
           />
         ) : (
-            <>
-              <div>
-                <div className={styles.wrapper}>
-                  {books.length === 0 && <EmptyList />}
-                  <AddBookForm />
-                  {readBooks.length > 0 && (
+          <>
+            <div>
+              <div className={styles.wrapper}>
+                {books.length === 0 && <EmptyList />}
+                <AddBookForm />
+                {readBooks.length > 0 && (
+                  <div className={styles.marginBottom}>
+                    <LibraryTitle title={'Прочитано'} isReadBooks={true} />
+                    <LibraryList
+                      isReadBooks={true}
+                      books={readBooks}
+                      onClickResume={this.handleClickResume}
+                      onRemoveBookFromList={deleteBookAction}
+                    />
+                  </div>
+                )}
+
+                {readingBooks.length > 0 && (
+                  <div className={styles.marginBottom}>
+                    <LibraryTitle title={'Читаю'} isReadBooks={false} />
+                    <LibraryList
+                      books={readingBooks}
+                      onRemoveBookFromList={deleteBookAction}
+                    />
+                  </div>
+                )}
+
+                {plannedBooks.length > 0 && (
+                  <>
                     <div className={styles.marginBottom}>
-                      <LibraryTitle title={'Прочитано'} isReadBooks={true} />
+                      <LibraryTitle
+                        title={'Маю намір прочитати'}
+                        isReadBooks={false}
+                      />
                       <LibraryList
-                        isReadBooks={true}
-                        books={readBooks}
+                        books={plannedBooks}
                         onClickResume={this.handleClickResume}
+                        onRemoveBookFromList={deleteBookAction}
                       />
                     </div>
-                  )}
-
-                  {readingBooks.length > 0 && (
-                    <div className={styles.marginBottom}>
-                      <LibraryTitle title={'Читаю'} isReadBooks={false} />
-                      <LibraryList books={readingBooks} />
-                    </div>
-                  )}
-
-                  {plannedBooks.length > 0 && (
-                    <>
-                      <div className={styles.marginBottom}>
-                        <LibraryTitle
-                          title={'Маю намір прочитати'}
-                          isReadBooks={false}
-                        />
-                        <LibraryList
-                          books={plannedBooks}
-                          onClickResume={this.handleClickResume}
-                        />
-                      </div>
-                      <Link to="/training" className={styles.button}>
-                        Перейти до тренування
+                    <Link to="/training" className={styles.button}>
+                      Перейти до тренування
                     </Link>
-                    </>
-                  )}
-                </div>
+                  </>
+                )}
               </div>
+            </div>
 
-              {isBookReviewModalOpen && (
-                <LibraryListModal bookId={choosenBookId} />
-              )}
-            </>
-          )}
+            {isBookReviewModalOpen && (
+              <LibraryListModal bookId={choosenBookId} />
+            )}
+          </>
+        )}
       </>
     );
   }
@@ -159,6 +147,7 @@ const mapStateToProps = state => ({
 const mapDispathToProps = dispatch => ({
   getAllBooks: () => dispatch(getBooksAction()),
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
+  deleteBookAction: id => dispatch(deleteBookAction(id)),
 });
 
 export default connect(mapStateToProps, mapDispathToProps)(LibraryPage);

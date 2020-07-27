@@ -68,7 +68,7 @@
 }
 
 .yearBook {
-  min-width: 15%;
+  min-width: 10%;
 }
 
 .storBook {
@@ -96,4 +96,17 @@
   display: flex;
   justify-content: space-between;
   min-width: 25%;
+}
+
+.selectedBookDelete {
+  border: none;
+  width: 20px;
+  height: 20px;
+  align-self: center;
+  background: none;
+  background-image: url(../../../assets/icons/IconStartTraining/Bin.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  outline: none;
 }
