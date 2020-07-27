@@ -10,7 +10,7 @@ class LibraryList extends Component {
     const {
       books,
       isReadBooks,
-      toggleBookReviewModal,
+      // toggleBookReviewModal,
       onClickResume,
     } = this.props;
 
@@ -36,7 +36,7 @@ class LibraryList extends Component {
                     <button
                       data-bookid={book._id}
                       className={styles.button}
-                      onClick={onClickResume}
+                      onClick={() => onClickResume(book._id)}
                     >
                       Резюме
                     </button>

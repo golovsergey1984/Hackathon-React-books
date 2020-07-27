@@ -45,8 +45,9 @@ class LibraryPage extends Component {
     console.log(id);
   };
 
-  handleClickResume = () => {
+  handleClickResume = id => {
     this.props.toggleBookReviewModal();
+    this.setState({ choosenBookId: id });
   };
 
   render() {
@@ -120,7 +121,10 @@ class LibraryPage extends Component {
                         title={'Маю намір прочитати'}
                         isReadBooks={false}
                       />
-                      <LibraryList books={plannedBooks} />
+                      <LibraryList
+                        books={plannedBooks}
+                        onClickResume={this.handleClickResume}
+                      />
                     </div>
                     <Link to="/training" className={styles.button}>
                       Перейти до тренування

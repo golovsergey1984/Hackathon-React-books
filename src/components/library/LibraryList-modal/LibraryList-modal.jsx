@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactStars from 'react-rating-stars-component';
 import { connect } from 'react-redux';
 import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
+import { updateBookAction } from '../../../redux/books/booksActions';
+import { getReadedBooks } from '../../../redux/books/booksSelectors';
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -23,10 +25,13 @@ class LibraryListModal extends Component {
 
   targetElement = null;
 
-  componentDidMount() {
+  componentWillMount() {
     window.addEventListener('keydown', this.onEscapePress);
     this.targetElement = document.querySelector('#BookReviewModal');
     disableBodyScroll(this.targetElement);
+    const { bookId, readedBooks } = this.props;
+    const currBook = readedBooks.find(book => book._id === bookId);
+    this.setState({ rating: currBook.rating, comment: currBook.comment });
   }
 
   componentWillUnmount() {
@@ -50,14 +55,25 @@ class LibraryListModal extends Component {
     this.props.toggleBookReviewModal();
   };
 
-  handleChangeRating(value) {
+  handleChange = e => {
+    this.setState({
+      comment: e.target.value,
+    });
+  };
+
+  handleChangeRating = value => {
+    // console.log(e);
     this.setState({
       rating: value,
     });
-  }
+  };
 
   handleSubmit = e => {
     e.preventDefault();
+    const { rating, comment } = this.state;
+    const { bookId, updateBook, toggleBookReviewModal } = this.props;
+    updateBook({ bookId, bookData: { rating, comment } });
+    toggleBookReviewModal();
   };
 
   render() {
@@ -76,11 +92,12 @@ class LibraryListModal extends Component {
               </h2>
               <ReactStars
                 classNames={styles.Modal_section__rating}
+                name="rating"
                 count={5}
                 value={rating}
                 size={18}
                 edit={true}
-                // onChange={this.handleChangeRating}
+                onChange={this.handleChangeRating}
                 activeColor="#ff6c00"
                 isHalf="false"
               />
@@ -90,8 +107,9 @@ class LibraryListModal extends Component {
               <textarea
                 className={styles.Modal_section__textarea}
                 placeholder="..."
-                name="text_rating"
-                // onChange={onChangeResume}
+                name="comment"
+                onChange={this.handleChange}
+                value={comment}
               ></textarea>
             </div>
             <div className={styles.Modal_section_buttons}>
@@ -107,6 +125,7 @@ class LibraryListModal extends Component {
                 className={styles.Modal_section__button_submit}
                 form="rating"
                 type="submit"
+                onClick={this.handleSubmit}
               >
                 Зберегти
               </button>
@@ -118,10 +137,11 @@ class LibraryListModal extends Component {
   }
 }
 
-const mSTP = state => ({});
+const mSTP = state => ({ readedBooks: getReadedBooks(state) });
 
 const mDTP = dispatch => ({
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
+  updateBook: obj => dispatch(updateBookAction(obj)),
 });
 
 export default connect(mSTP, mDTP)(LibraryListModal);
