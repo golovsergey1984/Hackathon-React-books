@@ -3,6 +3,7 @@ import ReactStars from 'react-rating-stars-component';
 import { connect } from 'react-redux';
 import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
 import { updateBookAction } from '../../../redux/books/booksActions';
+import { getReadedBooks } from '../../../redux/books/booksSelectors';
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -10,7 +11,11 @@ import {
 } from 'body-scroll-lock';
 import PropTypes from 'prop-types';
 import styles from './LibraryList-modal.module.css';
-import { getReadedBooks } from '../../../redux/books/booksSelectors';
+
+// const initialState = {
+//   rating: 0,
+//   comment: '',
+// };
 
 class LibraryListModal extends Component {
   state = {
@@ -24,14 +29,9 @@ class LibraryListModal extends Component {
     window.addEventListener('keydown', this.onEscapePress);
     this.targetElement = document.querySelector('#BookReviewModal');
     disableBodyScroll(this.targetElement);
-
-    const { books, bookId } = this.props;
-    const choosenBook = books.filter(book => book.id === bookId);
-    const [{ rating, comment }] = choosenBook;
-    this.setState({
-      rating,
-      comment,
-    });
+    const { bookId, readedBooks } = this.props;
+    const currBook = readedBooks.find(book => book._id === bookId);
+    this.setState({ rating: currBook.rating, comment: currBook.comment });
   }
 
   componentWillUnmount() {
@@ -55,37 +55,35 @@ class LibraryListModal extends Component {
     this.props.toggleBookReviewModal();
   };
 
-  handleChangeRating = rating => {
+  handleChange = e => {
     this.setState({
-      rating,
+      comment: e.target.value,
     });
   };
 
-  handleChangeResume = event => {
-    const comment = event.target.value;
+  handleChangeRating = value => {
     this.setState({
-      comment,
+      rating: value,
     });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { bookId, updateBookAction } = this.props;
-    const bookData = [{ ...this.state }];
-
-    updateBookAction(bookId, bookData);
+  handleSubmit = e => {
+    e.preventDefault();
+    const { rating, comment } = this.state;
+    const { bookId, updateBook, toggleBookReviewModal } = this.props;
+    updateBook({ bookId, bookData: { rating, comment } });
+    toggleBookReviewModal();
   };
 
   render() {
-    console.log(this.props);
     const { rating, comment } = this.state;
     return (
       <div className={styles.Overlay} id={'BookReviewModal'}>
         <div className={styles.Modal}>
           <form
             id="rating"
-            onSubmit={this.handleSubmit}
             className={styles.Modal_form}
+            onSubmit={this.handleSubmit}
           >
             <div className={styles.Modal_section}>
               <h2 className={styles.Modal_section__title}>
@@ -109,8 +107,8 @@ class LibraryListModal extends Component {
                 className={styles.Modal_section__textarea}
                 placeholder="..."
                 name="comment"
+                onChange={this.handleChange}
                 value={comment}
-                onChange={this.handleChangeResume}
               ></textarea>
             </div>
             <div className={styles.Modal_section_buttons}>
@@ -142,22 +140,22 @@ const mSTP = state => ({ readedBooks: getReadedBooks(state) });
 
 const mDTP = dispatch => ({
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
-  updateBookAction: () => dispatch(updateBookAction()),
+  updateBook: obj => dispatch(updateBookAction(obj)),
 });
 
-LibraryListModal.propTypes = {
-  books: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string,
-    pagesCount: PropTypes.number.isRequired,
-    comment: PropTypes.string,
-    rating: PropTypes.number,
-    status: PropTypes.string.isRequired,
-  }),
-  bookId: PropTypes.number.isRequired,
-  toggleBookReviewModal: PropTypes.func.isRequired,
-  updateBookAction: PropTypes.func.isRequired,
-};
+// LibraryListModal.propTypes = {
+//   books: PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     title: PropTypes.string.isRequired,
+//     author: PropTypes.string,
+//     pagesCount: PropTypes.number.isRequired,
+//     comment: PropTypes.string,
+//     rating: PropTypes.number,
+//     status: PropTypes.string.isRequired,
+//   }),
+//   bookId: PropTypes.number.isRequired,
+//   toggleBookReviewModal: PropTypes.func.isRequired,
+//   updateBookAction: PropTypes.func.isRequired,
+// };
 
 export default connect(mSTP, mDTP)(LibraryListModal);

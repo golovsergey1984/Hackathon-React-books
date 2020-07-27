@@ -32,5 +32,6 @@ export const updateBookAction = createAsyncThunk(
 
 export const deleteBookAction = createAsyncThunk(Type.DELETE_BOOK, async id => {
   const response = await api.deleteBook(id);
+
   return response.data;
 });
