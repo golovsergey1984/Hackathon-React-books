@@ -68,7 +68,7 @@ export default class Training extends Component {
       trainingBooks,
       libraryBooks,
     } = this.state;
-    const { plannedBooks } = this.props;
+    // const { plannedBooks } = this.props;
     if (!timeStart) return pnotifyAbout('Введіть дату початку тренування');
     if (!timeEnd) return pnotifyAbout('Введіть дату завершення тренування');
 
@@ -114,7 +114,7 @@ export default class Training extends Component {
       trainingBooks,
     } = this.state;
 
-    const { plannedBooks } = this.props;
+    // const { plannedBooks } = this.props;
     
     return (
       <div className={styles.startTrainingMainContainer}>
