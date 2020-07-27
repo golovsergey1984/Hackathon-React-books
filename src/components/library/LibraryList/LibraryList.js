@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './libraryList.module.css';
 import StarReactRating from '../StarRating/StarRating';
+import { ReactComponent as LibLogo } from '../../../assets/icons/book.svg';
 import PropTypes from 'prop-types';
 
 class LibraryList extends Component {
