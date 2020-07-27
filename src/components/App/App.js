@@ -77,7 +77,7 @@ class App extends Component {
               component={AsyncTrainingPage}
               redirectTo="/login"
             />
-            <ProtectedRoute
+            <Route
               path="/statistics"
               component={AsyncStatisticsPage}
               redirectTo="/login"
