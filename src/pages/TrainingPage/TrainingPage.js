@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 import Training from '../../components/Training/Training';
+import { Redirect } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
+import styles from '../StatisticsPage/StatisticPage.module.css';
 
 export default class TrainingPage extends Component {
   componentDidMount() {
     this.props.getAllBooks();
   }
   render() {
-    // console.log("Props: ", this.props);
-    
+    const { haveTraining, isLoading } = this.props;
     return (
-      <Training {...this.props}/>
+      <>
+        {isLoading ? (
+          <Loader
+            className={styles.loader}
+            type="Oval"
+            color="#ff6b09"
+            height={100}
+            width={100}
+            timeout={3000}
+          />
+        ) : (
+          <>
+            {haveTraining && <Redirect to="/statistics" />}
+            <Training {...this.props} />
+          </>
+        )}
+      </>
     );
   }
 }

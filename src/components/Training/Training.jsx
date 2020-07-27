@@ -3,13 +3,10 @@ import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addTrainingAction } from '../../redux/training/trainingActions';
-// import books from '../Statistic/book/books.json';
 import { pnotifyAbout } from '../../services/helpers';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
-// import { getPlannedBooks } from '../../redux/books/booksSelectors';
-
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 registerLocale('uk', uk);
@@ -24,10 +21,8 @@ class Training extends Component {
     timeStart: null,
     timeEnd: null,
     totalDays: 0,
-    // libraryBooks: [],
     trainingBooks: [],
     bookTitleToAdd: '',
-    // avgReadPages: 0,
   };
 
   setStartDate = date => {
@@ -221,7 +216,7 @@ class Training extends Component {
                   ),
                 )}
               <tr>
-                <td className={styles.selectedBookTableBookName}>...</td>
+                <td className={styles.selectedBookTableBookName } style={{width: 960}}>...</td>
               </tr>
             </tbody>
           </table>

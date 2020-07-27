@@ -1,20 +1,17 @@
 import TrainingPage from './TrainingPage';
 import { connect } from 'react-redux';
 import { getPlannedBooks } from '../../redux/books/booksSelectors';
-import {getBooksAction} from '../../redux/books/booksActions';
-import {getTrainingId} from '../../redux/training/trainingSelectors';
+import { getBooksAction } from '../../redux/books/booksActions';
 
 const mapStateToProps = state => ({
   plannedBooks: getPlannedBooks(state),
-  trainingId: getTrainingId(state),
+  isLoading: state.isLoading,
+
+  haveTraining: state.session.user.haveTraining,
 });
 
 const mapDispathToProps = dispatch => ({
-    getAllBooks: () => dispatch(getBooksAction()),
-  });
+  getAllBooks: () => dispatch(getBooksAction()),
+});
 
 export default connect(mapStateToProps, mapDispathToProps)(TrainingPage);
-
-  //TrainingPage
-   
-  

@@ -18,7 +18,7 @@ body {
 }
 
 .startTrainingContainer {
-  width: 1028px;
+  width: 960px;
   /* margin-right: 30px; */
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 .calendarContainer {
-  width: 490px;
+  width: 470px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -42,7 +42,7 @@ body {
 .calendarInput {
   display: block;
   height: 40px;
-  width: 225px;
+  width: 215px;
   color: #9195a1;
   background-color: #f6f7fb;
   border: 1px solid #d4d7de;
@@ -66,14 +66,14 @@ body {
 .bookSelectForm {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 26px;
+  margin-bottom: 30px;
 }
 
 .bookSelectField {
-  width: 787px;
-  height: 44px;
+  width: 747px;
+  height: 40px;
   padding: 0 20px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   color: #a4a6b2;
   border: none;
   box-shadow: 0px 0px 5px 0px rgba(223, 226, 235, 0.75);
@@ -87,7 +87,7 @@ body {
 }
 
 .bookSelectSubmit {
-  padding: 11px 75px;
+  padding: 10px 65px;
   background-color: #f6f7fb;
   border: 1px solid #000;
   cursor: pointer;
@@ -142,7 +142,7 @@ th {
 
 .selectedBookTableBookName {
   display: inline-block;
-  width: 550px;
+  width: 500px;
   /* margin-right: 20px; */
 }
 
