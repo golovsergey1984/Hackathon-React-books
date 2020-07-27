@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   margin-bottom: 40px;
+  justify-content: center;
 }
 
 .span {
   display: block;
   color: rgb(141, 137, 137);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
   margin-left: 10px;
 }
@@ -17,7 +17,7 @@ input {
   font-size: 16px;
   margin: 10px;
   border: solid 1px rgb(167, 162, 162);
-  background-color: #eee;
+  background-color: #f6f7fb;
 }
 
 input:focus {
@@ -25,7 +25,7 @@ input:focus {
 }
 
 .bookName {
-  min-width: 500px;
+  min-width: 450px;
   padding-left: 10px;
 }
 
@@ -40,11 +40,26 @@ input:focus {
 }
 
 .btn {
-  margin-top: 16px;
+  /* margin-top: 16px;
   margin-left: 43px;
   padding: 7px 50px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 14px;
   border: 1px solid rgb(156, 150, 140);
-  background-color: rgb(156, 150, 140);
+  background-color: rgb(156, 150, 140); */
+  display: block;
+  width: 200px;
+  /* margin: 0 auto; */
+  background-color: #f5f7fa;
+  /* font-family: Montserrat; */
+  font-weight: 500;
+  font-size: 13px;
+  border: 1px solid #00183e;
+  padding: 8px;
+  margin-top: 15px;
+}
+
+.btn:hover {
+  border-color: #ef6537;
+  background-color: #ef6537;
+  color: #ffffff;
 }

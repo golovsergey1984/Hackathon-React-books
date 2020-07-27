@@ -63,13 +63,32 @@ export const getSortedResults = state => {
   }
 };
 
+// export const getDataForChart = state => {
+//   const results = getSortedResults(state);
+//   if (results) {
+//     const data = results.map(res => ({
+//       dates: moment(res.date).format('DD.MM'),
+//       pages: res.count,
+//     }));
+//     return data;
+//   }
+// };
+
 export const getDataForChart = state => {
   const results = getSortedResults(state);
   if (results) {
     const data = results.map(res => ({
-      dates: moment(res.date).format('DD.MM'),
+      date: moment(res.date).format('DD.MM'),
       pages: res.count,
     }));
-    return data;
+    return data.reduce((acc, currRes) => {
+      const currDate = acc.find(el => el.date === currRes.date);
+      if (currDate) {
+        currDate.pages += currRes.pages;
+      } else {
+        acc.push(currRes);
+      }
+      return acc;
+    }, []);
   }
 };

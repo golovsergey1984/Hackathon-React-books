@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
-import styles from './ResultForm.module.css';
 import moment from 'moment';
+import styles from './ResultForm.module.css';
+import 'react-datetime/css/react-datetime.css';
 
 export default class ResultForm extends Component {
   state = {
@@ -61,7 +61,7 @@ export default class ResultForm extends Component {
                 dateFormat="DD.MM.YYYY"
                 timeFormat={false}
                 onChange={this.handleDatePickerChange}
-                isValidDate={this.getValidDates}
+                // isValidDate={this.getValidDates}
                 closeOnSelect
               />
             </label>

@@ -46,7 +46,7 @@ input:invalid {
   margin-bottom: 10px;
   font-size: 22px;
   font-weight: bold;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  /* font-family: Georgia, 'Times New Roman', Times, serif; */
   line-height: 3.2;
 }
 .wrapper {
@@ -67,14 +67,14 @@ input:invalid {
 .title_name {
   min-width: 540px;
   color: rgb(141, 137, 137);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   font-size: 14px;
   line-height: 3.2;
 }
 .title_avtor {
   min-width: 465px;
   color: rgb(141, 137, 137);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   font-size: 14px;
   line-height: 3.2;
   padding-left: 272px;
@@ -82,7 +82,7 @@ input:invalid {
 .title_year {
   min-width: 490px;
   color: rgb(141, 137, 137);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   font-size: 14px;
   line-height: 3.2;
   padding-left: 270px;
@@ -90,7 +90,7 @@ input:invalid {
 .title_page {
   /* width: 700px; */
   color: rgb(141, 137, 137);
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   font-size: 14px;
   line-height: 3.2;
   padding-left: 270px;
