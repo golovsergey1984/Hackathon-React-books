@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import ReactStars from 'react-rating-stars-component';
 import { connect } from 'react-redux';
 import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
+import { updateBookAction } from '../../../redux/books/booksActions';
 import {
   disableBodyScroll,
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from 'body-scroll-lock';
-// import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import styles from './LibraryList-modal.module.css';
-
-const initialState = {
-  rating: 0,
-  comment: '',
-};
 
 class LibraryListModal extends Component {
   state = {
@@ -27,6 +23,14 @@ class LibraryListModal extends Component {
     window.addEventListener('keydown', this.onEscapePress);
     this.targetElement = document.querySelector('#BookReviewModal');
     disableBodyScroll(this.targetElement);
+
+    const { books, bookId } = this.props;
+    const choosenBook = books.filter(book => book.id === bookId);
+    const [{ rating, comment }] = choosenBook;
+    this.setState({
+      rating,
+      comment,
+    });
   }
 
   componentWillUnmount() {
@@ -50,19 +54,39 @@ class LibraryListModal extends Component {
     this.props.toggleBookReviewModal();
   };
 
-  handleChangeRating(value) {
+  handleChangeRating = rating => {
     this.setState({
-      rating: value,
+      rating,
     });
-  }
+  };
+
+  handleChangeResume = event => {
+    const comment = event.target.value;
+    this.setState({
+      comment,
+    });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const { bookId, updateBookAction } = this.props;
+    const bookData = [{ ...this.state }];
+
+    updateBookAction(bookId, bookData);
+  };
 
   render() {
+    console.log(this.props);
     const { rating, comment } = this.state;
-    console.log(rating);
+
     return (
       <div className={styles.Overlay} id={'BookReviewModal'}>
         <div className={styles.Modal}>
-          <form id="rating" method="POST" className={styles.Modal_form}>
+          <form
+            id="rating"
+            onSubmit={this.handleSubmit}
+            className={styles.Modal_form}
+          >
             <div className={styles.Modal_section}>
               <h2 className={styles.Modal_section__title}>
                 Обрати рейтинг книги
@@ -73,9 +97,9 @@ class LibraryListModal extends Component {
                 value={rating}
                 size={18}
                 edit={true}
-                // onChange={this.handleChangeRating}
+                onChange={this.handleChangeRating}
                 activeColor="#ff6c00"
-                isHalf="false"
+                isHalf={false}
               />
             </div>
             <div className={styles.Modal_section}>
@@ -83,8 +107,9 @@ class LibraryListModal extends Component {
               <textarea
                 className={styles.Modal_section__textarea}
                 placeholder="..."
-                name="text_rating"
-                // onChange={onChangeResume}
+                name="comment"
+                value={comment}
+                onChange={this.handleChangeResume}
               ></textarea>
             </div>
             <div className={styles.Modal_section_buttons}>
@@ -115,6 +140,22 @@ const mSTP = state => ({});
 
 const mDTP = dispatch => ({
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
+  updateBookAction: () => dispatch(updateBookAction()),
 });
+
+LibraryListModal.propTypes = {
+  books: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    pagesCount: PropTypes.number.isRequired,
+    comment: PropTypes.string,
+    rating: PropTypes.number,
+    status: PropTypes.string.isRequired,
+  }),
+  bookId: PropTypes.number.isRequired,
+  toggleBookReviewModal: PropTypes.func.isRequired,
+  updateBookAction: PropTypes.func.isRequired,
+};
 
 export default connect(mSTP, mDTP)(LibraryListModal);
