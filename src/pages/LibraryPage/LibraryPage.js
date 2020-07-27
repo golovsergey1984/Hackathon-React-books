@@ -9,7 +9,7 @@ import {
 import { getBooksAction } from '../../redux/books/booksActions';
 import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
 //Components
-import LibraryList from '../../components/Library/LibraryList/LibraryList';
+import LibraryList from '../../components/Library/LibraryList-modal/LibraryList/LibraryList';
 import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
 import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
 import EmptyList from '../../components/Library/EmptyList/EmptyList';

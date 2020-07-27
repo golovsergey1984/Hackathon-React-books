@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styles from './libraryList.module.css';
 import { connect } from 'react-redux';
-import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
-import StarReactRating from '../StarRating/StarRating';
+import { toggleShowBookReviewModalAction } from '../../../../redux/modal/modalActions';
+import StarReactRating from '../../StarRating/StarRating';
 
 class LibraryList extends Component {
   render() {
