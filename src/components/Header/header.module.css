@@ -21,6 +21,8 @@
   transition: transform 0.2s linear;
 }
 
+
+
 .siteLogo:hover,
 .siteLogo:focus {
   transform: scale(1.1);

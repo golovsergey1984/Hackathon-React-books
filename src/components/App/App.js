@@ -13,6 +13,7 @@ import styles from './App.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { pnotifyAbout } from '../../services/helpers';
 
+
 // Async components
 const AsyncLoginPage = lazy(() =>
   import(
@@ -60,6 +61,7 @@ class App extends Component {
     return (
       <div className={styles.container}>
         <Header />
+
         <Suspense
           fallback={
             isLoading && (
@@ -96,6 +98,7 @@ class App extends Component {
             <Redirect to="/login" />
           </Switch>
         </Suspense>
+
       </div>
     );
   }
