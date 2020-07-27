@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
-import books from '../Statistic/book/books.json';
+import { connect } from 'react-redux';
+import { addTrainingAction } from '../../redux/training/trainingActions';
+// import books from '../Statistic/book/books.json';
 import { pnotifyAbout } from '../../services/helpers';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -17,16 +18,16 @@ const findBookByTitle = (title, books) => {
   return books.find(book => book.title === title);
 };
 
-export default class Training extends Component {
+class Training extends Component {
   state = {
     value: '',
     timeStart: null,
     timeEnd: null,
     totalDays: 0,
-    libraryBooks: [],
+    // libraryBooks: [],
     trainingBooks: [],
     bookTitleToAdd: '',
-    avgReadPages: 0,
+    // avgReadPages: 0,
   };
 
   setStartDate = date => {
@@ -61,39 +62,57 @@ export default class Training extends Component {
 
   addToTrainingBooks = e => {
     e.preventDefault();
-    const {
-      timeStart,
-      timeEnd,
-      bookTitleToAdd,
-      trainingBooks,
-      libraryBooks,
-    } = this.state;
-    // const { plannedBooks } = this.props;
+    const { timeStart, timeEnd, bookTitleToAdd, trainingBooks } = this.state;
+
+    const { plannedBooks } = this.props;
     if (!timeStart) return pnotifyAbout('Введіть дату початку тренування');
     if (!timeEnd) return pnotifyAbout('Введіть дату завершення тренування');
 
-    const includeBook = libraryBooks.find(
+    const includeBook = plannedBooks.find(
       book => book.title === bookTitleToAdd,
     );
 
     const stateTitles = trainingBooks.map(({ title }) => title);
     if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
     if (!includeBook) return;
-    const bookToAdd = findBookByTitle(bookTitleToAdd, libraryBooks);
+    const bookToAdd = findBookByTitle(bookTitleToAdd, plannedBooks);
+
     this.setState(state => ({
       trainingBooks: [bookToAdd, ...state.trainingBooks],
     }));
   };
 
-  removeFromTrainingBooks = id => {
+  removeFromTrainingBooks = _id => {
+    console.log('id: ', _id);
+    console.log('trainingBooks: ', this.state.trainingBooks);
     this.setState(state => ({
-      trainingBooks: state.trainingBooks.filter(book => book.id !== id),
+      trainingBooks: state.trainingBooks.filter(book => book._id !== _id),
     }));
   };
 
-  componentDidMount() {
-    this.setState({ libraryBooks: books });
-  }
+  createTrainng = () => {
+    const { totalDays, timeStart, timeEnd, trainingBooks } = this.state;
+    const books = trainingBooks.map(trainingBook => ({
+      book: trainingBook._id,
+    }));
+    console.log('books: ', books);
+    const avgReadPages = Math.ceil(
+      trainingBooks.reduce(
+        (acc, trainingBook) => acc + trainingBook.pagesCount,
+        0,
+      ) / totalDays,
+    );
+
+    const trainingData = {
+      books,
+      timeStart: timeStart.toISOString().split('T')[0],
+      timeEnd: timeEnd.toISOString().split('T')[0],
+      avgReadPages,
+    };
+    this.props.trainingSubmit(trainingData);
+  };
+
+  componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -109,13 +128,12 @@ export default class Training extends Component {
       totalDays,
       timeEnd,
       timeStart,
-      libraryBooks,
       bookTitleToAdd,
       trainingBooks,
     } = this.state;
 
-    // const { plannedBooks } = this.props;
-    
+    const { plannedBooks } = this.props;
+
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
@@ -154,8 +172,8 @@ export default class Training extends Component {
               required
             >
               <option>Обрати книги з бібліотеки</option>
-              {libraryBooks.map(({ title, id }) => (
-                <option key={id} value={title}>
+              {plannedBooks.map(({ title, _id }) => (
+                <option key={_id} value={title}>
                   {title}
                 </option>
               ))}
@@ -180,29 +198,39 @@ export default class Training extends Component {
 
             <tbody>
               {trainingBooks.length > 0 &&
-                trainingBooks.map(({ id, title, author, year, sheets }) => (
-                  <tr key={id}>
-                    <td className={styles.selectedBookTableBookName}>
-                      {title}
-                    </td>
-                    <td className={styles.selectedBookTableAuthor}>{author}</td>
-                    <td className={styles.selectedBookTableYear}>{year}</td>
-                    <td className={styles.selectedBookTablePages}>{sheets}</td>
-                    <td>
-                      <button
-                        className={styles.selectedBookDelete}
-                        onClick={() => this.removeFromTrainingBooks(id)}
-                      ></button>
-                    </td>
-                  </tr>
-                ))}
+                trainingBooks.map(
+                  ({ _id, title, author, year, pagesCount }) => (
+                    <tr key={_id}>
+                      <td className={styles.selectedBookTableBookName}>
+                        {title}
+                      </td>
+                      <td className={styles.selectedBookTableAuthor}>
+                        {author}
+                      </td>
+                      <td className={styles.selectedBookTableYear}>{year}</td>
+                      <td className={styles.selectedBookTablePages}>
+                        {pagesCount}
+                      </td>
+                      <td>
+                        <button
+                          className={styles.selectedBookDelete}
+                          onClick={() => this.removeFromTrainingBooks(_id)}
+                        ></button>
+                      </td>
+                    </tr>
+                  ),
+                )}
               <tr>
                 <td className={styles.selectedBookTableBookName}>...</td>
               </tr>
             </tbody>
           </table>
           {trainingBooks.length > 0 && (
-            <Link to="/statistics" className={styles.startTrainingButton}>
+            <Link
+              to="/statistics"
+              className={styles.startTrainingButton}
+              onClick={this.createTrainng}
+            >
               Почати тренування
             </Link>
           )}
@@ -222,6 +250,8 @@ export default class Training extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  trainingSubmit: trainingData => dispatch(addTrainingAction(trainingData)),
+});
 
-
-
+export default connect(null, mapDispatchToProps)(Training);
