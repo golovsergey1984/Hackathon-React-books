@@ -9,11 +9,11 @@ import {
 import { getBooksAction } from '../../redux/books/booksActions';
 import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
 //Components
-import LibraryList from '../../components/Library/LibraryList/LibraryList';
-import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
-import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
-import EmptyList from '../../components/Library/EmptyList/EmptyList';
-import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
+import LibraryList from '../../components/library/LibraryList/LibraryList';
+import LibraryTitle from '../../components/library/LibraryTitle/LibraryTitle';
+import AddBookForm from '../../components/library/AddBookForm/AddBookForm';
+import EmptyList from '../../components/library/EmptyList/EmptyList';
+import LibraryListModal from '../../components/library/LibraryList-modal/LibraryList-modal';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -33,13 +33,17 @@ class LibraryPage extends Component {
     }
   }
 
-  handleClickResume = event => {
-    const bookId = event.target.dataset.bookid;
-    this.setState({
-      choosenBookId: Number(bookId),
-    });
-    this.props.toggleBookReviewModal();
+  handleModalChange = toggle => {
+    this.setState({ modal: toggle });
   };
+
+  getBookId = id => {
+    this.setIdToModal(id);
+  };
+
+  // setIdToModal = id => {
+  //   console.log(id);
+  // };
 
   handleClickResume = id => {
     this.props.toggleBookReviewModal();
@@ -53,10 +57,31 @@ class LibraryPage extends Component {
       readingBooks,
       plannedBooks,
       isBookReviewModalOpen,
-      isLoading,
     } = this.props;
 
+    // const readBooks = [
+    //   {
+    //     id: 1,
+    //     title: 'test',
+    //     author: 'test',
+    //     year: 2000,
+    //     pagesCount: 200,
+    //     rating: 4,
+    //     comment: '',
+    //   },
+    //   {
+    //     id: 2,
+    //     title: 'test1',
+    //     author: 'test1',
+    //     year: 2000,
+    //     pagesCount: 200,
+    //     rating: 3,
+    //     comment: 'bad',
+    //   },
+    // ];
+
     const { choosenBookId } = this.state;
+    const { isLoading } = this.props;
     return (
       <>
         {isLoading ? (
@@ -111,8 +136,9 @@ class LibraryPage extends Component {
                 )}
               </div>
             </div>
+
             {isBookReviewModalOpen && (
-              <LibraryListModal books={readBooks} bookId={choosenBookId} />
+              <LibraryListModal bookId={choosenBookId} />
             )}
           </>
         )}

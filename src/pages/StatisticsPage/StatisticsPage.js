@@ -17,7 +17,6 @@ import styles from './StatisticPage.module.css';
 export default class StatisticsPage extends Component {
   render() {
     const { haveTraining, isLoading, endOfTraining } = this.props;
-    console.log(haveTraining);
     return (
       <>
         {isLoading ? (

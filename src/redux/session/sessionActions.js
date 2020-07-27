@@ -21,7 +21,6 @@ export const loginAction = createAsyncThunk(Type.LOG_IN, async credentials => {
 export const registrationAction = createAsyncThunk(
   Type.REGISTRATION,
   async credentials => {
-    console.log(credentials)
     try {
       const response = await api.register(credentials);
       return response.data;
