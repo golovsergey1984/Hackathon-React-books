@@ -8,16 +8,11 @@ class LibraryList extends Component {
     const { books, isReadBooks, onClickResume } = this.props;
 
     return (
-      <div className={styles.mainBox}>
+      <ul className={styles.mainBox}>
         {books.map(book => (
-          <li key={book.id} className={styles.list}>
+          <li key={book._id} className={styles.list}>
             <div className={styles.wrapBooks}>
-              <img
-                className={styles.image}
-                src={require('../../../assets/icons/book.svg')}
-                alt="some img"
-                width={24}
-              />
+              <LibLogo className={styles[book.status]} />
               <div className={styles.secondBoxBooks}>
                 <div className={styles.nameBook}>{book.title}</div>
                 <div className={styles.authorBook}>{book.author}</div>
@@ -27,9 +22,9 @@ class LibraryList extends Component {
                   <div className={styles.rating}>
                     <StarReactRating rating={book.rating} />
                     <button
-                      data-bookid={book.id}
+                      data-bookid={book._id}
                       className={styles.button}
-                      onClick={onClickResume}
+                      onClick={() => onClickResume(book._id)}
                     >
                       Резюме
                     </button>
@@ -39,7 +34,7 @@ class LibraryList extends Component {
             </div>
           </li>
         ))}
-      </div>
+      </ul>
     );
   }
 }
