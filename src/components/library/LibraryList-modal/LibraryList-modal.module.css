@@ -118,7 +118,6 @@ Modal CSS
   line-height: 18px;
   color: #fff;
   background-color: rgb(253, 179, 118);
-  padding: 14px 44px;
 }
 
 .Modal_section__button_submit:hover,
@@ -138,7 +137,6 @@ Modal CSS
   font-size: 14px;
   line-height: 18px;
   background-color: #fff;
-  padding: 14px 44px;
 }
 
 .Modal_section__button_reset:hover,

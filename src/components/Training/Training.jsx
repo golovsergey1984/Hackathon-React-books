@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
+// import { connect } from 'react-redux';
 import books from '../Statistic/book/books.json';
 import { pnotifyAbout } from '../../services/helpers';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
+// import { getPlannedBooks } from '../../redux/books/booksSelectors';
+
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 registerLocale('uk', uk);
@@ -13,8 +17,9 @@ const findBookByTitle = (title, books) => {
   return books.find(book => book.title === title);
 };
 
-class StartTraining extends Component {
+export default class Training extends Component {
   state = {
+    value: '',
     timeStart: null,
     timeEnd: null,
     totalDays: 0,
@@ -46,11 +51,9 @@ class StartTraining extends Component {
     this.setState({
       timeEnd: date,
     });
-    // this.setDayToRead(date);
   };
 
   handleChange = e => {
-    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -65,11 +68,17 @@ class StartTraining extends Component {
       trainingBooks,
       libraryBooks,
     } = this.state;
+    const { plannedBooks } = this.props;
     if (!timeStart) return pnotifyAbout('Введіть дату початку тренування');
     if (!timeEnd) return pnotifyAbout('Введіть дату завершення тренування');
 
+    const includeBook = libraryBooks.find(
+      book => book.title === bookTitleToAdd,
+    );
+
     const stateTitles = trainingBooks.map(({ title }) => title);
     if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
+    if (!includeBook) return;
     const bookToAdd = findBookByTitle(bookTitleToAdd, libraryBooks);
     this.setState(state => ({
       trainingBooks: [bookToAdd, ...state.trainingBooks],
@@ -97,14 +106,16 @@ class StartTraining extends Component {
 
   render() {
     const {
+      totalDays,
       timeEnd,
       timeStart,
-      totalDays,
       libraryBooks,
       bookTitleToAdd,
       trainingBooks,
     } = this.state;
 
+    const { plannedBooks } = this.props;
+    
     return (
       <div className={styles.startTrainingMainContainer}>
         <div className={styles.startTrainingContainer}>
@@ -112,12 +123,9 @@ class StartTraining extends Component {
           <div className={styles.calendarContainer}>
             <DatePicker
               className={styles.calendarInput}
-              onChange={this.setStartDate}
+              onChange={date => this.setStartDate(date)}
               selected={timeStart}
-              // selectsStart
-              // startDate={this.state.startDate}
               minDate={Date.now()}
-              // endDate={this.state.endDate}
               dateFormat="dd.MM.yyyy"
               placeholderText="Початок"
               locale="uk"
@@ -125,11 +133,8 @@ class StartTraining extends Component {
             <div style={{ width: 40 }}></div>
             <DatePicker
               className={styles.calendarInput}
-              onChange={this.setEndDate}
+              onChange={date => this.setEndDate(date)}
               selected={timeEnd}
-              // selectsEnd
-              // startDate={this.state.startDate}
-              // endDate={this.state.endDate}
               minDate={!timeStart ? Date.now() : timeStart}
               dateFormat="dd.MM.yyyy"
               placeholderText="Завершення"
@@ -148,6 +153,7 @@ class StartTraining extends Component {
               onChange={this.handleChange}
               required
             >
+              <option>Обрати книги з бібліотеки</option>
               {libraryBooks.map(({ title, id }) => (
                 <option key={id} value={title}>
                   {title}
@@ -203,15 +209,12 @@ class StartTraining extends Component {
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
-          <div className={styles.bookStatisticCounterContainer}>
-            <div className={styles.bookStatisticCounter}>
-              {trainingBooks.length}
-            </div>
-            <div className={styles.bookStatisticCounter}>{totalDays}</div>
-          </div>
-          <div className={styles.counterLaibelConyainer}>
-            <p className={styles.counterLaibel}>Кількість книжок</p>
-            <p className={styles.counterLaibel}>Кількість днів</p>
+          <div className={styles.bookStatisticBlockContainer}>
+            <StatisticsBlock
+              countNumber={trainingBooks.length}
+              title="Кількість книжок"
+            />
+            <StatisticsBlock countNumber={totalDays} title="Кількість днів" />
           </div>
         </div>
       </div>
@@ -219,4 +222,6 @@ class StartTraining extends Component {
   }
 }
 
-export default StartTraining;
+
+
+

@@ -29,7 +29,7 @@ const AsyncLibraryPage = lazy(() =>
 );
 const AsyncTrainingPage = lazy(() =>
   import(
-    '../../pages/TrainingPage/TrainingPage' /* webpackChunkName: "training-page" */
+    '../../pages/TrainingPage/TrainingPageContainer' /* webpackChunkName: "training-page" */
   ),
 );
 const AsyncStatisticsPage = lazy(() =>
@@ -77,7 +77,7 @@ class App extends Component {
               component={AsyncTrainingPage}
               redirectTo="/login"
             />
-            <ProtectedRoute
+            <Route
               path="/statistics"
               component={AsyncStatisticsPage}
               redirectTo="/login"
