@@ -1,14 +1,12 @@
 import StatisticsPage from './StatisticsPage';
 import { connect } from 'react-redux';
 import { getTrainingAction } from '../../redux/training/trainingActions';
-
-import { haveTraining } from '../../redux/session/sessionSelectors';
 import { getTrainingTimeEnd } from '../../redux/training/trainingSelectors';
 import { getIsShowResultModal } from '../../redux/modal/modalSelectors';
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
-  haveTraining: haveTraining(state),
+  haveTraining: !!state.training?.trainingId,
   endOfTraining: getTrainingTimeEnd(state),
   isShowResultModal: getIsShowResultModal(state),
 });

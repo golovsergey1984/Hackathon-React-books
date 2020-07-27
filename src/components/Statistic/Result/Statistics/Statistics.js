@@ -1,8 +1,8 @@
-import moment from 'moment';
-import styles from './Statistics.module.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getSortedResults } from '../../../../redux/training/trainingSelectors';
+import moment from 'moment';
+import styles from './Statistics.module.css';
 
 export class Statistics extends Component {
   render() {

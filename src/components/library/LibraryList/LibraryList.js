@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import styles from './libraryList.module.css';
-import { connect } from 'react-redux';
-import { toggleShowBookReviewModalAction } from '../../../../redux/modal/modalActions';
-import StarReactRating from '../../StarRating/StarRating';
+
+import StarReactRating from '../StarRating/StarRating';
+import PropTypes from 'prop-types';
 
 class LibraryList extends Component {
   render() {
-    const {
-      books,
-      isReadBooks,
-      toggleBookReviewModal,
-      onClickResume,
-    } = this.props;
+    const { books, isReadBooks, onClickResume } = this.props;
 
     return (
       <div className={styles.mainBox}>
@@ -33,7 +28,7 @@ class LibraryList extends Component {
                   <div className={styles.rating}>
                     <StarReactRating rating={book.rating} />
                     <button
-                      data-bookId={book.id}
+                      data-bookid={book.id}
                       className={styles.button}
                       onClick={onClickResume}
                     >
@@ -50,10 +45,17 @@ class LibraryList extends Component {
   }
 }
 
-const mSTP = state => ({});
+LibraryList.propTypes = {
+  books: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    pagesCount: PropTypes.number.isRequired,
+    comment: PropTypes.string,
+    rating: PropTypes.number,
+    status: PropTypes.string.isRequired,
+  }),
+  onClickResume: PropTypes.func.isRequired,
+  isReadBooks: PropTypes.bool.isRequired,
+};
 
-const mDTP = dispatch => ({
-  toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
-});
-
-export default connect(mSTP, mDTP)(LibraryList);
+export default LibraryList;

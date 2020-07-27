@@ -26,31 +26,18 @@ class LibraryPage extends Component {
     this.props.getAllBooks();
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.books.length !== this.props.books.length) {
-  //     this.props.getAllBooks();
-  //   }
-  // }
-
-  handleModalChange = toggle => {
-    this.setState({ modal: toggle });
-  };
+  componentDidUpdate(prevProps) {
+    if (prevProps.books.length !== this.props.books.length) {
+      this.props.getAllBooks();
+    }
+  }
 
   handleClickResume = event => {
-    // console.dir(event.target.dataset.bookid);
-    // this.setState({
-    //   choosenBookId: event.target.dataset.bookid,
-    // });
+    const bookId = event.target.dataset.bookid;
+    this.setState({
+      choosenBookId: Number(bookId),
+    });
     this.props.toggleBookReviewModal();
-  };
-
-  getBookId = id => {
-    console.log(id);
-    this.setIdToModal(id);
-  };
-
-  setIdToModal = id => {
-    console.log(id);
   };
 
   render() {
@@ -61,6 +48,7 @@ class LibraryPage extends Component {
       plannedBooks,
       isBookReviewModalOpen,
     } = this.props;
+
     // const readBooks = [
     //   {
     //     id: 1,
@@ -68,7 +56,8 @@ class LibraryPage extends Component {
     //     author: 'test',
     //     year: 2000,
     //     pagesCount: 200,
-    //     raiting: 4,
+    //     rating: 4,
+    //     comment: '',
     //   },
     //   {
     //     id: 2,
@@ -76,12 +65,13 @@ class LibraryPage extends Component {
     //     author: 'test1',
     //     year: 2000,
     //     pagesCount: 200,
-    //     raiting: 4,
+    //     rating: 3,
+    //     comment: 'bad',
     //   },
     // ];
 
     const { choosenBookId } = this.state;
-    // console.log(choosenBookId);
+
     return (
       <>
         <div>
@@ -112,7 +102,9 @@ class LibraryPage extends Component {
           </div>
         </div>
 
-        {isBookReviewModalOpen && <LibraryListModal bookId={choosenBookId} />}
+        {isBookReviewModalOpen && (
+          <LibraryListModal books={readBooks} bookId={choosenBookId} />
+        )}
       </>
     );
   }

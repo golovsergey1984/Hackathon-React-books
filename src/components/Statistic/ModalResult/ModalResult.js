@@ -10,30 +10,11 @@ class ModalResult extends Component {
       toggleShowResultModalAction,
       daysLeft,
     } = this.props;
-    console.log('totalResultsCount', totalResultsCount);
-    console.log('totalBooksPages', totalBooksPages);
-    console.log('daysLeft', daysLeft);
 
     if (totalResultsCount >= totalBooksPages || daysLeft <= 0) {
       toggleShowResultModalAction();
     }
   }
-
-  // componentDidUpdate() {
-  //   const {
-  //     totalResultsCount,
-  //     totalBooksPages,
-  //     toggleShowResultModalAction,
-  //     daysLeft,
-  //   } = this.props;
-  //   console.log('totalResultsCount', totalResultsCount);
-  //   console.log('totalBooksPages', totalBooksPages);
-  //   console.log('daysLeft', daysLeft);
-
-  //   if (totalResultsCount >= totalBooksPages || daysLeft <= 0) {
-  //     toggleShowResultModalAction();
-  //   }
-  // }
 
   handleButtonClick = () => {
     const {
@@ -48,21 +29,21 @@ class ModalResult extends Component {
       readPagesCount: 0,
       avgReadPages: 0,
     };
-    // console.log({ id: trainingId, trainingData });
     updateTrainingAction({ id: trainingId, trainingData });
     toggleShowResultModalAction();
   };
 
   render() {
     const { daysLeft, isShowResultModal } = this.props;
-    const message = daysLeft <= 0 ? 'Слабовато!' : 'Хааарош!';
-    console.log('isShowResultModal', isShowResultModal);
+    const message =
+      daysLeft <= 0
+        ? 'Ти молодчина, але потрібно швидше! Наступного разу тобі все вдасться!'
+        : 'Ти молодчина! Ти вклався в термін! Можна починати нове тренування!';
     return isShowResultModal ? (
       <div className={styles.modalOverlay}>
         <div className={styles.modal}>
           <img src={thumup} alt="thumup" />
           <p className={styles.message}>{message}</p>
-          <p className={styles.message}></p>
           <button type="button" onClick={this.handleButtonClick}>
             Ok
           </button>

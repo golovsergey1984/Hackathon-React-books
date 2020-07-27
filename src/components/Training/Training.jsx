@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
-import books from '../Statistic/book/books.json';
+import books from '../Training/books.json';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';

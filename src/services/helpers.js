@@ -3,7 +3,7 @@ import * as session from '../redux/session/sessionActions';
 import * as books from '../redux/books/booksActions';
 import * as training from '../redux/training/trainingActions';
 import PNotify from 'pnotify/dist/es/PNotify';
-import PNotifyStyleMaterial from 'pnotify/dist/es/PNotifyStyleMaterial.js';
+import 'pnotify/dist/es/PNotifyStyleMaterial.js';
 
 export function getErrorMessageByRejectedAction(action) {
   const actionType = action.type.replace('/rejected', '');
