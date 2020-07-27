@@ -1,0 +1,21 @@
+.StatisticBlockContainer {
+  display: inline-block;
+}
+.statisticBlockCounter {
+  width: 124px;
+  height: 102px;
+  background-color: #f7f8fc;
+  box-shadow: 5px 5px 5px 0px rgba(222, 225, 232, 0.7);
+  color: #00153a;
+  font-weight: 900;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 24px;
+  margin-bottom: 10px;
+}
+
+.blockCounterLaibel {
+  width: 100px;
+  text-align: center;
+  padding-left: 20px;
+}

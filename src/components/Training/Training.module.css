@@ -14,11 +14,12 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 0 50px;
-  padding: 42px 70px;
+  padding: 30px;
 }
 
 .startTrainingContainer {
   width: 1028px;
+  margin-right: 30px;
 }
 
 .startTitle {
@@ -72,6 +73,7 @@ body {
   width: 787px;
   height: 44px;
   padding: 0 20px;
+  margin-right: 10px;
   color: #a4a6b2;
   border: none;
   box-shadow: 0px 0px 5px 0px rgba(223, 226, 235, 0.75);
@@ -158,12 +160,12 @@ td.selectedBookTableBookName::before {
 
 .selectedBookTableAuthor {
   display: inline-block;
-  width: 250px;
+  width: 240px;
   /* margin-right: 10px; */
 }
 .selectedBookTableYear {
   display: inline-block;
-  width: 120px;
+  width: 110px;
   /* margin-right: 6px; */
 }
 .selectedBookTablePages {
@@ -216,42 +218,8 @@ td.selectedBookTableBookName::before {
   padding: 18px 0px;
   box-shadow: 0px 5px 5px 0px rgba(223, 226, 235, 0.75);
 }
-
-.bookStatisticCounterContainer {
+.bookStatisticBlockContainer {
   display: flex;
   justify-content: space-between;
-  padding: 50px 20px 14px;
-}
-
-.bookStatisticCounter {
-  width: 145px;
-  height: 115px;
-  background-color: #f7f8fc;
-  box-shadow: 5px 5px 5px 0px rgba(222, 225, 232, 0.7);
-  color: #00153a;
-  font-weight: 900;
-  font-size: 56px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* padding-top: 24px; */
-}
-
-.pagesCounter {
-  width: 124px;
-  height: 102px;
-  background-color: #f7f8fc;
-  box-shadow: 5px 5px 5px 0px rgba(222, 225, 232, 0.7);
-}
-
-.counterLaibelConyainer {
-  padding: 0 26px 0 40px;
-  color: #979ea8;
-  display: flex;
-  justify-content: space-between;
-}
-
-.counterLaibel {
-  width: 100px;
-  text-align: center;
+  padding: 60px 30px 0;
 }
