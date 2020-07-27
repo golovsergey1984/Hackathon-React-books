@@ -62,7 +62,6 @@ class LibraryListModal extends Component {
   };
 
   handleChangeRating = value => {
-    // console.log(e);
     this.setState({
       rating: value,
     });
@@ -77,7 +76,6 @@ class LibraryListModal extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { rating, comment } = this.state;
     return (
       <div className={styles.Overlay} id={'BookReviewModal'}>
