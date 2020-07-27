@@ -25,8 +25,7 @@ export const updateBookAction = createAsyncThunk(
   Type.UPDATE_BOOK,
   async ({ bookId, bookData }) => {
     const response = await api.updateBook(bookId, bookData);
-    const book = response.data.book;
-    book._id = bookId;
+    const book = response.data.books;
     return { book };
   },
 );

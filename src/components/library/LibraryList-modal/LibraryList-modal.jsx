@@ -10,6 +10,7 @@ import {
 } from 'body-scroll-lock';
 import PropTypes from 'prop-types';
 import styles from './LibraryList-modal.module.css';
+import { getReadedBooks } from '../../../redux/books/booksSelectors';
 
 class LibraryListModal extends Component {
   state = {
@@ -19,7 +20,7 @@ class LibraryListModal extends Component {
 
   targetElement = null;
 
-  componentDidMount() {
+  componentWillMount() {
     window.addEventListener('keydown', this.onEscapePress);
     this.targetElement = document.querySelector('#BookReviewModal');
     disableBodyScroll(this.targetElement);
@@ -78,7 +79,6 @@ class LibraryListModal extends Component {
   render() {
     console.log(this.props);
     const { rating, comment } = this.state;
-
     return (
       <div className={styles.Overlay} id={'BookReviewModal'}>
         <div className={styles.Modal}>
@@ -93,6 +93,7 @@ class LibraryListModal extends Component {
               </h2>
               <ReactStars
                 classNames={styles.Modal_section__rating}
+                name="rating"
                 count={5}
                 value={rating}
                 size={18}
@@ -125,6 +126,7 @@ class LibraryListModal extends Component {
                 className={styles.Modal_section__button_submit}
                 form="rating"
                 type="submit"
+                onClick={this.handleSubmit}
               >
                 Зберегти
               </button>
@@ -136,7 +138,7 @@ class LibraryListModal extends Component {
   }
 }
 
-const mSTP = state => ({});
+const mSTP = state => ({ readedBooks: getReadedBooks(state) });
 
 const mDTP = dispatch => ({
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
