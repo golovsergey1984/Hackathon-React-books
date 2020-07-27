@@ -1,24 +1,23 @@
+//Core
 import React, { Component } from 'react';
-import LineChart from '../../components/Statistic/LineChart/LineChartContainer';
-import Result from '../../components/Statistic/Result/Result';
-
-import styles from './StatisticPage.module.css';
-import Timer from '../../components/Statistic/timers/Timer';
+import { Redirect } from 'react-router-dom';
+//Components
+import Timer from '../../components/Statistic/Timer/Timer';
 import Goal from '../../components/Share/Goal/Goal';
 import BooksTable from '../../components/Statistic/BooksTable/BooksTableContainer';
+import Result from '../../components/Statistic/Result/Result';
+import LineChart from '../../components/Statistic/LineChart/LineChartContainer';
 import ModalResult from '../../components/Statistic/ModalResult/ModalResultContainer';
-import { Redirect } from 'react-router-dom';
+//Libraries
 import Loader from 'react-loader-spinner';
 import moment from 'moment';
+//Styles
+import styles from './StatisticPage.module.css';
 
 export default class StatisticsPage extends Component {
-  componentDidMount() {
-    const { getTrainingAction } = this.props;
-    getTrainingAction();
-  }
-
   render() {
     const { haveTraining, isLoading, endOfTraining } = this.props;
+    console.log(haveTraining);
     return (
       <>
         {isLoading ? (
