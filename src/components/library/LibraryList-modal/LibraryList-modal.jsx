@@ -9,7 +9,7 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from 'body-scroll-lock';
-// import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import styles from './LibraryList-modal.module.css';
 
 // const initialState = {
@@ -77,6 +77,7 @@ class LibraryListModal extends Component {
   };
 
   render() {
+    console.log(this.props);
     const { rating, comment } = this.state;
     return (
       <div className={styles.Overlay} id={'BookReviewModal'}>
@@ -99,7 +100,7 @@ class LibraryListModal extends Component {
                 edit={true}
                 onChange={this.handleChangeRating}
                 activeColor="#ff6c00"
-                isHalf="false"
+                isHalf={false}
               />
             </div>
             <div className={styles.Modal_section}>
@@ -143,5 +144,20 @@ const mDTP = dispatch => ({
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
   updateBook: obj => dispatch(updateBookAction(obj)),
 });
+
+// LibraryListModal.propTypes = {
+//   books: PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     title: PropTypes.string.isRequired,
+//     author: PropTypes.string,
+//     pagesCount: PropTypes.number.isRequired,
+//     comment: PropTypes.string,
+//     rating: PropTypes.number,
+//     status: PropTypes.string.isRequired,
+//   }),
+//   bookId: PropTypes.number.isRequired,
+//   toggleBookReviewModal: PropTypes.func.isRequired,
+//   updateBookAction: PropTypes.func.isRequired,
+// };
 
 export default connect(mSTP, mDTP)(LibraryListModal);

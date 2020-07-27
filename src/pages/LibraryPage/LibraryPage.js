@@ -41,9 +41,9 @@ class LibraryPage extends Component {
     this.setIdToModal(id);
   };
 
-  setIdToModal = id => {
-    console.log(id);
-  };
+  // setIdToModal = id => {
+  //   console.log(id);
+  // };
 
   handleClickResume = id => {
     this.props.toggleBookReviewModal();
@@ -58,6 +58,7 @@ class LibraryPage extends Component {
       plannedBooks,
       isBookReviewModalOpen,
     } = this.props;
+
     // const readBooks = [
     //   {
     //     id: 1,
@@ -65,7 +66,8 @@ class LibraryPage extends Component {
     //     author: 'test',
     //     year: 2000,
     //     pagesCount: 200,
-    //     raiting: 4,
+    //     rating: 4,
+    //     comment: '',
     //   },
     //   {
     //     id: 2,
@@ -73,7 +75,8 @@ class LibraryPage extends Component {
     //     author: 'test1',
     //     year: 2000,
     //     pagesCount: 200,
-    //     raiting: 4,
+    //     rating: 3,
+    //     comment: 'bad',
     //   },
     // ];
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './libraryList.module.css';
-import { connect } from 'react-redux';
-import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
 import StarReactRating from '../StarRating/StarRating';
 import { ReactComponent as LibLogo } from '../../../assets/icons/book.svg';
 
@@ -51,10 +50,17 @@ class LibraryList extends Component {
   }
 }
 
-const mSTP = state => ({});
+LibraryList.propTypes = {
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      pagesCount: PropTypes.number.isRequired,
+      comment: PropTypes.string,
+      rating: PropTypes.number,
+      status: PropTypes.string.isRequired,
+    }),
+  ),
+};
 
-const mDTP = dispatch => ({
-  toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
-});
-
-export default connect(mSTP, mDTP)(LibraryList);
+export default LibraryList;
