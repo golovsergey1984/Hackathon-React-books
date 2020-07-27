@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import styles from './libraryList.module.css';
+import { connect } from 'react-redux';
+import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
 import StarReactRating from '../StarRating/StarRating';
 
-export default class LibraryList extends Component {
-  handleModalChange = () => {
-    this.props.onModalChange(true);
-  };
-
+class LibraryList extends Component {
   render() {
-    const { books, isReadBooks } = this.props;
+    const {
+      books,
+      isReadBooks,
+      toggleBookReviewModal,
+      onClickResume,
+    } = this.props;
 
     return (
       <div className={styles.mainBox}>
@@ -30,8 +33,9 @@ export default class LibraryList extends Component {
                   <div className={styles.rating}>
                     <StarReactRating rating={book.rating} />
                     <button
+                      data-bookId={book.id}
                       className={styles.button}
-                      onClick={this.handleModalChange}
+                      onClick={onClickResume}
                     >
                       Резюме
                     </button>
@@ -45,3 +49,11 @@ export default class LibraryList extends Component {
     );
   }
 }
+
+const mSTP = state => ({});
+
+const mDTP = dispatch => ({
+  toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
+});
+
+export default connect(mSTP, mDTP)(LibraryList);
