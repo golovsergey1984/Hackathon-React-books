@@ -33,16 +33,12 @@ class LibraryPage extends Component {
     }
   }
 
-  handleModalChange = toggle => {
-    this.setState({ modal: toggle });
-  };
-
-  getBookId = id => {
-    this.setIdToModal(id);
-  };
-
-  setIdToModal = id => {
-    console.log(id);
+  handleClickResume = event => {
+    const bookId = event.target.dataset.bookid;
+    this.setState({
+      choosenBookId: Number(bookId),
+    });
+    this.props.toggleBookReviewModal();
   };
 
   handleClickResume = id => {
@@ -57,28 +53,10 @@ class LibraryPage extends Component {
       readingBooks,
       plannedBooks,
       isBookReviewModalOpen,
+      isLoading,
     } = this.props;
-    // const readBooks = [
-    //   {
-    //     id: 1,
-    //     title: 'test',
-    //     author: 'test',
-    //     year: 2000,
-    //     pagesCount: 200,
-    //     raiting: 4,
-    //   },
-    //   {
-    //     id: 2,
-    //     title: 'test1',
-    //     author: 'test1',
-    //     year: 2000,
-    //     pagesCount: 200,
-    //     raiting: 4,
-    //   },
-    // ];
 
     const { choosenBookId } = this.state;
-    const { isLoading } = this.props;
     return (
       <>
         {isLoading ? (
@@ -133,9 +111,8 @@ class LibraryPage extends Component {
                 )}
               </div>
             </div>
-
             {isBookReviewModalOpen && (
-              <LibraryListModal bookId={choosenBookId} />
+              <LibraryListModal books={readBooks} bookId={choosenBookId} />
             )}
           </>
         )}

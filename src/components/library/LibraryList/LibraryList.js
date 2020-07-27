@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
 import styles from './libraryList.module.css';
-import { connect } from 'react-redux';
-import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
 import StarReactRating from '../StarRating/StarRating';
-import { ReactComponent as LibLogo } from '../../../assets/icons/book.svg';
+import PropTypes from 'prop-types';
 
 class LibraryList extends Component {
   render() {
-    const {
-      books,
-      isReadBooks,
-      // toggleBookReviewModal,
-      onClickResume,
-    } = this.props;
+    const { books, isReadBooks, onClickResume } = this.props;
 
     return (
       <ul className={styles.mainBox}>
         {books.map(book => (
           <li key={book._id} className={styles.list}>
             <div className={styles.wrapBooks}>
-              <LibLogo
-                className={styles[book.status]}
-                // src={require('../../../assets/icons/book.svg')}
-                // alt="some img"
-                // width={24}
-              />
+              <LibLogo className={styles[book.status]} />
               <div className={styles.secondBoxBooks}>
                 <div className={styles.nameBook}>{book.title}</div>
                 <div className={styles.authorBook}>{book.author}</div>
@@ -51,10 +39,17 @@ class LibraryList extends Component {
   }
 }
 
-const mSTP = state => ({});
+LibraryList.propTypes = {
+  books: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string,
+    pagesCount: PropTypes.number.isRequired,
+    comment: PropTypes.string,
+    rating: PropTypes.number,
+    status: PropTypes.string.isRequired,
+  }),
+  onClickResume: PropTypes.func.isRequired,
+  isReadBooks: PropTypes.bool.isRequired,
+};
 
-const mDTP = dispatch => ({
-  toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
-});
-
-export default connect(mSTP, mDTP)(LibraryList);
+export default LibraryList;
