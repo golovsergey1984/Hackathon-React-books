@@ -7,9 +7,11 @@ import Loader from 'react-loader-spinner';
 import Header from '../Header/header';
 /* import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'; */
 import { getUserAction } from '../../redux/session/sessionActions';
+import { getTrainingAction } from '../../redux/training/trainingActions';
 //Styles
 import styles from './App.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { pnotifyAbout } from '../../services/helpers';
 
 // Async components
 const AsyncLoginPage = lazy(() =>
@@ -40,8 +42,16 @@ const AsyncStatisticsPage = lazy(() =>
 
 class App extends Component {
   componentDidMount() {
-    const { getUserAction } = this.props;
+    const { getUserAction, getTrainingAction } = this.props;
     getUserAction();
+    //const { getTrainingAction } = this.props;
+    getTrainingAction();
+  }
+  componentDidUpdate() {
+    const { error } = this.props;
+    if (error) {
+      pnotifyAbout(error.pnotifyMessage);
+    }
   }
 
   render() {
@@ -93,10 +103,12 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
+  error: state.error,
 });
 
 const mapDispatchToProps = {
   getUserAction,
+  getTrainingAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

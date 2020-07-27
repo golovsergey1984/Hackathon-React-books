@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import style from './LineChart.module.css';
 
 const LineChart = ({ factData = [], pagesPerDay = 0 }) => {
-  const labels = factData.map(rec => rec.dates);
+  const labels = factData.map(rec => rec.date);
   const pagesFact = factData.map(rec => rec.pages);
 
   const maxValue = Math.max(...pagesFact, pagesPerDay);

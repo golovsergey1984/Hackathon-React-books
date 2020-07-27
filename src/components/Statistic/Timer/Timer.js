@@ -8,14 +8,18 @@ export default class Timer extends Component {
     minute: '',
     second: '',
   };
+  componentDidMount() {
+    this.setInt = setInterval(() => {
+      const nowDate = Date.now();
+      const { targetDate } = this.props;
+      const time = targetDate - nowDate;
 
-  setInt = setInterval(() => {
-    const nowDate = Date.now();
-    const { targetDate } = this.props;
-    const time = targetDate - nowDate;
-
-    this.updateTimer(time);
-  }, 1000);
+      this.updateTimer(time);
+    }, 1000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.setInt);
+  }
 
   updateTimer(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from './BooksTable.module.css';
-import PNotify from 'pnotify/dist/es/PNotify';
-import 'pnotify/dist/PNotifyBrightTheme.css';
+import { pnotifyAbout } from '../../../services/helpers';
 
 export default class BooksTable extends Component {
   handleChange = e => {
@@ -15,10 +14,7 @@ export default class BooksTable extends Component {
       };
       this.props.toggleIsBookReadAction(checkBookInfo);
     } else {
-      PNotify.error({
-        text: 'Недостатня кількість прочитаних сторінок.',
-        delay: 1000,
-      });
+      pnotifyAbout('Недостатня кількість прочитаних сторінок.');
     }
   };
 
