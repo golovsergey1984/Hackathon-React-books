@@ -3,6 +3,7 @@ import styles from './libraryList.module.css';
 import { connect } from 'react-redux';
 import { toggleShowBookReviewModalAction } from '../../../redux/modal/modalActions';
 import StarReactRating from '../StarRating/StarRating';
+import { ReactComponent as LibLogo } from '../../../assets/icons/book.svg';
 
 class LibraryList extends Component {
   render() {
@@ -14,15 +15,15 @@ class LibraryList extends Component {
     } = this.props;
 
     return (
-      <div className={styles.mainBox}>
+      <ul className={styles.mainBox}>
         {books.map(book => (
-          <li key={book.id} className={styles.list}>
+          <li key={book._id} className={styles.list}>
             <div className={styles.wrapBooks}>
-              <img
-                className={styles.image}
-                src={require('../../../assets/icons/book.svg')}
-                alt="some img"
-                width={24}
+              <LibLogo
+                className={styles[book.status]}
+                // src={require('../../../assets/icons/book.svg')}
+                // alt="some img"
+                // width={24}
               />
               <div className={styles.secondBoxBooks}>
                 <div className={styles.nameBook}>{book.title}</div>
@@ -33,7 +34,7 @@ class LibraryList extends Component {
                   <div className={styles.rating}>
                     <StarReactRating rating={book.rating} />
                     <button
-                      data-bookId={book.id}
+                      data-bookid={book._id}
                       className={styles.button}
                       onClick={onClickResume}
                     >
@@ -45,7 +46,7 @@ class LibraryList extends Component {
             </div>
           </li>
         ))}
-      </div>
+      </ul>
     );
   }
 }

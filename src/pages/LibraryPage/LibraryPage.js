@@ -14,8 +14,9 @@ import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
 import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
 import EmptyList from '../../components/Library/EmptyList/EmptyList';
 import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
-import ToReadList from '../../components/Library/library_addBooks/Library_addBooks';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 
 class LibraryPage extends Component {
   state = {
@@ -25,7 +26,6 @@ class LibraryPage extends Component {
   componentDidMount() {
     this.props.getAllBooks();
   }
-
 
   componentDidUpdate(prevProps) {
     if (prevProps.books.length !== this.props.books.length) {
@@ -38,12 +38,15 @@ class LibraryPage extends Component {
   };
 
   getBookId = id => {
-    console.log(id);
     this.setIdToModal(id);
   };
 
   setIdToModal = id => {
     console.log(id);
+  };
+
+  handleClickResume = () => {
+    this.props.toggleBookReviewModal();
   };
 
   render() {
@@ -74,44 +77,71 @@ class LibraryPage extends Component {
     // ];
 
     const { choosenBookId } = this.state;
-    // console.log(choosenBookId);
+    const { isLoading } = this.props;
     return (
       <>
-        <div>
-          <div className={styles.wrapper}>
-            <AddBookForm />
+        {isLoading ? (
+          <Loader
+            className={styles.loader}
+            type="Oval"
+            color="#ff6b09"
+            height={100}
+            width={100}
+            timeout={3000}
+          />
+        ) : (
+          <>
+            <div>
+              <div className={styles.wrapper}>
+                {books.length === 0 && <EmptyList />}
+                <AddBookForm />
+                {readBooks.length > 0 && (
+                  <div className={styles.marginBottom}>
+                    <LibraryTitle title={'Прочитано'} isReadBooks={true} />
+                    <LibraryList
+                      isReadBooks={true}
+                      books={readBooks}
+                      onClickResume={this.handleClickResume}
+                    />
+                  </div>
+                )}
 
-            {books.length === 0 && <EmptyList />}
+                {readingBooks.length > 0 && (
+                  <div className={styles.marginBottom}>
+                    <LibraryTitle title={'Читаю'} isReadBooks={false} />
+                    <LibraryList books={readingBooks} />
+                  </div>
+                )}
 
-            {readBooks.length > 0 && (
-              <div className={styles.marginBottom}>
-                <LibraryTitle title={'Прочитано'} isReadBooks={true} />
-                <LibraryList
-                  isReadBooks={true}
-                  books={readBooks}
-                  onClickResume={this.handleClickResume}
-                />
+                {plannedBooks.length > 0 && (
+                  <>
+                    <div className={styles.marginBottom}>
+                      <LibraryTitle
+                        title={'Маю намір прочитати'}
+                        isReadBooks={false}
+                      />
+                      <LibraryList books={plannedBooks} />
+                    </div>
+                    <Link to="/training" className={styles.button}>
+                      Перейти до тренування
+                    </Link>
+                  </>
+                )}
               </div>
+            </div>
+
+            {isBookReviewModalOpen && (
+              <LibraryListModal bookId={choosenBookId} />
             )}
-
-            {readingBooks.length > 0 && (
-              <div className={styles.marginBottom}>
-                <LibraryTitle title={'Читаю'} isReadBooks={false} />
-                <LibraryList books={readingBooks} />
-              </div>
-            )}
-
-            {plannedBooks.length > 0 && <ToReadList />}
-          </div>
-        </div>
-
-        {isBookReviewModalOpen && <LibraryListModal bookId={choosenBookId} />}
+          </>
+        )}
       </>
     );
   }
 }
 
 const mapStateToProps = state => ({
+  isLoading: state.isLoading,
   books: getAllBooksInLibrary(state),
   readBooks: getReadedBooks(state),
   readingBooks: getReadingBooks(state),

@@ -10,10 +10,10 @@ import {
 // import PropTypes from "prop-types";
 import styles from './LibraryList-modal.module.css';
 
-const initialState = {
-  rating: 0,
-  comment: '',
-};
+// const initialState = {
+//   rating: 0,
+//   comment: '',
+// };
 
 class LibraryListModal extends Component {
   state = {
@@ -56,13 +56,20 @@ class LibraryListModal extends Component {
     });
   }
 
+  handleSubmit = e => {
+    e.preventDefault();
+  };
+
   render() {
     const { rating, comment } = this.state;
-    console.log(rating);
     return (
       <div className={styles.Overlay} id={'BookReviewModal'}>
         <div className={styles.Modal}>
-          <form id="rating" method="POST" className={styles.Modal_form}>
+          <form
+            id="rating"
+            className={styles.Modal_form}
+            onSubmit={this.handleSubmit}
+          >
             <div className={styles.Modal_section}>
               <h2 className={styles.Modal_section__title}>
                 Обрати рейтинг книги
