@@ -16,9 +16,9 @@ const stepObj = [
 
 const EmptyList = () => {
   return (
-    <div class={styles.emptyList}>
+    <div className={styles.emptyList}>
       {stepObj.map((step, index) => (
-        <div className={styles.step}>
+        <div key={index} className={styles.step}>
           <div className={styles.stepNumber}>
             {index + 1}. Крок {index + 1}
           </div>

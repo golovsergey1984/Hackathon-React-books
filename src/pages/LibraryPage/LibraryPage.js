@@ -26,12 +26,24 @@ class LibraryPage extends Component {
     this.props.getAllBooks();
   }
 
-  handleClickResume = event => {
-    // console.dir(event.target.dataset.bookid);
-    // this.setState({
-    //   choosenBookId: event.target.dataset.bookid,
-    // });
-    this.props.toggleBookReviewModal();
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.books.length !== this.props.books.length) {
+      this.props.getAllBooks();
+    }
+  }
+
+  handleModalChange = toggle => {
+    this.setState({ modal: toggle });
+  };
+
+  getBookId = id => {
+    console.log(id);
+    this.setIdToModal(id);
+  };
+
+  setIdToModal = id => {
+    console.log(id);
   };
 
   render() {
@@ -89,7 +101,7 @@ class LibraryPage extends Component {
               </div>
             )}
 
-            {plannedBooks.length === 0 && <ToReadList />}
+            {plannedBooks.length > 0 && <ToReadList />}
           </div>
         </div>
 
