@@ -90,7 +90,7 @@ class Training extends Component {
     const books = trainingBooks.map(trainingBook => ({
       book: trainingBook._id,
     }));
-    console.log('books: ', books);
+    // console.log('books: ', books);
     const avgReadPages = Math.ceil(
       trainingBooks.reduce(
         (acc, trainingBook) => acc + trainingBook.pagesCount,
@@ -216,7 +216,12 @@ class Training extends Component {
                   ),
                 )}
               <tr>
-                <td className={styles.selectedBookTableBookName } style={{width: 960}}>...</td>
+                <td
+                  className={styles.selectedBookTableBookName}
+                  style={{ width: 960 }}
+                >
+                  ...
+                </td>
               </tr>
             </tbody>
           </table>
