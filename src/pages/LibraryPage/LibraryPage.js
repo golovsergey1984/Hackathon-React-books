@@ -31,18 +31,6 @@ class LibraryPage extends Component {
     this.props.getAllBooks();
   }
 
-  handleModalChange = toggle => {
-    this.setState({ modal: toggle });
-  };
-
-  getBookId = id => {
-    this.setIdToModal(id);
-  };
-
-  // setIdToModal = id => {
-  //   console.log(id);
-  // };
-
   handleClickResume = id => {
     this.props.toggleBookReviewModal();
     this.setState({ choosenBookId: id });
