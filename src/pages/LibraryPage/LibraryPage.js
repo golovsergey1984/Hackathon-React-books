@@ -31,24 +31,6 @@ class LibraryPage extends Component {
     this.props.getAllBooks();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.books.length !== this.props.books.length) {
-      this.props.getAllBooks();
-    }
-  }
-
-  handleModalChange = toggle => {
-    this.setState({ modal: toggle });
-  };
-
-  getBookId = id => {
-    this.setIdToModal(id);
-  };
-
-  // setIdToModal = id => {
-  //   console.log(id);
-  // };
-
   handleClickResume = id => {
     this.props.toggleBookReviewModal();
     this.setState({ choosenBookId: id });
@@ -121,8 +103,8 @@ class LibraryPage extends Component {
                       <LibraryTitle
                         title={'Маю намір прочитати'}
                         isReadBooks={false}
-                        isPlannedBooks={true}
                       />
+
                       <LibraryList
                         canBeDeleted={true}
                         books={plannedBooks}
