@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 import moment from 'moment';
 import styles from './ResultForm.module.css';
-import 'react-datetime/css/react-datetime.css';
+// import 'react-datetime/css/react-datetime.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { registerLocale } from 'react-datepicker';
+import uk from 'date-fns/locale/uk';
+registerLocale('uk', uk);
 
 export default class ResultForm extends Component {
   state = {
-    date: Datetime.moment(),
+    date: null,
     count: 1,
   };
 
@@ -15,12 +20,12 @@ export default class ResultForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleDatePickerChange = momemntObj => {
-    this.setState({ date: momemntObj });
+  handleDatePickerChange = date => {
+    this.setState({ date });
   };
 
   componentDidMount() {
-    this.setState({ date: Datetime.moment() });
+    this.setState({ date: Date.now() });
   }
 
   handleSubmit = e => {
@@ -29,19 +34,10 @@ export default class ResultForm extends Component {
     const { date, count } = this.state;
     const addResultObject = {
       trainingId,
-      data: { date: date.format(), count },
+      data: { date, count },
     };
 
     addResultAction(addResultObject);
-  };
-
-  getValidDates = currDate => {
-    const { timeStart } = this.props;
-
-    return (
-      currDate.isBefore(moment()) &&
-      currDate.isAfter(moment(timeStart).subtract(1, 'day'))
-    );
   };
 
   render() {
@@ -51,20 +47,19 @@ export default class ResultForm extends Component {
         <h3 className={styles.text}>РЕЗУЛЬТАТИ</h3>
         <form className={styles.form} onSubmit={this.handleSubmit}>
           <div className={styles.formWrapper}>
-            <label className={styles.label}>
+            <div className={styles.label}>
               <span className={styles.span}>Дата</span>
-              <Datetime
+              <DatePicker
                 className={styles.date}
-                name="date"
-                value={date}
+                onChange={date => this.handleDatePickerChange(date)}
+                selected={date}
+                minDate={this.props.timeStart}
+                maxDate={Date.now()}
+                dateFormat="dd.MM.yyyy"
+                shouldCloseOnSelect={true}
                 locale="uk"
-                dateFormat="DD.MM.YYYY"
-                timeFormat={false}
-                onChange={this.handleDatePickerChange}
-                // isValidDate={this.getValidDates}
-                closeOnSelect
               />
-            </label>
+            </div>
             <label className={styles.label}>
               <span className={styles.span}>Кількість сторінок</span>
               <input
