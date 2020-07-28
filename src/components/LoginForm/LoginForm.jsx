@@ -9,37 +9,38 @@ import { Link } from 'react-router-dom';
 class LoginForm extends Component {
   state = { email: '', password: '' };
 
-  componentDidMount() {
-    if (this.props.isAuthenticated) {
-      this.props.history.push("/library")
-    }
-  }
+  _isMounted = false;
 
-  componentDidUpdate() {
-    if (this.props.isAuthenticated) {
-      this.props.history.push("/library")
-    }
+  componentDidMount() {
+    this._isMounted = true
   }
 
   submitHandler = async e => {
     e.preventDefault();
 
     try {
-      await this.props.loginAction(this.state)
-
-      this.props.history.push("/library")
-      this.setState({ email: '', password: '' });
+      const res = await this.props.loginAction(this.state)
+      if (res.payload) {
+        this.props.history.push("/library")
+        this._isMounted && this.setState({ email: '', password: '' });
+      } else {
+        pnotifyAbout("Неправильний пароль або логін. Спробуйте ще раз")
+      }
     } catch (error) {
-      pnotifyAbout("Неправильний пароль або логін. Спробуйте ще раз")
       console.log(error)
     }
   };
 
   changeHandler = e => {
+    if (!this._isMounted) return
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
+  componentWillUnmount() {
+    this._isMounted = false
+  }
 
   render() {
     const { email, password } = this.state;

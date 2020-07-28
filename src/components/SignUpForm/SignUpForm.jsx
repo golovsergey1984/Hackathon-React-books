@@ -16,16 +16,10 @@ class SignUpForm extends Component {
     applyPassword: '',
   };
 
-  componentDidMount() {
-    if (this.props.isAuthenticated) {
-      this.props.history.push("/library")
-    }
-  }
+  _isMounted = false;
 
-  componentDidUpdate() {
-    if (this.props.isAuthenticated) {
-      this.props.history.push("/library")
-    }
+  componentDidMount() {
+    this._isMounted = true
   }
 
   submitHandler = async e => {
@@ -45,23 +39,27 @@ class SignUpForm extends Component {
       }
     }
 
+
     try {
       await this.props.registrationAction(userToReg)
-
       this.props.history.push("/library")
-      this.setState({ name: "", email: "", password: "", applyPassword: "" });
+      this._isMounted && this.setState({ name: "", email: "", password: "", applyPassword: "" });
     } catch (error) {
-      console.log(error)
       pnotifyAbout("Схоже емейл вже був зареєстрований")
-      this.props.logOutAction()
     }
-  };
+  }
+
 
   changeHandler = (e) => {
-    this.setState({
+    this._isMounted && this.setState({
       [e.target.name]: e.target.value,
     });
   };
+
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   render() {
     const { name, email, password, applyPassword } = this.state;

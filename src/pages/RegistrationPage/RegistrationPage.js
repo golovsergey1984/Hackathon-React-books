@@ -4,11 +4,7 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
 class RegistrationPage extends Component {
   render() {
-    return (
-      <div>
-        <SignUpForm />
-      </div>
-    );
+    return <SignUpForm />;
   }
 }
 
