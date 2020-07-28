@@ -4,7 +4,7 @@ import styles from './EmptyList.module.css';
 const stepObj = [
   {
     title: 'Створіть особисту бібліотеку',
-    description: 'Додавайте до неї кніжки, які маєте намір прочитати.',
+    description: 'Додавайте до неї книжки, які маєте намір прочитати.',
     icon: 'book',
   },
   {
