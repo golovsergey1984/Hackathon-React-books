@@ -15,9 +15,10 @@ body {
   justify-content: space-between;
   margin: 0 auto;
   padding: 3% 4% 0 4%;
+  /* margin-top: 54px; */
 
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 }
 
 .startTrainingContainer {
@@ -36,6 +37,7 @@ body {
 
 .calendarContainer {
   width: 470px;
+  height: 40px;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;

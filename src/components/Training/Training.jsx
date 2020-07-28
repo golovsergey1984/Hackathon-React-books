@@ -90,9 +90,6 @@ class Training extends Component {
     const books = trainingBooks.map(trainingBook => ({
       book: trainingBook._id,
     }));
-    // console.log('timeStart: ', timeStart);
-    // console.log('timeStartISO:', timeStart.toString())
-    // console.log('timeStart.toString(): ', timeStart.toString());
 
     const avgReadPages = Math.ceil(
       trainingBooks.reduce(
@@ -103,15 +100,15 @@ class Training extends Component {
 
     const trainingData = {
       books,
-      timeStart: timeStart.toString().split('T')[0],
-      timeEnd: timeEnd.toString().split('T')[0],
+      timeStart: timeStart.toLocaleDateString().split('.').reverse().join('-'),
+      timeEnd: timeEnd.toLocaleDateString().split('.').reverse().join('-'),
       avgReadPages,
     };
-    console.log(trainingData)
-    // this.props.trainingSubmit(trainingData);
+    console.log(trainingData);
+    this.props.trainingSubmit(trainingData);
   };
-
-  componentDidMount() {}
+  
+     // componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -135,7 +132,6 @@ class Training extends Component {
 
     return (
       <div className={styles.startTrainingMainContainer}>
-       
         <div className={styles.startTrainingContainer}>
           <h2 className={styles.startTitle}>Моє тренування</h2>
           <div className={styles.calendarContainer}>
@@ -221,11 +217,16 @@ class Training extends Component {
                   ),
                 )}
               <tr>
-                <td className={styles.selectedBookTableBookName } style={{width: 960}}>...</td>
+                <td
+                  className={styles.selectedBookTableBookName}
+                  style={{ width: 960 }}
+                >
+                  ...
+                </td>
               </tr>
             </tbody>
           </table>
-          
+
           {trainingBooks.length > 0 && (
             <Link
               to="/statistics"
