@@ -10,8 +10,8 @@ class LibraryList extends Component {
     const {
       books,
       isReadBooks,
-      // toggleBookReviewModal,
       onClickResume,
+      onRemoveBookFromList,
     } = this.props;
 
     const sortedArrayByRating = books.sort((a, b) => {
@@ -55,6 +55,10 @@ class LibraryList extends Component {
                     </button>
                   </div>
                 )}
+                <button
+                  className={styles.selectedBookDelete}
+                  onClick={() => onRemoveBookFromList(book._id)}
+                ></button>
               </div>
             </div>
           </li>

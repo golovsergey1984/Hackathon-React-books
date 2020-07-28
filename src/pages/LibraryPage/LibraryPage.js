@@ -6,7 +6,10 @@ import {
   getAllBooksInLibrary,
   getPlannedBooks,
 } from '../../redux/books/booksSelectors';
-import { getBooksAction } from '../../redux/books/booksActions';
+import {
+  getBooksAction,
+  deleteBookAction,
+} from '../../redux/books/booksActions';
 import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
 //Components
 import LibraryList from '../../components/Library/LibraryList/LibraryList';
@@ -14,6 +17,7 @@ import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
 import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
 import EmptyList from '../../components/Library/EmptyList/EmptyList';
 import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
+// import ToReadList from '../../components/library/library_addBooks/Library_addBooks';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
@@ -51,28 +55,8 @@ class LibraryPage extends Component {
       readingBooks,
       plannedBooks,
       isBookReviewModalOpen,
+      deleteBookAction,
     } = this.props;
-
-    // const readBooks = [
-    //   {
-    //     id: 1,
-    //     title: 'test',
-    //     author: 'test',
-    //     year: 2000,
-    //     pagesCount: 200,
-    //     rating: 4,
-    //     comment: '',
-    //   },
-    //   {
-    //     id: 2,
-    //     title: 'test1',
-    //     author: 'test1',
-    //     year: 2000,
-    //     pagesCount: 200,
-    //     rating: 3,
-    //     comment: 'bad',
-    //   },
-    // ];
 
     const { choosenBookId } = this.state;
     const { isLoading } = this.props;
@@ -92,15 +76,17 @@ class LibraryPage extends Component {
             <div>
               <div className={styles.wrapper}>
                 <AddBookForm />
-
                 {books.length === 0 && <EmptyList />}
                 {readBooks.length > 0 && (
                   <div className={styles.marginBottom}>
-                    <LibraryTitle title={'Прочитано'} isReadBooks={true} />
+                    <LibraryTitle
+                      title={'Маю намір прочитати'}
+                      isReadBooks={false}
+                    />
                     <LibraryList
-                      isReadBooks={true}
-                      books={readBooks}
+                      books={plannedBooks}
                       onClickResume={this.handleClickResume}
+                      onRemoveBookFromList={deleteBookAction}
                     />
                   </div>
                 )}
@@ -108,7 +94,10 @@ class LibraryPage extends Component {
                 {readingBooks.length > 0 && (
                   <div className={styles.marginBottom}>
                     <LibraryTitle title={'Читаю'} isReadBooks={false} />
-                    <LibraryList books={readingBooks} />
+                    <LibraryList
+                      books={readingBooks}
+                      onRemoveBookFromList={deleteBookAction}
+                    />
                   </div>
                 )}
 
@@ -122,6 +111,7 @@ class LibraryPage extends Component {
                       <LibraryList
                         books={plannedBooks}
                         onClickResume={this.handleClickResume}
+                        onRemoveBookFromList={deleteBookAction}
                       />
                     </div>
                     <Link to="/training" className={styles.button}>
@@ -154,6 +144,7 @@ const mapStateToProps = state => ({
 const mapDispathToProps = dispatch => ({
   getAllBooks: () => dispatch(getBooksAction()),
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
+  deleteBookAction: id => dispatch(deleteBookAction(id)),
 });
 
 export default connect(mapStateToProps, mapDispathToProps)(LibraryPage);

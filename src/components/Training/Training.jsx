@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
-import books from '../Training/books.json';
+import { connect } from 'react-redux';
+import { addTrainingAction } from '../../redux/training/trainingActions';
+import { pnotifyAbout } from '../../services/helpers';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
-
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 registerLocale('uk', uk);
@@ -14,40 +15,38 @@ const findBookByTitle = (title, books) => {
   return books.find(book => book.title === title);
 };
 
-class StartTraining extends Component {
+class Training extends Component {
   state = {
     value: '',
-    startDate: null,
-    endDate: null,
-    allDay: 0,
-    libraryBooks: [],
+    timeStart: null,
+    timeEnd: null,
+    totalDays: 0,
     trainingBooks: [],
     bookTitleToAdd: '',
   };
 
   setStartDate = date => {
+    if (this.state.timeEnd && date - this.state.timeEnd > 0)
+      return pnotifyAbout(
+        'Початок тренування не може слідувати за завершенням',
+      );
     this.setState({
-      startDate: date,
+      timeStart: date,
     });
   };
 
-  setDayToRead = date => {
-    let deltaDay;
-    if (this.state.startDate) {
-      deltaDay = (date - this.state.startDate) / 86400000;
-    } else {
-      deltaDay = Math.ceil((date - Date.now()) / 86400000);
-    }
+  setDayToRead = () => {
+    const { timeStart, timeEnd } = this.state;
+    const deltaDay = (timeEnd - timeStart) / 86400000;
     this.setState({
-      allDay: deltaDay,
+      totalDays: deltaDay,
     });
   };
 
   setEndDate = date => {
     this.setState({
-      endDate: date,
+      timeEnd: date,
     });
-    this.setDayToRead(date);
   };
 
   handleChange = e => {
@@ -58,33 +57,77 @@ class StartTraining extends Component {
 
   addToTrainingBooks = e => {
     e.preventDefault();
-    const { bookTitleToAdd, trainingBooks, libraryBooks } = this.state;
+    const { timeStart, timeEnd, bookTitleToAdd, trainingBooks } = this.state;
 
-    const includeBook = libraryBooks.find(
+    const { plannedBooks } = this.props;
+    if (!timeStart) return pnotifyAbout('Введіть дату початку тренування');
+    if (!timeEnd) return pnotifyAbout('Введіть дату завершення тренування');
+
+    const includeBook = plannedBooks.find(
       book => book.title === bookTitleToAdd,
     );
 
     const stateTitles = trainingBooks.map(({ title }) => title);
     if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
     if (!includeBook) return;
-    const bookToAdd = findBookByTitle(bookTitleToAdd, libraryBooks);
+    const bookToAdd = findBookByTitle(bookTitleToAdd, plannedBooks);
+
     this.setState(state => ({
       trainingBooks: [bookToAdd, ...state.trainingBooks],
     }));
   };
 
-  removeFromTrainingBooks = id => {
+  removeFromTrainingBooks = _id => {
+    console.log('id: ', _id);
+    console.log('trainingBooks: ', this.state.trainingBooks);
     this.setState(state => ({
-      trainingBooks: state.trainingBooks.filter(book => book.id !== id),
+      trainingBooks: state.trainingBooks.filter(book => book._id !== _id),
     }));
   };
 
-  componentDidMount() {
-    this.setState({ libraryBooks: books });
+  createTrainng = () => {
+    const { totalDays, timeStart, timeEnd, trainingBooks } = this.state;
+    const books = trainingBooks.map(trainingBook => ({
+      book: trainingBook._id,
+    }));
+    console.log('books: ', books);
+    const avgReadPages = Math.ceil(
+      trainingBooks.reduce(
+        (acc, trainingBook) => acc + trainingBook.pagesCount,
+        0,
+      ) / totalDays,
+    );
+
+    const trainingData = {
+      books,
+      timeStart: timeStart.toISOString().split('T')[0],
+      timeEnd: timeEnd.toISOString().split('T')[0],
+      avgReadPages,
+    };
+    this.props.trainingSubmit(trainingData);
+  };
+
+  componentDidMount() {}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      (prevState.timeStart !== this.state.timeStart && this.state.timeEnd) ||
+      (prevState.timeEnd !== this.state.timeEnd && this.state.timeStart)
+    ) {
+      this.setDayToRead();
+    }
   }
 
   render() {
-    const { endDate, libraryBooks, bookTitleToAdd, trainingBooks } = this.state;
+    const {
+      totalDays,
+      timeEnd,
+      timeStart,
+      bookTitleToAdd,
+      trainingBooks,
+    } = this.state;
+
+    const { plannedBooks } = this.props;
 
     return (
       <div className={styles.startTrainingMainContainer}>
@@ -94,7 +137,7 @@ class StartTraining extends Component {
             <DatePicker
               className={styles.calendarInput}
               onChange={date => this.setStartDate(date)}
-              selected={this.state.startDate}
+              selected={timeStart}
               minDate={Date.now()}
               dateFormat="dd.MM.yyyy"
               placeholderText="Початок"
@@ -104,8 +147,8 @@ class StartTraining extends Component {
             <DatePicker
               className={styles.calendarInput}
               onChange={date => this.setEndDate(date)}
-              selected={endDate}
-              minDate={Date.now()}
+              selected={timeEnd}
+              minDate={!timeStart ? Date.now() : timeStart}
               dateFormat="dd.MM.yyyy"
               placeholderText="Завершення"
               locale="uk"
@@ -121,10 +164,11 @@ class StartTraining extends Component {
               name="bookTitleToAdd"
               value={bookTitleToAdd}
               onChange={this.handleChange}
+              required
             >
               <option>Обрати книги з бібліотеки</option>
-              {libraryBooks.map(({ title, id }) => (
-                <option key={id} value={title}>
+              {plannedBooks.map(({ title, _id }) => (
+                <option key={_id} value={title}>
                   {title}
                 </option>
               ))}
@@ -149,29 +193,39 @@ class StartTraining extends Component {
 
             <tbody>
               {trainingBooks.length > 0 &&
-                trainingBooks.map(({ id, title, author, year, sheets }) => (
-                  <tr key={id}>
-                    <td className={styles.selectedBookTableBookName}>
-                      {title}
-                    </td>
-                    <td className={styles.selectedBookTableAuthor}>{author}</td>
-                    <td className={styles.selectedBookTableYear}>{year}</td>
-                    <td className={styles.selectedBookTablePages}>{sheets}</td>
-                    <td>
-                      <button
-                        className={styles.selectedBookDelete}
-                        onClick={() => this.removeFromTrainingBooks(id)}
-                      ></button>
-                    </td>
-                  </tr>
-                ))}
+                trainingBooks.map(
+                  ({ _id, title, author, year, pagesCount }) => (
+                    <tr key={_id}>
+                      <td className={styles.selectedBookTableBookName}>
+                        {title}
+                      </td>
+                      <td className={styles.selectedBookTableAuthor}>
+                        {author}
+                      </td>
+                      <td className={styles.selectedBookTableYear}>{year}</td>
+                      <td className={styles.selectedBookTablePages}>
+                        {pagesCount}
+                      </td>
+                      <td>
+                        <button
+                          className={styles.selectedBookDelete}
+                          onClick={() => this.removeFromTrainingBooks(_id)}
+                        ></button>
+                      </td>
+                    </tr>
+                  ),
+                )}
               <tr>
-                <td className={styles.selectedBookTableBookName}>...</td>
+                <td className={styles.selectedBookTableBookName } style={{width: 960}}>...</td>
               </tr>
             </tbody>
           </table>
           {trainingBooks.length > 0 && (
-            <Link to="/statistics" className={styles.startTrainingButton}>
+            <Link
+              to="/statistics"
+              className={styles.startTrainingButton}
+              onClick={this.createTrainng}
+            >
               Почати тренування
             </Link>
           )}
@@ -183,10 +237,7 @@ class StartTraining extends Component {
               countNumber={trainingBooks.length}
               title="Кількість книжок"
             />
-            <StatisticsBlock
-              countNumber={this.state.allDay}
-              title="Кількість днів"
-            />
+            <StatisticsBlock countNumber={totalDays} title="Кількість днів" />
           </div>
         </div>
       </div>
@@ -194,4 +245,8 @@ class StartTraining extends Component {
   }
 }
 
-export default StartTraining;
+const mapDispatchToProps = dispatch => ({
+  trainingSubmit: trainingData => dispatch(addTrainingAction(trainingData)),
+});
+
+export default connect(null, mapDispatchToProps)(Training);
