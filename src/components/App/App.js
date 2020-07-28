@@ -13,7 +13,6 @@ import styles from './App.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { pnotifyAbout } from '../../services/helpers';
 
-
 // Async components
 const AsyncLoginPage = lazy(() =>
   import(
@@ -48,12 +47,12 @@ class App extends Component {
     //const { getTrainingAction } = this.props;
     getTrainingAction();
   }
-  componentDidUpdate() {
-    const { error } = this.props;
-    if (error) {
-      pnotifyAbout(error.pnotifyMessage);
-    }
-  }
+  // componentDidUpdate() {
+  //   const { error } = this.props;
+  //   if (error) {
+  //     pnotifyAbout(error.pnotifyMessage);
+  //   }
+  // }
 
   render() {
     const { isLoading } = this.props;
@@ -98,7 +97,6 @@ class App extends Component {
             <Redirect to="/login" />
           </Switch>
         </Suspense>
-
       </div>
     );
   }

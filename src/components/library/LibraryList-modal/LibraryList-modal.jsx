@@ -20,7 +20,7 @@ class LibraryListModal extends Component {
 
   targetElement = null;
 
-  componentDidMount() {
+  componentWillMount() {
     window.addEventListener('keydown', this.onEscapePress);
     this.targetElement = document.querySelector('#BookReviewModal');
     disableBodyScroll(this.targetElement);
