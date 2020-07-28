@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import LibraryList from './LibraryList';
-import Library_addBooks from './Library_addBooks_wrapper';
+import LibraryAddBooks from './Library_addBooks_wrapper';
 
 class Library_addBook extends Component {
   render() {
     return (
-      <Library_addBooks>
+      <LibraryAddBooks>
         <LibraryList />
-      </Library_addBooks>
+      </LibraryAddBooks>
     );
   }
 }

@@ -89,7 +89,7 @@ class LibraryListModal extends Component {
                 name="rating"
                 count={5}
                 value={rating}
-                size={18}
+                size={25}
                 edit={true}
                 onChange={this.handleChangeRating}
                 activeColor="#ff6c00"
