@@ -33,12 +33,7 @@ class LibraryList extends Component {
         {sortedArrayByRating.map(book => (
           <li key={book._id} className={styles.list}>
             <div className={styles.wrapBooks}>
-              <LibLogo
-                className={styles[book.status]}
-                // src={require('../../../assets/icons/book.svg')}
-                // alt="some img"
-                // width={24}
-              />
+              <LibLogo className={styles[book.status]} />
               <div className={styles[book.status + '_SecondBoxBooks']}>
                 <div className={styles.nameBook}>{book.title}</div>
                 <div className={styles.authorBook}>{book.author}</div>

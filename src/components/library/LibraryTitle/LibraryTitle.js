@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './libraryTitle.module.css';
+import PropTypes from 'prop-types';
 
 const bookStatus = status => {
   if (status === 'planned') {
@@ -13,7 +14,6 @@ const bookStatus = status => {
 
 const LibraryTitle = ({ isReadBooks, isPlannedBooks, title, books }) => {
   const status = bookStatus(books[0].status);
-  console.log(styles);
   const classStor = isPlannedBooks ? styles.storBookPlanned : styles.storBook;
   return (
     <div>
@@ -30,4 +30,12 @@ const LibraryTitle = ({ isReadBooks, isPlannedBooks, title, books }) => {
     </div>
   );
 };
+
+LibraryTitle.propTypes = {
+  isReadBooks: PropTypes.bool.isRequired,
+  isPlannedBooks: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  books: PropTypes.array.isRequired,
+};
+
 export default LibraryTitle;

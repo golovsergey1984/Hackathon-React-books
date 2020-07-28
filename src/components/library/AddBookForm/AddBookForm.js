@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as booksActions from '../../../redux/books/booksActions';
 import styles from './addBookForm.module.css';
+import PropTypes from 'prop-types';
 
 class AddBookForm extends Component {
-  state = { title: '', author: '', pagesCount: '', year: '' }; //pagesCount && year must be a numbers
+  state = { title: '', author: '', pagesCount: '', year: '' };
 
   handleChange = e => {
     const { name, value } = e.target;
@@ -27,7 +28,7 @@ class AddBookForm extends Component {
     } catch (error) {
       console.log(error);
     }
-  }; //push data to server
+  };
 
   render() {
     const { title, pagesCount, author, year } = this.state;
@@ -95,6 +96,10 @@ class AddBookForm extends Component {
     );
   }
 }
+
+AddBookForm.propTypes = {
+  handleBookSubmit: PropTypes.func.isRequired,
+};
 
 const mapDispatchToProps = dispatch => ({
   handleBookSubmit: book => dispatch(booksActions.createBookAction(book)),
