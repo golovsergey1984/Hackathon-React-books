@@ -44,19 +44,19 @@ class LibraryList extends Component {
                 <div className={styles.authorBook}>{book.author}</div>
                 <div className={styles.yearBook}>{book.year}</div>
                 <div className={styles.storBook}>{book.pagesCount}</div>
-                {isReadBooks && (
-                  <div className={styles.rating}>
-                    <StarReactRating rating={book.rating} />
-                    <button
-                      data-bookid={book._id}
-                      className={styles.button}
-                      onClick={() => onClickResume(book._id)}
-                    >
-                      Резюме
-                    </button>
-                  </div>
-                )}
               </div>
+              {isReadBooks && (
+                <div className={styles.rating}>
+                  <StarReactRating rating={book.rating} />
+                  <button
+                    data-bookid={book._id}
+                    className={styles.button}
+                    onClick={() => onClickResume(book._id)}
+                  >
+                    Резюме
+                  </button>
+                </div>
+              )}
               {canBeDeleted && (
                 <button
                   className={styles.selectedBookDelete}

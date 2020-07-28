@@ -75,5 +75,13 @@
   font-size: 14px;
   line-height: 3.2;
   padding-left: 44px;
-  width: 100%;
+  width: 80%;
+}
+
+.wrapperTitle {
+  display: flex;
+
+  color: rgb(141, 137, 137);
+  font-size: 14px;
+  line-height: 3.2;
 }
