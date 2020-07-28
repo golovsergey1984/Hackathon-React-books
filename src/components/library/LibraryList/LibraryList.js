@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './libraryList.module.css';
 import StarReactRating from '../StarRating/StarRating';
+import { ReactComponent as LibLogo } from '../../../assets/icons/book.svg';
 
-export default class LibraryList extends Component {
-  handleModalChange = () => {
-    this.props.onModalChange(true);
-  };
-
+class LibraryList extends Component {
   render() {
-    const { books, isReadBooks } = this.props;
+    const {
+      books,
+      isReadBooks,
+      // toggleBookReviewModal,
+      onClickResume,
+    } = this.props;
 
     return (
-      <div className={styles.mainBox}>
+      <ul className={styles.mainBox}>
         {books.map(book => (
-          <li key={book.id} className={styles.list}>
+          <li key={book._id} className={styles.list}>
             <div className={styles.wrapBooks}>
-              <img
-                className={styles.image}
-                src={require('../../../assets/icons/book.svg')}
-                alt="some img"
-                width={24}
+              <LibLogo
+                className={styles[book.status]}
+                // src={require('../../../assets/icons/book.svg')}
+                // alt="some img"
+                // width={24}
               />
               <div className={styles.secondBoxBooks}>
                 <div className={styles.nameBook}>{book.title}</div>
@@ -30,8 +33,9 @@ export default class LibraryList extends Component {
                   <div className={styles.rating}>
                     <StarReactRating rating={book.rating} />
                     <button
+                      data-bookid={book._id}
                       className={styles.button}
-                      onClick={this.handleModalChange}
+                      onClick={() => onClickResume(book._id)}
                     >
                       Резюме
                     </button>
@@ -41,7 +45,22 @@ export default class LibraryList extends Component {
             </div>
           </li>
         ))}
-      </div>
+      </ul>
     );
   }
 }
+
+LibraryList.propTypes = {
+  books: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      author: PropTypes.string,
+      pagesCount: PropTypes.number.isRequired,
+      comment: PropTypes.string,
+      rating: PropTypes.number,
+      status: PropTypes.string.isRequired,
+    }),
+  ),
+};
+
+export default LibraryList;

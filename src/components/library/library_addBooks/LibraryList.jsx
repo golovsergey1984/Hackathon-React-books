@@ -21,6 +21,8 @@ LibraryList.propTypes = {
     .isRequired,
 };
 
-/* export default LibraryList; */
-const mapStateToProps = state => ({ items: getPlannedBooks(state) });
+const mapStateToProps = state => ({
+  items: getPlannedBooks(state),
+});
+
 export default connect(mapStateToProps)(LibraryList);

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
-import books from '../Statistic/book/books.json';
+import books from '../Training/books.json';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
+
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
 registerLocale('uk', uk);
@@ -14,6 +16,7 @@ const findBookByTitle = (title, books) => {
 
 class StartTraining extends Component {
   state = {
+    value: '',
     startDate: null,
     endDate: null,
     allDay: 0,
@@ -30,10 +33,8 @@ class StartTraining extends Component {
 
   setDayToRead = date => {
     let deltaDay;
-    // // const deltaDay = this.state.startDate ? (date - this.state.startDate)/86400000 : (date - Date.now())/86400000 ;
     if (this.state.startDate) {
       deltaDay = (date - this.state.startDate) / 86400000;
-      
     } else {
       deltaDay = Math.ceil((date - Date.now()) / 86400000);
     }
@@ -50,7 +51,6 @@ class StartTraining extends Component {
   };
 
   handleChange = e => {
-    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -60,8 +60,13 @@ class StartTraining extends Component {
     e.preventDefault();
     const { bookTitleToAdd, trainingBooks, libraryBooks } = this.state;
 
+    const includeBook = libraryBooks.find(
+      book => book.title === bookTitleToAdd,
+    );
+
     const stateTitles = trainingBooks.map(({ title }) => title);
     if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
+    if (!includeBook) return;
     const bookToAdd = findBookByTitle(bookTitleToAdd, libraryBooks);
     this.setState(state => ({
       trainingBooks: [bookToAdd, ...state.trainingBooks],
@@ -79,13 +84,7 @@ class StartTraining extends Component {
   }
 
   render() {
-    const {
-      endDate,
-      startDate,
-      libraryBooks,
-      bookTitleToAdd,
-      trainingBooks,
-    } = this.state;
+    const { endDate, libraryBooks, bookTitleToAdd, trainingBooks } = this.state;
 
     return (
       <div className={styles.startTrainingMainContainer}>
@@ -96,10 +95,7 @@ class StartTraining extends Component {
               className={styles.calendarInput}
               onChange={date => this.setStartDate(date)}
               selected={this.state.startDate}
-              // selectsStart
-              // startDate={this.state.startDate}
               minDate={Date.now()}
-              // endDate={this.state.endDate}
               dateFormat="dd.MM.yyyy"
               placeholderText="Початок"
               locale="uk"
@@ -109,10 +105,7 @@ class StartTraining extends Component {
               className={styles.calendarInput}
               onChange={date => this.setEndDate(date)}
               selected={endDate}
-              // selectsEnd
-              // startDate={this.state.startDate}
-              // endDate={this.state.endDate}
-              minDate={startDate}
+              minDate={Date.now()}
               dateFormat="dd.MM.yyyy"
               placeholderText="Завершення"
               locale="uk"
@@ -129,6 +122,7 @@ class StartTraining extends Component {
               value={bookTitleToAdd}
               onChange={this.handleChange}
             >
+              <option>Обрати книги з бібліотеки</option>
               {libraryBooks.map(({ title, id }) => (
                 <option key={id} value={title}>
                   {title}
@@ -184,17 +178,15 @@ class StartTraining extends Component {
         </div>
         <div className={styles.bookStatisticContainer}>
           <h2 className={styles.bookStatisticTitle}>Моя мета прочитати</h2>
-          <div className={styles.bookStatisticCounterContainer}>
-            <div className={styles.bookStatisticCounter}>
-              {trainingBooks.length}
-            </div>
-            <div className={styles.bookStatisticCounter}>
-              {this.state.allDay}
-            </div>
-          </div>
-          <div className={styles.counterLaibelConyainer}>
-            <p className={styles.counterLaibel}>Кількість книжок</p>
-            <p className={styles.counterLaibel}>Кількість днів</p>
+          <div className={styles.bookStatisticBlockContainer}>
+            <StatisticsBlock
+              countNumber={trainingBooks.length}
+              title="Кількість книжок"
+            />
+            <StatisticsBlock
+              countNumber={this.state.allDay}
+              title="Кількість днів"
+            />
           </div>
         </div>
       </div>
