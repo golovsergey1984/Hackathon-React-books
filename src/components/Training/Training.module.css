@@ -18,8 +18,9 @@ body {
 }
 
 .startTrainingContainer {
-  width: 960px;
-  /* margin-right: 30px; */
+  width: 100%;
+  min-width: 900px;
+  margin-right: 20px;
 }
 
 .startTitle {
@@ -70,10 +71,11 @@ body {
 }
 
 .bookSelectField {
-  width: 747px;
+  width: 100%;
+  min-width: 716px;
   height: 40px;
   padding: 0 20px;
-  /* margin-right: 10px; */
+  margin-right: 10px;
   color: #a4a6b2;
   border: none;
   box-shadow: 0px 0px 5px 0px rgba(223, 226, 235, 0.75);
@@ -81,13 +83,13 @@ body {
   appearance: none;
   background-image: url(../../assets/icons/IconStartTraining/arrow.png);
   background-repeat: no-repeat;
-  background-size: 1.5%;
+  background-size: 12px;
   background-position-x: 97%;
   background-position-y: 50%;
 }
 
 .bookSelectSubmit {
-  padding: 10px 65px;
+  padding: 10px 58px;
   background-color: #f6f7fb;
   border: 1px solid #000;
   cursor: pointer;
@@ -105,7 +107,6 @@ body {
 thead {
   display: block;
   padding: 6px 0;
-  /* width: 898px; */
   border-top: 1px solid #e3e8ec;
   border-bottom: 1px solid #e3e8ec;
 }
@@ -140,10 +141,14 @@ th {
   text-align: start;
 }
 
+tr {
+  display: block;
+  padding-right: 30px;
+}
+
 .selectedBookTableBookName {
-  display: inline-block;
-  width: 500px;
-  /* margin-right: 20px; */
+  width: 60%;
+  min-width: 460px;
 }
 
 td.selectedBookTableBookName::before {
@@ -159,24 +164,30 @@ td.selectedBookTableBookName::before {
 }
 
 .selectedBookTableAuthor {
-  display: inline-block;
-  width: 240px;
-  /* margin-right: 10px; */
+  width: 20%;
+  min-width: 230px;
 }
 .selectedBookTableYear {
-  display: inline-block;
-  width: 110px;
-  /* margin-right: 6px; */
+  width: 10%;
+  min-width: 100px;
 }
 .selectedBookTablePages {
-  display: inline-block;
-  width: 70px;
-  /* margin-right: 16px; */
+  width: 10%;
+  min-width: 70px;
+}
+.selectedBookDeleteHead {
+  border: none;
+  width: 5%;
+  min-width: 20px;
+  height: 20px;
+  background: none;
+  outline: none;
 }
 
 .selectedBookDelete {
   border: none;
-  width: 20px;
+  width: 5%;
+  min-width: 20px;
   height: 20px;
   align-self: center;
   background: none;
@@ -221,5 +232,5 @@ td.selectedBookTableBookName::before {
 .bookStatisticBlockContainer {
   display: flex;
   justify-content: space-between;
-  padding: 50px 20px 0;
+  padding: 50px 10px 0 20px;
 }

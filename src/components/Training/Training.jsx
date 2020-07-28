@@ -188,6 +188,7 @@ class Training extends Component {
                 <th className={styles.selectedBookTableAuthor}>Автор</th>
                 <th className={styles.selectedBookTableYear}>Рік</th>
                 <th className={styles.selectedBookTablePages}>Стор.</th>
+                <th className={styles.selectedBookDeleteHead}></th>
               </tr>
             </thead>
 
@@ -216,7 +217,12 @@ class Training extends Component {
                   ),
                 )}
               <tr>
-                <td className={styles.selectedBookTableBookName } style={{width: 960}}>...</td>
+                <td
+                  className={styles.selectedBookTableBookName}
+                  style={{ width: 960 }}
+                >
+                  ...
+                </td>
               </tr>
             </tbody>
           </table>
