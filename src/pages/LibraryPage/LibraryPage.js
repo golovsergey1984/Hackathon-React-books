@@ -67,10 +67,6 @@ class LibraryPage extends Component {
                 {books.length === 0 && <EmptyList />}
                 {readBooks.length > 0 && (
                   <div className={styles.marginBottom}>
-<<<<<<< HEAD
-                    <LibraryTitle title={'Прочитано'} isReadBooks={true} />
-                    <LibraryList
-=======
                     <LibraryTitle
                       title={'Прочитано'}
                       isReadBooks={true}
@@ -78,7 +74,6 @@ class LibraryPage extends Component {
                     />
                     <LibraryList
                       canBeDeleted={true}
->>>>>>> dev
                       isReadBooks={true}
                       books={readBooks}
                       onClickResume={this.handleClickResume}
@@ -89,10 +84,6 @@ class LibraryPage extends Component {
 
                 {readingBooks.length > 0 && (
                   <div className={styles.marginBottom}>
-<<<<<<< HEAD
-                    <LibraryTitle title={'Читаю'} isReadBooks={false} />
-                    <LibraryList
-=======
                     <LibraryTitle
                       title={'Читаю'}
                       isReadBooks={false}
@@ -100,23 +91,11 @@ class LibraryPage extends Component {
                     />
                     <LibraryList
                       canBeDeleted={false}
->>>>>>> dev
                       books={readingBooks}
                       onRemoveBookFromList={deleteBookAction}
                     />
                   </div>
                 )}
-<<<<<<< HEAD
-
-                {plannedBooks.length > 0 && (
-                  <>
-                    <div className={styles.marginBottom}>
-                      <LibraryTitle
-                        title={'Маю намір прочитати'}
-                        isReadBooks={false}
-                      />
-                      <LibraryList
-=======
 
                 {plannedBooks.length > 0 && (
                   <>
@@ -128,7 +107,6 @@ class LibraryPage extends Component {
 
                       <LibraryList
                         canBeDeleted={true}
->>>>>>> dev
                         books={plannedBooks}
                         onClickResume={this.handleClickResume}
                         onRemoveBookFromList={deleteBookAction}
