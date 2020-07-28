@@ -90,7 +90,10 @@ class Training extends Component {
     const books = trainingBooks.map(trainingBook => ({
       book: trainingBook._id,
     }));
-    console.log('books: ', books);
+    // console.log('timeStart: ', timeStart);
+    // console.log('timeStartISO:', timeStart.toString())
+    // console.log('timeStart.toString(): ', timeStart.toString());
+
     const avgReadPages = Math.ceil(
       trainingBooks.reduce(
         (acc, trainingBook) => acc + trainingBook.pagesCount,
@@ -100,11 +103,12 @@ class Training extends Component {
 
     const trainingData = {
       books,
-      timeStart: timeStart.toISOString().split('T')[0],
-      timeEnd: timeEnd.toISOString().split('T')[0],
+      timeStart: timeStart.toString().split('T')[0],
+      timeEnd: timeEnd.toString().split('T')[0],
       avgReadPages,
     };
-    this.props.trainingSubmit(trainingData);
+    console.log(trainingData)
+    // this.props.trainingSubmit(trainingData);
   };
 
   componentDidMount() {}
@@ -131,6 +135,7 @@ class Training extends Component {
 
     return (
       <div className={styles.startTrainingMainContainer}>
+       
         <div className={styles.startTrainingContainer}>
           <h2 className={styles.startTitle}>Моє тренування</h2>
           <div className={styles.calendarContainer}>
@@ -220,6 +225,7 @@ class Training extends Component {
               </tr>
             </tbody>
           </table>
+          
           {trainingBooks.length > 0 && (
             <Link
               to="/statistics"
