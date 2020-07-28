@@ -46,15 +46,15 @@
   /* fill: rgb(208, 214, 214); */
 }
 
-.secondBoxBooks {
+/* .secondBoxBooks {
   display: flex;
   justify-content: space-between;
-  color: rgb(10, 9, 9);
-  /* font-size: 16px; */
-  line-height: 3.2;
+  color: rgb(10, 9, 9); */
+/* font-size: 16px; */
+/* line-height: 3.2;
   width: 96%;
   align-items: center;
-}
+} */
 
 .nameBook {
   width: 25%;
@@ -119,4 +119,36 @@
   background-repeat: no-repeat;
   cursor: pointer;
   outline: none;
+}
+
+.reading_SecondBoxBooks {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(10, 9, 9);
+  /* font-size: 16px; */
+  line-height: 3.2;
+  width: 70%;
+  align-items: center;
+}
+
+.planned_SecondBoxBooks {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(10, 9, 9);
+  /* font-size: 16px; */
+  line-height: 3.2;
+  width: 70%;
+  align-items: center;
+  margin-right: 280px;
+}
+
+.readed_SecondBoxBooks {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(10, 9, 9);
+  /* font-size: 16px; */
+  line-height: 3.2;
+  width: 92%;
+  align-items: center;
+  margin-right: 17px;
 }

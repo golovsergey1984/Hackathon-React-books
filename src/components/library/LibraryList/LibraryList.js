@@ -39,7 +39,7 @@ class LibraryList extends Component {
                 // alt="some img"
                 // width={24}
               />
-              <div className={styles.secondBoxBooks}>
+              <div className={styles[book.status + '_SecondBoxBooks']}>
                 <div className={styles.nameBook}>{book.title}</div>
                 <div className={styles.authorBook}>{book.author}</div>
                 <div className={styles.yearBook}>{book.year}</div>
@@ -56,13 +56,13 @@ class LibraryList extends Component {
                     </button>
                   </div>
                 )}
-                {canBeDeleted && (
-                  <button
-                    className={styles.selectedBookDelete}
-                    onClick={() => onRemoveBookFromList(book._id)}
-                  ></button>
-                )}
               </div>
+              {canBeDeleted && (
+                <button
+                  className={styles.selectedBookDelete}
+                  onClick={() => onRemoveBookFromList(book._id)}
+                ></button>
+              )}
             </div>
           </li>
         ))}
