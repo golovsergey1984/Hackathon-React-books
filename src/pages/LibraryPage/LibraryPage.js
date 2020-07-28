@@ -91,8 +91,9 @@ class LibraryPage extends Component {
           <>
             <div>
               <div className={styles.wrapper}>
-                {books.length === 0 && <EmptyList />}
                 <AddBookForm />
+
+                {books.length === 0 && <EmptyList />}
                 {readBooks.length > 0 && (
                   <div className={styles.marginBottom}>
                     <LibraryTitle title={'Прочитано'} isReadBooks={true} />
