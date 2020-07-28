@@ -68,11 +68,14 @@ class LibraryPage extends Component {
                 {readBooks.length > 0 && (
                   <div className={styles.marginBottom}>
                     <LibraryTitle
-                      title={'Маю намір прочитати'}
-                      isReadBooks={false}
+                      title={'Прочитано'}
+                      isReadBooks={true}
+                      isPlannedBooks={false}
                     />
                     <LibraryList
-                      books={plannedBooks}
+                      canBeDeleted={true}
+                      isReadBooks={true}
+                      books={readBooks}
                       onClickResume={this.handleClickResume}
                       onRemoveBookFromList={deleteBookAction}
                     />
@@ -81,8 +84,13 @@ class LibraryPage extends Component {
 
                 {readingBooks.length > 0 && (
                   <div className={styles.marginBottom}>
-                    <LibraryTitle title={'Читаю'} isReadBooks={false} />
+                    <LibraryTitle
+                      title={'Читаю'}
+                      isReadBooks={false}
+                      isPlannedBooks={false}
+                    />
                     <LibraryList
+                      canBeDeleted={false}
                       books={readingBooks}
                       onRemoveBookFromList={deleteBookAction}
                     />
@@ -96,7 +104,9 @@ class LibraryPage extends Component {
                         title={'Маю намір прочитати'}
                         isReadBooks={false}
                       />
+
                       <LibraryList
+                        canBeDeleted={true}
                         books={plannedBooks}
                         onClickResume={this.handleClickResume}
                         onRemoveBookFromList={deleteBookAction}

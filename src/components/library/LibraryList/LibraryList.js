@@ -12,6 +12,7 @@ class LibraryList extends Component {
       isReadBooks,
       onClickResume,
       onRemoveBookFromList,
+      canBeDeleted,
     } = this.props;
 
     const sortedArrayByRating = books.sort((a, b) => {
@@ -55,10 +56,12 @@ class LibraryList extends Component {
                     </button>
                   </div>
                 )}
-                <button
-                  className={styles.selectedBookDelete}
-                  onClick={() => onRemoveBookFromList(book._id)}
-                ></button>
+                {canBeDeleted && (
+                  <button
+                    className={styles.selectedBookDelete}
+                    onClick={() => onRemoveBookFromList(book._id)}
+                  ></button>
+                )}
               </div>
             </div>
           </li>

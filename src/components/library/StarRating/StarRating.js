@@ -7,7 +7,7 @@ const StarReactRating = ({ rating }) => {
     <>
       <StarRating
         initialRating={rating}
-        size={25}
+        size={20}
         isReadOnly={true}
         containerClassName={styles.containerStar}
         hoverColor="rgb(236, 240, 29)"
