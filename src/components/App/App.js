@@ -42,10 +42,8 @@ const AsyncStatisticsPage = lazy(() =>
 
 class App extends Component {
   componentDidMount() {
-    const { getUserAction, getTrainingAction } = this.props;
+    const { getUserAction } = this.props;
     getUserAction();
-    //const { getTrainingAction } = this.props;
-    getTrainingAction();
   }
   // componentDidUpdate() {
   //   const { error } = this.props;
