@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
+import { findByLabelText } from '@testing-library/react';
 registerLocale('uk', uk);
 
 const findBookByTitle = (title, books) => {
@@ -107,8 +108,8 @@ class Training extends Component {
     console.log(trainingData);
     this.props.trainingSubmit(trainingData);
   };
-  
-     // componentDidMount() {}
+
+  // componentDidMount() {}
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -182,7 +183,7 @@ class Training extends Component {
 
           <table className={styles.selectedBookTable}>
             <thead>
-              <tr>
+              <tr className={styles.row}>
                 <th className={styles.selectedBookTableBookName}>
                   Назва книги
                 </th>
@@ -196,7 +197,7 @@ class Training extends Component {
               {trainingBooks.length > 0 &&
                 trainingBooks.map(
                   ({ _id, title, author, year, pagesCount }) => (
-                    <tr key={_id}>
+                    <tr key={_id} className={styles.row}>
                       <td className={styles.selectedBookTableBookName}>
                         {title}
                       </td>
@@ -207,7 +208,7 @@ class Training extends Component {
                       <td className={styles.selectedBookTablePages}>
                         {pagesCount}
                       </td>
-                      <td>
+                      <td className={styles.deleteBtn}>
                         <button
                           className={styles.selectedBookDelete}
                           onClick={() => this.removeFromTrainingBooks(_id)}
@@ -217,12 +218,7 @@ class Training extends Component {
                   ),
                 )}
               <tr>
-                <td
-                  className={styles.selectedBookTableBookName}
-                  style={{ width: 960 }}
-                >
-                  ...
-                </td>
+                <td style={{display: "flex", minWidth: 100}} className={styles.selectedBookTableBookName }>...</td>
               </tr>
             </tbody>
           </table>
