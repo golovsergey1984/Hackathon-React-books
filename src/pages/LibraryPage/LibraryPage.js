@@ -12,11 +12,11 @@ import {
 } from '../../redux/books/booksActions';
 import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
 //Components
-import LibraryList from '../../components/library/LibraryList/LibraryList';
-import LibraryTitle from '../../components/library/LibraryTitle/LibraryTitle';
-import AddBookForm from '../../components/library/AddBookForm/AddBookForm';
-import EmptyList from '../../components/library/EmptyList/EmptyList';
-import LibraryListModal from '../../components/library/LibraryList-modal/LibraryList-modal';
+import LibraryList from '../../components/Library/LibraryList/LibraryList';
+import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
+import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
+import EmptyList from '../../components/Library/EmptyList/EmptyList';
+import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
 // import ToReadList from '../../components/library/library_addBooks/Library_addBooks';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
