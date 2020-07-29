@@ -4,9 +4,10 @@ import styles from './header.module.css';
 import { connect } from 'react-redux';
 import { toggleShowLogOutModalAction } from '../../redux/modal/modalActions';
 import LogOut from '../LogOutModal/LogOutModal';
-import { IsAuthenticated } from '../../redux/session/sessionSelectors';
+import { IsAuthenticated, getUser } from '../../redux/session/sessionSelectors';
+// import { getUser } from '../../redux/session/sessionSelectors';
 
-const Header = ({ isAuthenticated, openLogOutModal, isLogoutModalOpen }) => (
+const Header = ({ userName, isAuthenticated, openLogOutModal, isLogoutModalOpen }) => (
   <>
     <header className={styles.header}>
       <nav className={styles.navigation}>
@@ -16,7 +17,7 @@ const Header = ({ isAuthenticated, openLogOutModal, isLogoutModalOpen }) => (
         {isAuthenticated && (
           <>
             <p className={styles.name}>
-              <span className={styles.mStyle}>M</span> Martha Stewart
+        <span className={styles.mStyle}>{userName.fullName[0].toUpperCase()}</span> {userName.fullName}
             </p>
             <ul className={styles.navigationList}>
               <li className={styles.navigationListItem}>
@@ -49,10 +50,12 @@ const Header = ({ isAuthenticated, openLogOutModal, isLogoutModalOpen }) => (
 const mSTP = state => ({
   isLogoutModalOpen: state.modals.isShowLogOutModal,
   isAuthenticated: IsAuthenticated(state),
+  userName: getUser(state).name,
 });
 
 const mDTP = dispatch => ({
   openLogOutModal: () => dispatch(toggleShowLogOutModalAction()),
+  
 });
 
 export default connect(mSTP, mDTP)(Header);
