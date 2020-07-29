@@ -13,7 +13,7 @@ const withAuthRedirect = BaseComponent => {
         return this.props.history.replace(this.props.location.state.from);
       }
 
-      this.props.history.replace('/login');
+      this.props.history.replace('/library');
     }
 
     componentDidUpdate() {
@@ -27,7 +27,7 @@ const withAuthRedirect = BaseComponent => {
         return this.props.history.replace(this.props.location.state.from);
       }
 
-      // this.props.history.replace('/');
+      this.props.history.replace('/library');
     }
 
     render() {
