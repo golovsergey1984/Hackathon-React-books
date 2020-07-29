@@ -17,17 +17,13 @@ class AddBookForm extends Component {
     e.preventDefault();
     const { pagesCount, year } = this.state;
 
-    try {
-      await this.props.handleBookSubmit({
-        ...this.state,
-        pagesCount: +[pagesCount],
-        year: +[year],
-      });
+    this.props.handleBookSubmit({
+      ...this.state,
+      pagesCount: +[pagesCount],
+      year: +[year],
+    });
 
-      this.setState({ title: '', author: '', pagesCount: '', year: '' });
-    } catch (error) {
-      console.log(error);
-    }
+    this.setState({ title: '', author: '', pagesCount: '', year: '' });
   };
 
   render() {
