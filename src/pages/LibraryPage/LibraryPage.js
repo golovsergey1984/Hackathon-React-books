@@ -107,6 +107,7 @@ class LibraryPage extends Component {
                         isReadBooks={false}
                         books={plannedBooks}
                       />
+
                       <LibraryList
                         canBeDeleted={true}
                         books={plannedBooks}

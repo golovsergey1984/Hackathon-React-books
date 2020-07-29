@@ -11,7 +11,7 @@ import { getTrainingAction } from '../../redux/training/trainingActions';
 //Styles
 import styles from './App.module.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import { pnotifyAbout } from '../../services/helpers';
+// import { pnotifyAbout } from '../../services/helpers';
 
 // Async components
 const AsyncLoginPage = lazy(() =>
