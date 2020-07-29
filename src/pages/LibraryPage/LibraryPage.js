@@ -11,6 +11,7 @@ import {
   deleteBookAction,
 } from '../../redux/books/booksActions';
 import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
+import { getTrainingAction } from '../../redux/training/trainingActions';
 //Components
 import LibraryList from '../../components/Library/LibraryList/LibraryList';
 import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
@@ -29,6 +30,7 @@ class LibraryPage extends Component {
 
   componentDidMount() {
     this.props.getAllBooks();
+    this.props.getTrainingAction();
   }
 
   handleClickResume = id => {
@@ -146,6 +148,7 @@ const mapDispathToProps = dispatch => ({
   getAllBooks: () => dispatch(getBooksAction()),
   toggleBookReviewModal: () => dispatch(toggleShowBookReviewModalAction()),
   deleteBookAction: id => dispatch(deleteBookAction(id)),
+  getTrainingAction: () => dispatch(getTrainingAction()),
 });
 
 export default connect(mapStateToProps, mapDispathToProps)(LibraryPage);

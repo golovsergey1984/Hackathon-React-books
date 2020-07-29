@@ -15,6 +15,10 @@ import moment from 'moment';
 import styles from './StatisticPage.module.css';
 
 export default class StatisticsPage extends Component {
+  componentDidMount() {
+    const { getTrainingAction } = this.props;
+    getTrainingAction();
+  }
   render() {
     const { haveTraining, isLoading, endOfTraining } = this.props;
     return (
