@@ -105,7 +105,7 @@ body {
   border-collapse: collapse;
   width: 100%;
 }
-thead {
+.tableHead {
   display: block;
   padding: 6px 0;
   border-top: 1px solid #e3e8ec;
@@ -113,24 +113,28 @@ thead {
   width: 100%;
 }
 
-tbody {
+.tableBody {
   height: 235px;
   display: block;
   overflow: auto;
 }
 
-tbody::-webkit-scrollbar {
+.tableBody::-webkit-scrollbar {
   width: 6px;
 }
-tbody::-webkit-scrollbar-track {
+.tableBody::-webkit-scrollbar-track {
   background: #e6e6ee;
 }
-tbody::-webkit-scrollbar-thumb {
+.tableBody::-webkit-scrollbar-thumb {
   background: #b1b7c5;
   border-radius: 4px;
 }
 
-tbody td {
+.selectedBookTableBookName, 
+.selectedBookTableAuthor,
+.selectedBookTableYear,
+.selectedBookTablePages,
+.deleteBtn{
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -142,18 +146,13 @@ tbody td {
   display: flex;
   width: 100%;
 }
-th {
-  text-align: start;
-}
-thead.tr {
-  width: 100%;
-}
+
 .selectedBookTableBookName {
   display: inline-block;
   width: 52%;
 }
 
-td.selectedBookTableBookName::before {
+.selectedBookTableBookName::before {
   content: '';
   display: inline-block;
   vertical-align: middle;
