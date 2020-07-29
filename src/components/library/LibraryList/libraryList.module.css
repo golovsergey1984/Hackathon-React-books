@@ -6,6 +6,7 @@
 }
 
 .list {
+  padding: 5px 0сдела;
   list-style: none;
   display: inline-block;
   align-items: center;
@@ -108,7 +109,7 @@
   justify-content: space-between;
   color: rgb(10, 9, 9);
   line-height: 3.2;
-  width: 70%;
+  width: 100%;
   align-items: center;
 }
 
@@ -117,9 +118,8 @@
   justify-content: space-between;
   color: rgb(10, 9, 9);
   line-height: 3.2;
-  width: 70%;
+  width: 100%;
   align-items: center;
-  margin-right: 280px;
 }
 
 .readed_SecondBoxBooks {
