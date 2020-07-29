@@ -7,12 +7,18 @@ const LineChart = ({ factData = [], pagesPerDay = 0 }) => {
   const pagesFact = factData.map(rec => rec.pages);
 
   const maxValue = Math.max(...pagesFact, pagesPerDay);
-
   //Пока что План отображается прямой линией как количество страниц в день
   //Думаю над тем как реализовать логику расчета плана в зависимости от успевания или отставания от графика.
   const pagesPlan = [];
   pagesPlan.length = factData.length;
   pagesPlan.fill(pagesPerDay);
+  // const pagesPlan = [pagesPerDay];
+
+  // factData.map((rec, index) => {
+  //   let temp = pagesPlan[index] - rec.pages + pagesPerDay;
+  //   temp = temp < 0 ? 0 : temp;
+  //   pagesPlan.push(temp);
+  // });
 
   const data = {
     labels: labels,
@@ -24,14 +30,15 @@ const LineChart = ({ factData = [], pagesPerDay = 0 }) => {
         borderColor: 'rgba(45,142, 229)',
         pointBackgroundColor: 'rgba(45,142, 229)',
         fill: 'origin',
-        borderWidth: 1,
+        borderWidth: 2,
         // borderDash: [10, 15],
         pointBorderWidth: 1,
+        pointRadius: 0,
       },
       {
         label: 'Факт',
         data: pagesFact,
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        backgroundColor: 'rgba(255, 255, 255, 0)',
         borderColor: 'rgb(250, 71, 112)',
         pointBackgroundColor: 'rgb(250, 71, 112)',
       },
@@ -43,6 +50,7 @@ const LineChart = ({ factData = [], pagesPerDay = 0 }) => {
     //     display: true,
     //     text: 'кількість сторінок/день 34',
     // },
+
     scales: {
       yAxes: [
         {
@@ -52,7 +60,7 @@ const LineChart = ({ factData = [], pagesPerDay = 0 }) => {
           },
           ticks: {
             min: 1,
-            max: Math.ceil(maxValue / 40) * 40,
+            max: Math.ceil(maxValue / 20) * 20,
           },
         },
       ],
