@@ -9,13 +9,8 @@ import {
   enableBodyScroll,
   clearAllBodyScrollLocks,
 } from 'body-scroll-lock';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styles from './LibraryList-modal.module.css';
-
-// const initialState = {
-//   rating: 0,
-//   comment: '',
-// };
 
 class LibraryListModal extends Component {
   state = {
@@ -94,7 +89,7 @@ class LibraryListModal extends Component {
                 name="rating"
                 count={5}
                 value={rating}
-                size={18}
+                size={25}
                 edit={true}
                 onChange={this.handleChangeRating}
                 activeColor="#ff6c00"

@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
-import { findByLabelText } from '@testing-library/react';
+// import { findByLabelText } from '@testing-library/react';
 registerLocale('uk', uk);
 
 const findBookByTitle = (title, books) => {
@@ -91,7 +91,6 @@ class Training extends Component {
     const books = trainingBooks.map(trainingBook => ({
       book: trainingBook._id,
     }));
-
     const avgReadPages = Math.ceil(
       trainingBooks.reduce(
         (acc, trainingBook) => acc + trainingBook.pagesCount,
@@ -218,7 +217,12 @@ class Training extends Component {
                   ),
                 )}
               <tr>
-                <td style={{display: "flex", minWidth: 100}} className={styles.selectedBookTableBookName }>...</td>
+                <td
+                  style={{ display: 'flex', minWidth: 100 }}
+                  className={styles.selectedBookTableBookName}
+                >
+                  ...
+                </td>
               </tr>
             </tbody>
           </table>

@@ -28,7 +28,6 @@ class LogOut extends Component {
   };
 
   onCancelPress = e => {
-    console.log(e.key);
     if (e.key !== 'Escape') return;
 
     this.props.closeLogOutModal();
