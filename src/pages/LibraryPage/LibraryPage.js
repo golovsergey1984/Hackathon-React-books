@@ -12,11 +12,11 @@ import {
 } from '../../redux/books/booksActions';
 import { toggleShowBookReviewModalAction } from '../../redux/modal/modalActions';
 //Components
-import LibraryList from '../../components/library/LibraryList/LibraryList';
-import LibraryTitle from '../../components/library/LibraryTitle/LibraryTitle';
-import AddBookForm from '../../components/library/AddBookForm/AddBookForm';
-import EmptyList from '../../components/library/EmptyList/EmptyList';
-import LibraryListModal from '../../components/library/LibraryList-modal/LibraryList-modal';
+import LibraryList from '../../components/Library/LibraryList/LibraryList';
+import LibraryTitle from '../../components/Library/LibraryTitle/LibraryTitle';
+import AddBookForm from '../../components/Library/AddBookForm/AddBookForm';
+import EmptyList from '../../components/Library/EmptyList/EmptyList';
+import LibraryListModal from '../../components/Library/LibraryList-modal/LibraryList-modal';
 // import ToReadList from '../../components/library/library_addBooks/Library_addBooks';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -60,71 +60,73 @@ class LibraryPage extends Component {
             timeout={3000}
           />
         ) : (
-          <>
-            <div>
-              <div className={styles.wrapper}>
-                <AddBookForm />
-                {books.length === 0 && <EmptyList />}
-                {readBooks.length > 0 && (
-                  <div className={styles.marginBottom}>
-                    <LibraryTitle
-                      title={'Прочитано'}
-                      isReadBooks={true}
-                      isPlannedBooks={false}
-                    />
-                    <LibraryList
-                      canBeDeleted={true}
-                      isReadBooks={true}
-                      books={readBooks}
-                      onClickResume={this.handleClickResume}
-                      onRemoveBookFromList={deleteBookAction}
-                    />
-                  </div>
-                )}
-
-                {readingBooks.length > 0 && (
-                  <div className={styles.marginBottom}>
-                    <LibraryTitle
-                      title={'Читаю'}
-                      isReadBooks={false}
-                      isPlannedBooks={false}
-                    />
-                    <LibraryList
-                      canBeDeleted={false}
-                      books={readingBooks}
-                      onRemoveBookFromList={deleteBookAction}
-                    />
-                  </div>
-                )}
-
-                {plannedBooks.length > 0 && (
-                  <>
+            <>
+              <div>
+                <div className={styles.wrapper}>
+                  <AddBookForm />
+                  {books.length === 0 && <EmptyList />}
+                  {readBooks.length > 0 && (
                     <div className={styles.marginBottom}>
                       <LibraryTitle
-                        title={'Маю намір прочитати'}
-                        isReadBooks={false}
+                        title={'Прочитано'}
+                        isReadBooks={true}
+                        isPlannedBooks={false}
+                        books={readBooks}
                       />
-
                       <LibraryList
                         canBeDeleted={true}
-                        books={plannedBooks}
+                        isReadBooks={true}
+                        books={readBooks}
                         onClickResume={this.handleClickResume}
                         onRemoveBookFromList={deleteBookAction}
                       />
                     </div>
-                    <Link to="/training" className={styles.button}>
-                      Перейти до тренування
-                    </Link>
-                  </>
-                )}
-              </div>
-            </div>
+                  )}
 
-            {isBookReviewModalOpen && (
-              <LibraryListModal bookId={choosenBookId} />
-            )}
-          </>
-        )}
+                  {readingBooks.length > 0 && (
+                    <div className={styles.marginBottom}>
+                      <LibraryTitle
+                        title={'Читаю'}
+                        isReadBooks={false}
+                        isPlannedBooks={false}
+                        books={readingBooks}
+                      />
+                      <LibraryList
+                        canBeDeleted={false}
+                        books={readingBooks}
+                        onRemoveBookFromList={deleteBookAction}
+                      />
+                    </div>
+                  )}
+
+                  {plannedBooks.length > 0 && (
+                    <>
+                      <div className={styles.marginBottom}>
+                        <LibraryTitle
+                          title={'Маю намір прочитати'}
+                          isReadBooks={false}
+                          books={plannedBooks}
+                        />
+                        <LibraryList
+                          canBeDeleted={true}
+                          books={plannedBooks}
+                          onClickResume={this.handleClickResume}
+                          onRemoveBookFromList={deleteBookAction}
+                        />
+                      </div>
+                      <Link to="/training" className={styles.button}>
+                        Перейти до тренування
+                    </Link>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {isBookReviewModalOpen && (
+                <LibraryListModal bookId={choosenBookId} />
+              )}
+            </>
+          )}
       </>
     );
   }
