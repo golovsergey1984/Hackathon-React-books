@@ -70,6 +70,7 @@ class AddBookForm extends Component {
             onChange={this.handleChange}
             className={styles.number}
             autoComplete="off"
+            min="1"
           />
         </label>
 
@@ -84,6 +85,7 @@ class AddBookForm extends Component {
             onChange={this.handleChange}
             className={styles.number}
             autoComplete="off"
+            min="1"
           />
         </label>
 
