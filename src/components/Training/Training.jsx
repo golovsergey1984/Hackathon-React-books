@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { addTrainingAction } from '../../redux/training/trainingActions';
+import { pnotifyAbout } from '../../services/helpers';
+
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -34,6 +39,76 @@ class StartTraining extends Component {
       endDate: date,
     });
     this.setDayToRead(date);
+  };
+
+  addToTrainingBooks = e => {
+    e.preventDefault();
+    const { timeStart, timeEnd, bookTitleToAdd, trainingBooks } = this.state;
+
+    const { plannedBooks } = this.props;
+    if (!timeStart) return pnotifyAbout('Введіть дату початку тренування');
+    if (!timeEnd) return pnotifyAbout('Введіть дату завершення тренування');
+
+    const includeBook = plannedBooks.find(
+      book => book.title === bookTitleToAdd,
+    );
+
+    const stateTitles = trainingBooks.map(({ title }) => title);
+    if (stateTitles.includes(bookTitleToAdd) || !bookTitleToAdd) return;
+    if (!includeBook) return;
+    const bookToAdd = findBookByTitle(bookTitleToAdd, plannedBooks);
+
+    this.setState(state => ({
+      trainingBooks: [bookToAdd, ...state.trainingBooks],
+    }));
+  };
+
+  removeFromTrainingBooks = _id => {
+    console.log('id: ', _id);
+    console.log('trainingBooks: ', this.state.trainingBooks);
+    this.setState(state => ({
+      trainingBooks: state.trainingBooks.filter(book => book._id !== _id),
+    }));
+  };
+
+  createTrainng = () => {
+    const { totalDays, timeStart, timeEnd, trainingBooks } = this.state;
+    const books = trainingBooks.map(trainingBook => ({
+      book: trainingBook._id,
+    }));
+    // console.log('books: ', books);
+    const avgReadPages = Math.ceil(
+      trainingBooks.reduce(
+        (acc, trainingBook) => acc + trainingBook.pagesCount,
+        0,
+      ) / totalDays,
+    );
+
+    const trainingData = {
+      books,
+      timeStart: timeStart.toISOString().split('T')[0],
+      timeEnd: timeEnd.toISOString().split('T')[0],
+      avgReadPages,
+    };
+    this.props.trainingSubmit(trainingData);
+  };
+
+  componentDidMount() {}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      (prevState.timeStart !== this.state.timeStart && this.state.timeEnd) ||
+      (prevState.timeEnd !== this.state.timeEnd && this.state.timeStart)
+    ) {
+      this.setDayToRead();
+    }
+  }
+
+  static propTypes = {
+    setStartDate: PropTypes.func.isRequired,
+    setEndDate: PropTypes.func.isRequired,
+    bookTitleToAdd: PropTypes.string.isRequired,
+    trainingBooks: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
   render() {
