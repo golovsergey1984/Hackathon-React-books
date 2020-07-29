@@ -23,15 +23,12 @@
   font-size: 22px;
   font-weight: bold;
   padding-left: 44px;
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
-  /* line-height: 3.2; */
 }
 
 .boxBooks {
   display: flex;
   justify-content: space-between;
   color: rgb(141, 137, 137);
-  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
   font-size: 14px;
   line-height: 3.2;
   padding-left: 44px;
@@ -41,4 +38,43 @@
 .rating {
   width: 25%;
   margin-right: 40px;
+}
+
+/*ReadingList*/
+
+.reading_boxBooks {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(141, 137, 137);
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 44px;
+  width: 74%;
+}
+
+.planned_boxBooks {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(141, 137, 137);
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 44px;
+  width: 74%;
+}
+
+.readed_boxBooks {
+  display: flex;
+  justify-content: space-between;
+  color: rgb(141, 137, 137);
+  font-size: 14px;
+  line-height: 3.2;
+  padding-left: 44px;
+  width: 80%;
+}
+
+.wrapperTitle {
+  display: flex;
+  color: rgb(141, 137, 137);
+  font-size: 14px;
+  line-height: 3.2;
 }

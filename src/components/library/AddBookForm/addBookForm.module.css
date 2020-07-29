@@ -40,17 +40,9 @@ input:focus {
 }
 
 .btn {
-  /* margin-top: 16px;
-  margin-left: 43px;
-  padding: 7px 50px;
-  font-size: 14px;
-  border: 1px solid rgb(156, 150, 140);
-  background-color: rgb(156, 150, 140); */
   display: block;
   width: 200px;
-  /* margin: 0 auto; */
   background-color: #f5f7fa;
-  /* font-family: Montserrat; */
   font-weight: 500;
   font-size: 13px;
   border: 1px solid #00183e;
