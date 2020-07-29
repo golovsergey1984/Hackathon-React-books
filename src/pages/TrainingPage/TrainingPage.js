@@ -11,8 +11,7 @@ export default class TrainingPage extends Component {
   }
   render() {
     const { haveTraining, isLoading, plannedBooks } = this.props;
-    
-     console.log(this.props)
+
     return (
       <>
         {isLoading ? (
@@ -26,8 +25,9 @@ export default class TrainingPage extends Component {
           />
         ) : (
           <>
-            {
-            (haveTraining || !plannedBooks.length) && <Redirect to="/statistics" />}
+            {(haveTraining || !plannedBooks.length) && (
+              <Redirect to="/statistics" />
+            )}
             <Training {...this.props} />
           </>
         )}

@@ -7,7 +7,6 @@ import {getTrainingAction} from '../../redux/training/trainingActions'
 const mapStateToProps = state => ({
   plannedBooks: getPlannedBooks(state),
   isLoading: state.isLoading,
-
   haveTraining: state.session.user.haveTraining,
 });
 

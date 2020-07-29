@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './Training.module.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addTrainingAction } from '../../redux/training/trainingActions';
 import { pnotifyAbout } from '../../services/helpers';
 import DatePicker from 'react-datepicker';
@@ -9,7 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import StatisticsBlock from '../StatisticBlock/StatisticBlock.jsx';
 import { registerLocale } from 'react-datepicker';
 import uk from 'date-fns/locale/uk';
-// import { findByLabelText } from '@testing-library/react';
+
 registerLocale('uk', uk);
 
 const findBookByTitle = (title, books) => {
@@ -79,9 +80,7 @@ class Training extends Component {
   };
 
   removeFromTrainingBooks = _id => {
-    console.log('id: ', _id);
-    console.log('trainingBooks: ', this.state.trainingBooks);
-    this.setState(state => ({
+        this.setState(state => ({
       trainingBooks: state.trainingBooks.filter(book => book._id !== _id),
     }));
   };
@@ -106,9 +105,17 @@ class Training extends Component {
     };
     console.log(trainingData);
     this.props.trainingSubmit(trainingData);
+    localStorage.removeItem('trainingBooks');
   };
 
-  // componentDidMount() {}
+  componentDidMount() {
+    const persitedTrainingBooks = JSON.parse(
+      localStorage.getItem('trainingBooks'),
+    );
+    if (persitedTrainingBooks) {
+      this.setState({ trainingBooks: persitedTrainingBooks });
+    }
+  }
 
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -117,7 +124,34 @@ class Training extends Component {
     ) {
       this.setDayToRead();
     }
+    if (prevState.trainingBooks !== this.state.trainingBooks) {
+      localStorage.setItem(
+        'trainingBooks',
+        JSON.stringify(this.state.trainingBooks),
+      );
+    }
   }
+
+  static propTypes = {
+    timeStart: PropTypes.string,
+    timeEnd: PropTypes.string,
+    bookTitleToAdd: PropTypes.string,
+    totalDays: PropTypes.number,
+    trainingBooks: PropTypes.arrayOf(
+      PropTypes.shape({
+        author: PropTypes.string,
+        createdAt: PropTypes.string,
+        pagesCount: PropTypes.number,
+        rating: PropTypes.number,
+        status: PropTypes.string,
+        title: PropTypes.string,
+        updatedAt: PropTypes.string,
+        userId: PropTypes.string,
+        year: 1,
+      }),
+    ),
+  };
+  
 
   render() {
     const {
@@ -181,7 +215,7 @@ class Training extends Component {
           </form>
 
           <table className={styles.selectedBookTable}>
-            <thead>
+            <thead className={styles.tableHead}>
               <tr className={styles.row}>
                 <th className={styles.selectedBookTableBookName}>
                   Назва книги
@@ -192,7 +226,7 @@ class Training extends Component {
               </tr>
             </thead>
 
-            <tbody>
+            <tbody className={styles.tableBody}>
               {trainingBooks.length > 0 &&
                 trainingBooks.map(
                   ({ _id, title, author, year, pagesCount }) => (
@@ -227,7 +261,7 @@ class Training extends Component {
             </tbody>
           </table>
 
-          {trainingBooks.length > 0 && (
+          {trainingBooks.length > 0 && timeStart && timeEnd && (
             <Link
               to="/statistics"
               className={styles.startTrainingButton}
