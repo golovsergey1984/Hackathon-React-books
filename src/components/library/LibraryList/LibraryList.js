@@ -33,36 +33,31 @@ class LibraryList extends Component {
         {sortedArrayByRating.map(book => (
           <li key={book._id} className={styles.list}>
             <div className={styles.wrapBooks}>
-              <LibLogo
-                className={styles[book.status]}
-                // src={require('../../../assets/icons/book.svg')}
-                // alt="some img"
-                // width={24}
-              />
-              <div className={styles.secondBoxBooks}>
+              <LibLogo className={styles[book.status]} />
+              <div className={styles[book.status + '_SecondBoxBooks']}>
                 <div className={styles.nameBook}>{book.title}</div>
                 <div className={styles.authorBook}>{book.author}</div>
                 <div className={styles.yearBook}>{book.year}</div>
                 <div className={styles.storBook}>{book.pagesCount}</div>
-                {isReadBooks && (
-                  <div className={styles.rating}>
-                    <StarReactRating rating={book.rating} />
-                    <button
-                      data-bookid={book._id}
-                      className={styles.button}
-                      onClick={() => onClickResume(book._id)}
-                    >
-                      Резюме
-                    </button>
-                  </div>
-                )}
-                {canBeDeleted && (
-                  <button
-                    className={styles.selectedBookDelete}
-                    onClick={() => onRemoveBookFromList(book._id)}
-                  ></button>
-                )}
               </div>
+              {isReadBooks && (
+                <div className={styles.rating}>
+                  <StarReactRating rating={book.rating} />
+                  <button
+                    data-bookid={book._id}
+                    className={styles.button}
+                    onClick={() => onClickResume(book._id)}
+                  >
+                    Резюме
+                  </button>
+                </div>
+              )}
+              {canBeDeleted && (
+                <button
+                  className={styles.selectedBookDelete}
+                  onClick={() => onRemoveBookFromList(book._id)}
+                ></button>
+              )}
             </div>
           </li>
         ))}

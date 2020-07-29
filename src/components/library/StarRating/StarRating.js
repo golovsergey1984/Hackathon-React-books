@@ -1,6 +1,7 @@
 import React from 'react';
 import StarRating from 'react-svg-star-rating';
 import styles from './StarRating.module.css';
+import PropTypes from 'prop-types';
 
 const StarReactRating = ({ rating }) => {
   return (
@@ -14,6 +15,10 @@ const StarReactRating = ({ rating }) => {
       />
     </>
   );
+};
+
+StarReactRating.propTypes = {
+  rating: PropTypes.number.isRequired,
 };
 
 export default StarReactRating;

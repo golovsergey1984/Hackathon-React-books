@@ -71,6 +71,7 @@ class LibraryPage extends Component {
                       title={'Прочитано'}
                       isReadBooks={true}
                       isPlannedBooks={false}
+                      books={readBooks}
                     />
                     <LibraryList
                       canBeDeleted={true}
@@ -88,6 +89,7 @@ class LibraryPage extends Component {
                       title={'Читаю'}
                       isReadBooks={false}
                       isPlannedBooks={false}
+                      books={readingBooks}
                     />
                     <LibraryList
                       canBeDeleted={false}
@@ -103,6 +105,7 @@ class LibraryPage extends Component {
                       <LibraryTitle
                         title={'Маю намір прочитати'}
                         isReadBooks={false}
+                        books={plannedBooks}
                       />
 
                       <LibraryList

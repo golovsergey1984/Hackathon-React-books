@@ -7,9 +7,12 @@ import styles from '../StatisticsPage/StatisticPage.module.css';
 export default class TrainingPage extends Component {
   componentDidMount() {
     this.props.getAllBooks();
+    this.props.getTraining();
   }
   render() {
-    const { haveTraining, isLoading } = this.props;
+    const { haveTraining, isLoading, plannedBooks } = this.props;
+    
+     console.log(this.props)
     return (
       <>
         {isLoading ? (
@@ -23,7 +26,8 @@ export default class TrainingPage extends Component {
           />
         ) : (
           <>
-            {haveTraining && <Redirect to="/statistics" />}
+            {
+            (haveTraining || !plannedBooks.length) && <Redirect to="/statistics" />}
             <Training {...this.props} />
           </>
         )}
